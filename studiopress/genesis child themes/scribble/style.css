@@ -1,0 +1,2138 @@
+/*
+	Theme Name: Scribble Child Theme
+	Theme URI: http://www.studiopress.com/themes/scribble
+	Description: Sample is a two or three column child theme created for the Genesis Framework.
+	Author: StudioPress
+	Author URI: http://www.studiopress.com/
+
+	Version: 1.0
+	
+	Tags: custom-background, custom-header, custom-menu, featured-images, fixed-width, left-sidebar, one-column, right-sidebar, sticky-post, theme-options, threaded-comments, three-columns, translation-ready, two-columns, white
+	
+	Template: genesis
+	Template Version: 1.7.1
+
+	License: GNU General Public License v2.0
+	License URI: http://www.opensource.org/licenses/gpl-license.php
+*/
+
+/* Table of Contents
+
+* Import Fonts
+* Defaults
+* Hyperlinks
+* Body
+* Wrap
+* Header
+* Image Header - Partial Width
+* Image Header - Full Width
+* Navigation Constants
+* Header Right Navigation
+* Primary Navigation
+* Primary Navigation Extras
+* Secondary Navigation
+* Inner
+* Breadcrumb
+* Taxonomy Description
+* Content-Sidebar Wrap
+* Content
+* Column Classes
+* Featured Post Grid
+* Headlines
+* Ordered / Unordered Lists
+* Post Info
+* Post Meta
+* Author Box
+* Sticky Posts
+* Archive Page
+* Post Icons
+* Images
+* Post Navigation
+* Primary / Secondary Sidebars
+* Dropdowns
+* Featured Page / Post
+* User Profile
+* Buttons
+* Search Form
+* eNews & Updates Widget
+* Calendar Widget
+* Footer Widgets
+* Footer
+* Comments
+* Gravity Forms
+* Scribble Blue
+* Scribble Green
+* Scribble Lavender
+* Scribble Pink
+* Scribble Red
+* Scribble Teal
+
+*/
+
+
+/* Import Fonts
+------------------------------------------------------------ */
+
+@import url(http://fonts.googleapis.com/css?family=Dancing+Script);
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+@import url(http://fonts.googleapis.com/css?family=Quattrocento);
+
+
+/* Defaults
+------------------------------------------------------------ */
+
+body,
+h1,
+h2,
+h2 a,
+h2 a:visited,
+h3,
+h4,
+h5,
+h6,
+p,
+select,
+textarea {
+	color: #333;
+	font-family: 'Quattrocento', arial, serif;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 22px;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+input {
+	color: #333;
+	font-family: 'Quattrocento', arial, serif;
+}
+
+blockquote,
+input,
+select,
+textarea,
+.author-box,
+.breadcrumb,
+.sticky,
+.taxonomy-description {
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+}
+
+li,
+ol,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+ol li {
+	list-style-type: decimal;
+}
+
+
+/* Hyperlinks
+------------------------------------------------------------ */
+
+a,
+a:visited {
+	color: #d99e58;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+
+/* Body
+------------------------------------------------------------ */
+
+body {
+	background: url(images/bg.png);
+	border-top: 5px solid #333;
+}
+
+
+/* Wrap
+------------------------------------------------------------ */
+
+#wrap {
+	margin: 0 auto;
+}
+
+
+/* Header
+------------------------------------------------------------ */
+
+#header {
+	background: url(images/bg-header.png) top repeat-x;
+	min-height: 105px;
+	margin: 0 0 10px;
+	overflow: hidden;
+}
+
+#header .wrap {
+	margin: 0 auto;
+	width: 960px;
+}
+
+#title-area {
+	background-color: #333;
+	float: left;
+	height: 100px;
+	overflow: hidden;
+	padding: 0;
+	text-align: center;
+	width: 250px;
+}
+
+#title {
+	font-family: 'Dancing Script', cursive, Arial, sans-serif;
+	font-size: 36px;
+	line-height: 42px;
+	margin: 15px 0 0;
+	text-transform: lowercase;
+}
+
+#title a,
+#title a:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+#description {
+	color: #999;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+#header .widget-area {
+	float: right;
+	width: 700px;
+}
+
+
+/* Image Header - Partial Width
+------------------------------------------------------------ */
+
+.header-image #title-area,
+.header-image #title,
+.header-image #title a {
+	display: block;
+	float: left;
+	height: 105px;
+	overflow: hidden;
+	padding: 0;
+	text-indent: -9999px;
+	width: 250px;
+}
+
+.header-image #description {
+	display: block;
+	overflow: hidden;
+}
+
+
+/* Image Header - Full Width
+------------------------------------------------------------ */
+
+.header-full-width #title-area,
+.header-full-width #title,
+.header-full-width #title a {
+	width: 960px;
+}
+
+
+/* Navigation Constants
+------------------------------------------------------------ */
+
+li:hover ul ul,
+li.sfHover ul ul {
+	left: -9999px;
+}
+
+li:hover,
+li.sfHover {
+	position: static;
+}
+
+li a .sf-sub-indicator {
+	position: absolute;
+	text-indent: -9999px;
+}
+
+
+/* Header Right Navigation
+------------------------------------------------------------ */
+
+#header ul.nav,
+#header ul.menu {
+	float: right;
+}
+
+#header ul.nav ul,
+#header ul.menu ul {
+	float: right;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#header ul.nav li,
+#header ul.menu li {
+	float: left;
+	list-style-type: none;
+}
+
+#header ul.nav li a,
+#header ul.menu li a {
+	color: #555;
+	display: block;
+	font-family: 'Quattrocento', arial, serif;
+	font-size: 15px;
+	padding: 40px 20px 38px;
+	position: relative;
+	text-decoration: none;
+	text-shadow: #fff 1px 1px;
+}
+
+#header ul.nav li a:hover,
+#header ul.nav li a:active,
+#header ul.menu li a:hover,
+#header ul.menu li a:active {
+	background: #d99e58 url(images/nav-top.png) repeat-x;
+	color: #fff;
+	text-shadow: none;
+}
+
+#header ul.nav li li a,
+#header ul.nav li li a:link,
+#header ul.nav li li a:visited,
+#header ul.menu li li a,
+#header ul.menu li li a:link,
+#header ul.menu li li a:visited {
+	background-color: #d99e58;
+	border-bottom: 1px solid #fff;
+	border-right: 1px solid #fff;
+	color: #fff;
+	font-size: 12px;
+	padding: 5px 10px;
+	position: relative;
+	text-shadow: none;
+	text-transform: none;
+	width: 128px;
+}
+
+#header ul.nav li li a:hover,
+#header ul.nav li li a:active,
+#header ul.menu li li a:hover,
+#header ul.menu li li a:active {
+	background: none;
+	background-color: #d99e58;
+	color: #333;
+}
+
+#header ul.nav li ul,
+#header ul.menu li ul {
+	height: auto;
+	left: -9999px;
+	position: absolute;
+	width: 150px;
+	z-index: 9999;
+}
+
+#header ul.nav li ul a,
+#header ul.menu li ul a {
+	width: 130px;
+}
+
+#header ul.nav li ul ul,
+#header ul.menu li ul ul {
+	margin: -33px 0 0 149px;
+}
+
+#header ul.nav li:hover>ul,
+#header ul.nav li.sfHover ul,
+#header ul.menu li:hover>ul,
+#header ul.menu li.sfHover ul {
+	left: auto;
+}
+
+
+/* Primary Navigation
+------------------------------------------------------------ */
+
+#nav {
+	background: url(images/bg-nav.png);
+	clear: both;
+	color: #333;
+	font-family: 'Quattrocento', arial, serif;
+	margin: 0 auto 5px;
+	overflow: hidden;
+	text-transform: uppercase;
+	width: 960px;
+}
+
+#nav ul {
+	float: left;
+	width: 100%;
+}
+
+#nav li {
+	float: left;
+	list-style-type: none;
+}
+
+#nav li a {
+	border-right: 1px solid #fff;
+	color: #333;
+	display: block;
+	font-size: 12px;
+	padding: 6px 15px 5px;
+	position: relative;
+	text-decoration: none;
+	text-shadow: #fff 1px 1px;
+}
+
+#nav li a:hover,
+#nav li a:active,
+#nav .current_page_item a,
+#nav .current-cat a,
+#nav .current-menu-item a {
+	background-color: #d99e58;
+	color: #fff;
+	text-shadow: #d99e58 1px 1px;
+}
+
+#nav li a:hover,
+#nav li a:active,
+#nav li:hover a {
+	background-color: #d99e58;
+	color: #fff;
+	text-shadow: #d99e58 1px 1px;
+}
+
+#nav li li a,
+#nav li li a:link,
+#nav li li a:visited {
+	background-color: #d99e58;
+	border: 1px solid #fff;
+	border-top-width: 0;
+	color: #fff;
+	font-size: 12px;
+	padding: 5px 10px;
+	position: relative;
+	text-shadow: none;
+	text-transform: none;
+	width: 128px;
+}
+
+#nav li li a:hover,
+#nav li li a:active {
+	background-color: #fff;
+	color: #333;
+}
+
+#nav li ul {
+	height: auto;
+	left: -9999px;
+	margin: 0 0 0 -1px;
+	position: absolute;
+	width: 150px;
+	z-index: 9999;
+}
+
+#nav li ul a {
+	width: 130px;
+}
+
+#nav li ul ul {
+	margin: -33px 0 0 149px;
+}
+
+#nav li:hover>ul,
+#nav li.sfHover ul {
+	left: auto;
+}
+
+
+/* Primary Navigation Extras
+------------------------------------------------------------ */
+
+#nav li.right {
+	float: right;
+	font-size: 12px;
+	padding: 6px 15px 5px;
+}
+
+#nav li.right a {
+	background: none;
+	border: none;
+	color: #fff;
+	display: inline;
+	text-decoration: none;
+}
+
+#nav li.right a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+#nav li.search {
+	padding: 0 10px;
+}
+
+#nav li.rss a {
+	background: url(images/rss.png) no-repeat center left;
+	margin: 0 0 0 10px;
+	padding: 6px 0 5px 16px;
+}
+
+#nav li.twitter a {
+	background: url(images/twitter-nav.png) no-repeat center left;
+	padding: 7px 0 5px 20px;
+}
+
+
+/* Secondary Navigation
+------------------------------------------------------------ */
+
+#subnav {
+	background: url(images/bg-nav.png);
+	clear: both;
+	color: #333;
+	font-family: 'Quattrocento', arial, serif;
+	margin: 0 auto 5px;
+	overflow: hidden;
+	text-transform: uppercase;
+	width: 960px;
+}
+
+#subnav ul {
+	float: left;
+	width: 100%;
+}
+
+#subnav li {
+	float: left;
+	list-style-type: none;
+}
+
+#subnav li a {
+	border-right: 1px solid #fff;
+	color: #333;
+	display: block;
+	font-size: 12px;
+	padding: 6px 15px 5px;
+	position: relative;
+	text-decoration: none;
+	text-shadow: #fff 1px 1px;
+}
+
+#subnav li a:hover,
+#subnav li a:active,
+#subnav .current_page_item a,
+#subnav .current-cat a,
+#subnav .current-menu-item a {
+	background-color: #d99e58;
+	color: #fff;
+	text-shadow: #d99e58 1px 1px;
+}
+
+#subnav li a:hover,
+#subnav li a:active,
+#subnav li:hover a {
+	background-color: #d99e58;
+	color: #fff;
+	text-shadow: #d99e58 1px 1px;
+}
+
+#subnav li li a,
+#subnav li li a:link,
+#subnav li li a:visited {
+	background-color: #d99e58;
+	border: 1px solid #fff;
+	border-top-width: 0;
+	color: #fff;
+	font-size: 12px;
+	padding: 5px 10px;
+	position: relative;
+	text-shadow: none;
+	text-transform: none;
+	width: 128px;
+}
+
+#subnav li li a:hover,
+#subnav li li a:active {
+	background-color: #fff;
+	color: #333;
+}
+
+#subnav li ul {
+	height: auto;
+	left: -9999px;
+	margin: 0 0 0 -1px;
+	position: absolute;
+	width: 150px;
+	z-index: 9999;
+}
+
+#subnav li ul a {
+	width: 130px;
+}
+
+#subnav li ul ul {
+	margin: -33px 0 0 149px;
+}
+
+#subnav li:hover>ul,
+#subnav li.sfHover ul {
+	left: auto;
+}
+
+
+/* Inner
+------------------------------------------------------------ */
+
+#inner {
+	margin: 20px auto;
+	overflow: hidden;
+	width: 960px;
+}
+
+.home.full-width-content #inner {
+	margin: 20px auto 0;
+	width: 100%;
+}
+
+
+/* Welcome
+------------------------------------------------------------ */
+
+#welcome {
+	background: url(images/welcome.png);
+	height: 400px;
+	margin: 0 auto;
+	overflow: hidden;
+	width: 960px;
+}
+
+#welcome .wrap {
+	font-family: 'Quattrocento', arial, serif;
+	padding: 25px 50px;
+	text-align: center;
+}
+
+#welcome a,
+#welcome a:visited {
+	color: #fff;
+}
+
+
+/* About
+------------------------------------------------------------ */
+
+#about {
+	background: url(images/bg-dark.png) top repeat-x;
+	overflow: hidden;
+}
+
+#about .wrap {
+	font-family: 'Quattrocento', arial, serif;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 30px 0 10px;
+	width: 960px;
+}
+
+
+/* Blog
+------------------------------------------------------------ */
+
+#blog {
+	background: url(images/bg-light.png) top repeat-x;
+	overflow: hidden;
+}
+
+#blog .wrap {
+	font-family: 'Quattrocento', arial, serif;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 30px 0 10px;
+	width: 960px;
+}
+
+
+/* About
+------------------------------------------------------------ */
+
+#services {
+	background: url(images/bg-light.png) top repeat-x;
+	overflow: hidden;
+}
+
+#services .wrap {
+	font-family: 'Quattrocento', arial, serif;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 30px 0 10px;
+	width: 960px;
+}
+
+
+/* Photos
+------------------------------------------------------------ */
+
+#photos {
+	background: url(images/bg-dark.png) top repeat-x;
+	overflow: hidden;
+}
+
+#photos .wrap {
+	font-family: 'Quattrocento', arial, serif;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 30px 0 10px;
+	width: 960px;
+}
+
+
+/* Contact
+------------------------------------------------------------ */
+
+#contact {
+	background: url(images/bg-dark.png) top repeat-x;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#contact .wrap {
+	font-family: 'Quattrocento', arial, serif;
+	margin: 0 auto;
+	padding: 30px 0 10px;
+	width: 960px;
+}
+
+
+/* Breadcrumb
+------------------------------------------------------------ */
+
+.breadcrumb {
+	font-size: 13px;
+	line-height: 20px;
+	margin: 0 0 30px;
+	padding: 5px 10px;
+}
+
+
+/* Taxonomy Description
+------------------------------------------------------------ */
+
+.taxonomy-description {
+	margin: 0 0 30px;
+	padding: 10px;
+}
+
+
+/* Content-Sidebar Wrap
+------------------------------------------------------------ */
+
+#content-sidebar-wrap {
+	float: left;
+	width: 790px;
+}
+
+.content-sidebar #content-sidebar-wrap,
+.full-width-content #content-sidebar-wrap,
+.sidebar-content #content-sidebar-wrap {
+	width: 960px;
+}
+
+.home.full-width-content #content-sidebar-wrap {
+	width: 100%;
+}
+
+.sidebar-content-sidebar #content-sidebar-wrap,
+.sidebar-sidebar-content #content-sidebar-wrap {
+	float: right;
+}
+
+
+/* Content
+------------------------------------------------------------ */
+
+#content {
+	float: left;
+	width: 470px;
+}
+
+.content-sidebar #content,
+.sidebar-content #content {
+	width: 640px;
+}
+
+.sidebar-content #content,
+.sidebar-sidebar-content #content {
+	float: right;
+}
+
+.home.full-width-content #content {
+	width: 100%;
+}
+
+.full-width-content #content {
+	width: 960px;
+}
+
+blockquote {
+	-moz-box-shadow: 0 3px 5px #ddd; 
+	-webkit-box-shadow: 0 3px 5px #ddd;
+	background: #fff url(images/blockquote.png) no-repeat top left;
+	border: none;
+	margin: 5px 15px 25px;
+	padding: 20px 25px 0 80px;
+}
+
+blockquote p {
+	color: #888;
+	font-family: Georgia, Times, 'Times New Roman', serif;
+	font-style: italic;
+}
+
+.post {
+	margin: 0 0 40px;
+}
+
+.entry-content {
+	overflow: hidden;
+}
+
+.entry-content p,
+.home p {
+	padding: 0 0 20px;
+}
+
+p.subscribe-to-comments {
+	padding: 20px 0 10px;
+}
+
+.top p {
+	text-align: center;
+}
+
+.clear {
+	clear: both;
+}
+
+.clear-line {
+	border-bottom: 1px solid #ddd;
+	clear: both;
+	margin: 0 0 15px;
+}
+
+
+/* Column Classes
+------------------------------------------------------------ */
+
+.five-sixths,
+.four-fifths,
+.four-sixths,
+.one-fifth,
+.one-fourth,
+.one-half,
+.one-sixth,
+.one-third,
+.three-fifths,
+.three-fourths,
+.three-sixths,
+.two-fifths,
+.two-fourths,
+.two-sixths,
+.two-thirds {
+	float: left;
+	padding-left: 3%;
+}
+
+.one-half,
+.three-sixths,
+.two-fourths {
+	width: 48%;
+}
+
+.one-third,
+.two-sixths {
+	width: 31%;
+}
+
+.four-sixths,
+.two-thirds {
+	width: 65%;
+}
+
+.one-fourth {
+	width: 22.5%;
+}
+
+.three-fourths {
+	width: 73.5%;
+}
+
+.one-fifth {
+	width: 17.4%;
+}
+
+.two-fifths {
+	width: 37.8%;
+}
+
+.three-fifths {
+	width: 58.2%;
+}
+
+.four-fifths {
+	width: 78.6%;
+}
+
+.one-sixth {
+	width: 14%;
+}
+
+.five-sixths {
+	width: 82%;
+}
+
+.first {
+	clear: both;
+	padding-left: 0;
+}
+
+
+/* Featured Post Grid
+------------------------------------------------------------ */
+
+.genesis-grid-even {
+	float: right;
+	padding: 0 0 15px;
+	width: 48%;
+}
+
+.genesis-grid-odd {
+	clear: both;
+	float: left;
+	padding: 0 0 15px;
+	width: 48%;
+}
+
+.genesis-grid-even,
+.genesis-grid-odd {
+	margin: 0 0 20px;
+}
+
+
+/* Headlines
+------------------------------------------------------------ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #444;
+	font-family: 'Quattrocento', arial, serif;
+	margin: 0 0 10px;
+}
+
+h1,
+h2,
+h2 a,
+h2 a:visited {
+	color: #444;
+	font-family: 'Dancing Script', cursive, Arial, sans-serif;
+	font-size: 36px;
+	line-height: 42px;
+}
+
+.taxonomy-description h1,
+.widget-area h2,
+.widget-area h2 a {
+	font-size: 14px;
+	line-height: 20px;
+	margin: 0 0 5px;
+}
+
+h2 a:hover {
+	color: #d99e58;
+	text-decoration: none;
+}
+
+#blog h2,
+#blog h2 a,
+#blog h2 a:visited,
+#services h5 {
+	color: #444;
+	font-family: 'Quattrocento', arial, serif;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0 0 5px;
+	line-height: 24px;
+}
+
+#blog h2 a:hover {
+	color: #d99e58;
+}
+
+h3 {
+	font-size: 24px;
+	line-height: 30px;
+	margin: 0 0 5px;
+}
+
+h4 {
+	font-size: 18px;
+	line-height: 24px;
+	margin: 0 0 5px;
+}
+
+#welcome h4 {
+	font-family: 'Dancing Script', cursive, Arial, sans-serif;
+	font-size: 60px;
+	line-height: 60px;
+	margin: 0 0 25px;
+	text-align: center;
+}
+
+#about h4,
+#blog h4,
+#contact h4,
+#photos h4,
+#services h4 {
+	font-family: 'Dancing Script', cursive, Arial, sans-serif;
+	font-size: 36px;
+	line-height: 36px;
+	margin: 0 0 20px;
+}
+
+.widget-area h4 {
+	font-family: 'Dancing Script', cursive, Arial, sans-serif;
+	font-size: 24px;
+	margin: 0 0 10px;
+}
+
+.widget-area h4 a {
+	color: #333;
+	text-decoration: none;
+}
+
+h5 {
+	font-size: 18px;
+}
+
+#welcome h5 {
+	font-family: 'Quattrocento', arial, serif;
+	font-size: 20px;
+	line-height: 24px;
+	margin: 0 0 20px;
+}
+
+h6 {
+	font-size: 16px;
+}
+
+
+/* Ordered / Unordered Lists
+------------------------------------------------------------ */
+
+.entry-content ol,
+.entry-content ul,
+#about ul {
+	margin: 0;
+	padding: 0 0 15px;
+}
+
+.entry-content ol {
+	margin: 0;
+}
+
+.archive-page ul li,
+.entry-content ul li,
+#about ul li {
+	list-style-type: square;
+	margin: 0 0 0 30px;
+	padding: 0;
+}
+
+.entry-content ol li {
+	margin: 0 0 0 35px;
+}
+
+.archive-page ul ul,
+.entry-content ol ol,
+.entry-content ul ul {
+	padding: 0;
+}
+
+
+/* Post Info
+------------------------------------------------------------ */
+
+.post-info {
+	font-size: 12px;
+	margin: -5px 0 15px;
+	text-transform: uppercase;
+}
+
+
+/* Post Meta
+------------------------------------------------------------ */
+
+.post-meta {
+	border-top: 1px solid #ddd;
+	clear: both;
+	font-size: 12px;
+	padding: 5px 0 0;
+	text-transform: uppercase;
+}
+
+
+/* Author Box
+------------------------------------------------------------ */
+
+.author-box {
+	margin: 0 0 40px;
+	overflow: hidden;
+	padding: 10px;
+}
+
+
+/* Sticky Posts
+------------------------------------------------------------ */
+
+.sticky {
+	margin: 0 0 40px;
+	padding: 20px;
+}
+
+
+/* Archive Page
+------------------------------------------------------------ */
+
+.archive-page {
+	float: left;
+	padding: 20px 0;
+	width: 45%;
+}
+
+
+/* Post Icons
+------------------------------------------------------------ */
+
+.post-comments,
+.tags {
+	background: url(images/icon-dot.png) no-repeat left;
+	margin: 0 0 0 3px;
+	padding: 0 0 0 10px;
+}
+
+
+/* Images
+------------------------------------------------------------ */
+
+img,
+img a {
+	-moz-box-shadow: 0 3px 5px #ddd; 
+	-webkit-box-shadow: 0 3px 5px #ddd;
+	border: 5px solid #fff;
+}
+
+img.portfolio {
+	border: 15px solid #fff;
+}
+
+#blog .featuredpage img,
+#blog .featuredpost img {
+	margin: 0 0 15px;
+}
+
+#photos .featuredpage img,
+#photos .featuredpost img {
+	margin: 0;
+}
+
+.entry-content img {
+	max-width: 95%;
+}
+
+.author-box .avatar {
+	background-color: #fff;
+	float: left;
+	height: 80px;
+	margin: 0 10px 0 0;
+	width: 80px;
+}
+
+.post-image {
+	margin: 0 10px 10px 0;
+}
+
+.comment-list li .avatar {
+	background-color: #fff;
+	float: right;
+	margin: 0 5px 0 10px;
+	padding: 4px;
+}
+
+img.centered,
+.aligncenter {
+	display: block;
+	margin: 0 auto 10px;
+}
+
+img.alignnone {
+	display: inline;
+	margin: 0 0 10px;
+}
+
+img.alignleft {
+	display: inline;
+	margin: 0 15px 10px 0;
+}
+
+img.alignright {
+	display: inline;
+	margin: 0 0 10px 15px;
+}
+
+.alignleft {
+	float: left;
+	margin: 0 10px 0 0;
+}
+
+.alignright {
+	float: right;
+	margin: 0 0 0 10px;
+}
+
+.wp-caption {
+	padding: 5px;
+	text-align: center;
+}
+
+p.wp-caption-text {
+	font-size: 12px;
+	line-height: 16px;
+	padding: 5px 0;
+}
+
+.wp-smiley,
+.wp-wink {
+	border: none;
+	float: none;
+}
+
+.gallery-caption {
+}
+
+
+/* Post Navigation
+------------------------------------------------------------ */
+
+.navigation {
+	overflow: hidden;
+	padding: 20px 0;
+	width: 100%;
+}
+
+.navigation li {
+	display: inline;
+}
+
+.navigation li a,
+.navigation li.disabled,
+.navigation li a:hover,
+.navigation li.active a {
+	border: 1px solid #ddd;
+	padding: 5px 8px;
+}
+
+.navigation li a:hover,
+.navigation li.active a {
+	background-color: #f5f5f5;
+}
+
+
+/* Primary / Secondary Sidebars
+------------------------------------------------------------ */
+
+.sidebar {
+	display: inline;
+	float: right;
+	font-size: 13px;
+	line-height: 20px;
+	width: 300px;
+}
+
+.sidebar p {
+	font-size: 13px;
+	line-height: 20px;
+}
+
+#sidebar-alt {
+	float: left;
+	width: 150px;
+}
+
+.sidebar-content #sidebar,
+.sidebar-sidebar-content #sidebar {
+	float: left;
+}
+
+.content-sidebar-sidebar #sidebar-alt {
+	float: right;
+}
+
+.sidebar .widget {
+	background: url(images/bg-nav.png);
+	margin: 0 0 15px;
+	padding: 20px;
+}
+
+#header ul {
+	margin: 0;
+}
+
+.widget-area ol ol,
+.widget-area ul ul {
+	margin: 0 0 0 15px;
+}
+
+#footer-widgets ul li,
+#sidebar ul li {
+	border-bottom: 1px dotted #ccc;
+	list-style-type: none;
+	margin: 0 0 5px;
+	padding: 0 0 5px;
+	word-wrap: break-word;
+}
+
+
+/* Dropdowns
+------------------------------------------------------------ */
+
+#cat,
+.widget_archive select {
+	display: inline;
+	font-family: 'Oswald', arial, serif;
+	font-size: 12px;
+	width: 268px;
+}
+
+#sidebar-alt #cat,
+#sidebar-alt .widget_archive select {
+	width: 118px;
+}
+
+
+/* Featured Page / Post
+------------------------------------------------------------ */
+
+.featuredpage,
+.featuredpost {
+	clear: both;
+	overflow: hidden;
+}
+
+#blog .featuredpage .page,
+#blog .featuredpost .post {
+	float: left;
+	margin: 0 19px 0 0;
+	overflow: hidden;
+	width: 300px;
+}
+
+#photos .featuredpage,
+#photos .featuredpost {
+	margin: 0;
+	padding: 0 0 30px;
+}
+
+#photos .featuredpage .page,
+#photos .featuredpost .post {
+	float: left;
+	margin: 0 15px 0 0;
+	width: 140px;
+}
+
+
+/* User Profile
+------------------------------------------------------------ */
+
+.user-profile {
+	overflow: hidden;
+}
+
+
+/* Buttons
+------------------------------------------------------------ */
+
+input[type="button"],
+input[type="submit"] {
+	background-color: #333;
+	border: 1px solid #666;
+	color: #fff;
+	cursor: pointer;
+	font-family: 'Quattrocento', arial, serif !important;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 3px 5px;
+	text-decoration: none;
+}
+
+input:hover[type="button"],
+input:hover[type="submit"] {
+	background-color: #d99e58;
+	border: 1px solid #d99e58;
+	color: #fff;
+	text-decoration: none;
+}
+
+.welcome-link {
+	background-color: #d99e58;
+	font-size: 14px;
+	display: block;
+	margin: 20px auto;
+	padding: 5px 10px;
+	text-align: center;
+	width: 140px;
+}
+
+.welcome-link:hover {
+	background-color: #c1874b;
+	text-decoration: none;
+}
+
+
+/* Search Form
+------------------------------------------------------------ */
+
+#header .searchform {
+	float: right;
+	padding: 40px 0 0;
+}
+
+#nav .searchform {
+	float: right;
+	padding: 4px 0 0;
+}
+
+.s {
+	font-family: 'Quattrocento', arial, serif;
+	font-size: 12px;
+	margin: 0 1px 0 0;
+	padding: 3px 5px;
+	width: 190px;
+}
+
+
+/* eNews and Update Widget
+------------------------------------------------------------ */
+
+.enews #subbox {
+	font-family: 'Quattrocento', arial, serif;
+	font-size: 12px;
+	margin: 5px 5px 0 0;
+	padding: 4px 5px;
+	width: 200px;
+}
+
+
+/* Calendar Widget
+------------------------------------------------------------ */
+
+#wp-calendar {
+	width: 100%;
+}
+
+#wp-calendar caption {
+	font-size: 12px;
+	font-style: italic;
+	padding: 2px 5px 0 0;
+	text-align: right;
+}
+
+#wp-calendar thead {
+	background-color: #f5f5f5;
+	font-weight: bold;
+	margin: 10px 0 0;
+}
+
+#wp-calendar td {
+	background-color: #f5f5f5;
+	padding: 2px;
+	text-align: center;
+}
+
+
+/* Footer Widgets
+------------------------------------------------------------ */
+
+#footer-widgets {
+	background: url(images/bg-nav.png);
+	margin: 0 0 15px;
+	clear: both;
+	margin: 0 auto 20px;
+	overflow: hidden;
+	padding: 30px 0 20px;
+	width: 960px;
+}
+
+.home.full-width-content #footer-widgets {
+	display: none;
+}
+
+#footer-widgets .wrap {
+	margin: 0 auto;
+	width: 900px;
+}
+
+#footer-widgets .widget {
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+#footer-widgets p {
+	padding: 0 0 20px;
+}
+
+#footer-widgets #wp-calendar thead,
+#footer-widgets #wp-calendar td {
+	background: none;
+}
+
+.footer-widgets-1 {
+	float: left;
+	padding: 0 30px 0 0;
+	width: 280px;
+}
+
+.footer-widgets-2 {
+	float: left;
+	width: 280px;
+}
+
+.footer-widgets-3 {
+	float: right;
+	width: 280px;
+}
+
+
+/* Footer
+------------------------------------------------------------ */
+
+#footer {
+	background: url(images/bg-light.png) top repeat-x;
+	clear: both;
+	height: 90px;
+	overflow: hidden;
+}
+
+#footer .wrap {
+	margin: 0 auto;
+	padding: 35px 0 0;
+	width: 960px;
+}
+
+#footer p {
+	color: #555;
+	font-size: 12px;
+}
+
+#footer a,
+#footer a:visited {
+	color: #555;
+}
+
+#footer a:hover {
+	color: #222;
+	text-decoration: none;
+}
+
+#footer .gototop {
+	float: left;
+	width: 200px;
+}
+
+#footer .creds {
+	float: right;
+	text-align: right;
+	width: 755px;
+}
+
+
+/* Comments
+------------------------------------------------------------ */
+
+#comments,
+#respond {
+	font-size: 13px;
+	line-height: 20px;
+	margin: 0 0 15px;
+	overflow: hidden;
+}
+
+#comments p,
+#respond p {
+	font-size: 13px;
+	line-height: 20px;
+}
+
+#author,
+#comment,
+#email,
+#url {
+	font-size: 12px;
+	margin: 10px 5px 0 0;
+	padding: 5px;
+	width: 250px;
+}
+
+#comment {
+	height: 150px;
+	margin: 10px 0;
+	width: 98%;
+}
+
+.ping-list {
+	margin: 0 0 40px;
+}
+
+.comment-list ol,
+.ping-list ol {
+	padding: 10px;
+}
+
+.comment-list li,
+.ping-list li {
+	font-weight: bold;
+	margin: 15px 0 5px;
+	padding: 10px 5px 10px 10px;
+}
+
+.comment-list li ul li {
+	list-style-type: none;
+	margin-left: 10px;
+	margin-right: -6px;
+}
+
+.comment-list p,
+.ping-list p {
+	margin: 10px 5px 10px 0;
+}
+
+.comment-list cite,
+.ping-list cite {
+	font-style: normal;
+}
+
+.commentmetadata {
+	font-size: 11px;
+}
+
+.nocomments {
+	text-align: center;
+}
+
+#comments .navigation {
+	display: block;
+}
+
+.bypostauthor {
+}
+
+.thread-alt,
+.thread-even {
+	background-color: #f5f5f5;
+}
+
+.alt,
+.depth-1,
+.even {
+	border: 1px solid #ddd;
+}
+
+
+/* Gravity Forms
+------------------------------------------------------------ */
+
+.gform_widget {
+	width: 65% !important;
+}
+
+div.gform_wrapper input,
+div.gform_wrapper select,
+div.gform_wrapper textarea {
+	color: #333;
+	font-family: 'Quattrocento', arial, serif;
+	font-size: 12px !important;
+	padding: 4px 5px !important;
+}
+
+div.gform_footer input.button {
+	color: #fff;
+}
+
+div.gform_wrapper .ginput_complex label {
+	font-size: 12px;
+}
+
+div.gform_wrapper li,
+div.gform_wrapper form li {
+	margin: 0 0 10px;
+}
+
+div.gform_wrapper .gform_footer {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* Scribble Aqua
+------------------------------------------------------------ */
+
+.scribble-blue a,
+.scribble-blue a:visited,
+.scribble-blue h2 a:hover,
+.scribble-blue #blog h2 a:hover {
+	color: #2998c3;
+}
+
+.scribble-blue #header ul.nav li a:hover,
+.scribble-blue #header ul.nav li a:active,
+.scribble-blue #header ul.menu li a:hover,
+.scribble-blue #header ul.menu li a:active {
+	background: #2998c3 url(images/nav-top.png) repeat-x;
+}
+
+.scribble-blue #header ul.nav li li a,
+.scribble-blue #header ul.nav li li a:link,
+.scribble-blue #header ul.nav li li a:visited,
+.scribble-blue #header ul.menu li li a,
+.scribble-blue #header ul.menu li li a:link,
+.scribble-blue #header ul.menu li li a:visited,
+.scribble-blue #header ul.nav li li a:hover,
+.scribble-blue #header ul.nav li li a:active,
+.scribble-blue #header ul.menu li li a:hover,
+.scribble-blue #header ul.menu li li a:active,
+.scribble-blue #nav li li a,
+.scribble-blue #nav li li a:link,
+.scribble-blue #nav li li a:visited,
+.scribble-blue #subnav li li a,
+.scribble-blue #subnav li li a:link,
+.scribble-blue #subnav li li a:visited,
+.scribble-blue .welcome-link {
+	background-color: #2998c3;
+}
+
+.scribble-blue #nav li a:hover,
+.scribble-blue #nav li a:active,
+.scribble-blue #nav .current_page_item a,
+.scribble-blue #nav .current-cat a,
+.scribble-blue #nav .current-menu-item a,
+.scribble-blue #nav li a:hover,
+.scribble-blue #nav li a:active,
+.scribble-blue #nav li:hover a,
+.scribble-blue #subnav li a:hover,
+.scribble-blue #subnav li a:active,
+.scribble-blue #subnav .current_page_item a,
+.scribble-blue #subnav .current-cat a,
+.scribble-blue #subnav .current-menu-item a,
+.scribble-blue #subnav li a:hover,
+.scribble-blue #subnav li a:active,
+.scribble-blue #subnav li:hover a {
+	background-color: #2998c3;
+	text-shadow: #2998c3 1px 1px;
+}
+
+.scribble-blue h2 a,
+.scribble-blue h2 a:visited {
+	color: #444;
+}
+
+.scribble-blue input:hover[type="button"],
+.scribble-blue input:hover[type="submit"] {
+	background-color: #2998c3;
+	border: 1px solid #2998c3;
+}
+
+.scribble-blue .welcome-link:hover {
+	background-color: #2382aa;
+}
+
+
+/* Scribble Green
+------------------------------------------------------------ */
+
+.scribble-green a,
+.scribble-green a:visited,
+.scribble-green h2 a:hover,
+.scribble-green #blog h2 a:hover {
+	color: #50a86f;
+}
+
+.scribble-green #header ul.nav li a:hover,
+.scribble-green #header ul.nav li a:active,
+.scribble-green #header ul.menu li a:hover,
+.scribble-green #header ul.menu li a:active {
+	background: #50a86f url(images/nav-top.png) repeat-x;
+}
+
+.scribble-green #header ul.nav li li a,
+.scribble-green #header ul.nav li li a:link,
+.scribble-green #header ul.nav li li a:visited,
+.scribble-green #header ul.menu li li a,
+.scribble-green #header ul.menu li li a:link,
+.scribble-green #header ul.menu li li a:visited,
+.scribble-green #header ul.nav li li a:hover,
+.scribble-green #header ul.nav li li a:active,
+.scribble-green #header ul.menu li li a:hover,
+.scribble-green #header ul.menu li li a:active,
+.scribble-green #nav li li a,
+.scribble-green #nav li li a:link,
+.scribble-green #nav li li a:visited,
+.scribble-green #subnav li li a,
+.scribble-green #subnav li li a:link,
+.scribble-green #subnav li li a:visited,
+.scribble-green .welcome-link {
+	background-color: #50a86f;
+}
+
+.scribble-green #nav li a:hover,
+.scribble-green #nav li a:active,
+.scribble-green #nav .current_page_item a,
+.scribble-green #nav .current-cat a,
+.scribble-green #nav .current-menu-item a,
+.scribble-green #nav li a:hover,
+.scribble-green #nav li a:active,
+.scribble-green #nav li:hover a,
+.scribble-green #subnav li a:hover,
+.scribble-green #subnav li a:active,
+.scribble-green #subnav .current_page_item a,
+.scribble-green #subnav .current-cat a,
+.scribble-green #subnav .current-menu-item a,
+.scribble-green #subnav li a:hover,
+.scribble-green #subnav li a:active,
+.scribble-green #subnav li:hover a {
+	background-color: #50a86f;
+	text-shadow: #50a86f 1px 1px;
+}
+
+.scribble-green h2 a,
+.scribble-green h2 a:visited {
+	color: #444;
+}
+
+.scribble-green input:hover[type="button"],
+.scribble-green input:hover[type="submit"] {
+	background-color: #50a86f;
+	border: 1px solid #50a86f;
+}
+
+.scribble-green .welcome-link:hover {
+	background-color: #44905f;
+}
+
+
+/* Scribble Lavender
+------------------------------------------------------------ */
+
+.scribble-lavender a,
+.scribble-lavender a:visited,
+.scribble-lavender h2 a:hover,
+.scribble-lavender #blog h2 a:hover {
+	color: #a168a5;
+}
+
+.scribble-lavender #header ul.nav li a:hover,
+.scribble-lavender #header ul.nav li a:active,
+.scribble-lavender #header ul.menu li a:hover,
+.scribble-lavender #header ul.menu li a:active {
+	background: #a168a5 url(images/nav-top.png) repeat-x;
+}
+
+.scribble-lavender #header ul.nav li li a,
+.scribble-lavender #header ul.nav li li a:link,
+.scribble-lavender #header ul.nav li li a:visited,
+.scribble-lavender #header ul.menu li li a,
+.scribble-lavender #header ul.menu li li a:link,
+.scribble-lavender #header ul.menu li li a:visited,
+.scribble-lavender #header ul.nav li li a:hover,
+.scribble-lavender #header ul.nav li li a:active,
+.scribble-lavender #header ul.menu li li a:hover,
+.scribble-lavender #header ul.menu li li a:active,
+.scribble-lavender #nav li li a,
+.scribble-lavender #nav li li a:link,
+.scribble-lavender #nav li li a:visited,
+.scribble-lavender #subnav li li a,
+.scribble-lavender #subnav li li a:link,
+.scribble-lavender #subnav li li a:visited,
+.scribble-lavender .welcome-link {
+	background-color: #a168a5;
+}
+
+.scribble-lavender #nav li a:hover,
+.scribble-lavender #nav li a:active,
+.scribble-lavender #nav .current_page_item a,
+.scribble-lavender #nav .current-cat a,
+.scribble-lavender #nav .current-menu-item a,
+.scribble-lavender #nav li a:hover,
+.scribble-lavender #nav li a:active,
+.scribble-lavender #nav li:hover a,
+.scribble-lavender #subnav li a:hover,
+.scribble-lavender #subnav li a:active,
+.scribble-lavender #subnav .current_page_item a,
+.scribble-lavender #subnav .current-cat a,
+.scribble-lavender #subnav .current-menu-item a,
+.scribble-lavender #subnav li a:hover,
+.scribble-lavender #subnav li a:active,
+.scribble-lavender #subnav li:hover a {
+	background-color: #a168a5;
+	text-shadow: #a168a5 1px 1px;
+}
+
+.scribble-lavender h2 a,
+.scribble-lavender h2 a:visited {
+	color: #444;
+}
+
+.scribble-lavender input:hover[type="button"],
+.scribble-lavender input:hover[type="submit"] {
+	background-color: #a168a5;
+	border: 1px solid #a168a5;
+}
+
+.scribble-lavender .welcome-link:hover {
+	background-color: #8a598e;
+}
+
+
+/* Scribble Pink
+------------------------------------------------------------ */
+
+.scribble-pink a,
+.scribble-pink a:visited,
+.scribble-pink h2 a:hover,
+.scribble-pink #blog h2 a:hover {
+	color: #d46da1;
+}
+
+.scribble-pink #header ul.nav li a:hover,
+.scribble-pink #header ul.nav li a:active,
+.scribble-pink #header ul.menu li a:hover,
+.scribble-pink #header ul.menu li a:active {
+	background: #d46da1 url(images/nav-top.png) repeat-x;
+}
+
+.scribble-pink #header ul.nav li li a,
+.scribble-pink #header ul.nav li li a:link,
+.scribble-pink #header ul.nav li li a:visited,
+.scribble-pink #header ul.menu li li a,
+.scribble-pink #header ul.menu li li a:link,
+.scribble-pink #header ul.menu li li a:visited,
+.scribble-pink #header ul.nav li li a:hover,
+.scribble-pink #header ul.nav li li a:active,
+.scribble-pink #header ul.menu li li a:hover,
+.scribble-pink #header ul.menu li li a:active,
+.scribble-pink #nav li li a,
+.scribble-pink #nav li li a:link,
+.scribble-pink #nav li li a:visited,
+.scribble-pink #subnav li li a,
+.scribble-pink #subnav li li a:link,
+.scribble-pink #subnav li li a:visited,
+.scribble-pink .welcome-link {
+	background-color: #d46da1;
+}
+
+.scribble-pink #nav li a:hover,
+.scribble-pink #nav li a:active,
+.scribble-pink #nav .current_page_item a,
+.scribble-pink #nav .current-cat a,
+.scribble-pink #nav .current-menu-item a,
+.scribble-pink #nav li a:hover,
+.scribble-pink #nav li a:active,
+.scribble-pink #nav li:hover a,
+.scribble-pink #subnav li a:hover,
+.scribble-pink #subnav li a:active,
+.scribble-pink #subnav .current_page_item a,
+.scribble-pink #subnav .current-cat a,
+.scribble-pink #subnav .current-menu-item a,
+.scribble-pink #subnav li a:hover,
+.scribble-pink #subnav li a:active,
+.scribble-pink #subnav li:hover a {
+	background-color: #d46da1;
+	text-shadow: #d46da1 1px 1px;
+}
+
+.scribble-pink h2 a,
+.scribble-pink h2 a:visited {
+	color: #444;
+}
+
+.scribble-pink input:hover[type="button"],
+.scribble-pink input:hover[type="submit"] {
+	background-color: #d46da1;
+	border: 1px solid #d46da1;
+}
+
+.scribble-pink .welcome-link:hover {
+	background-color: #bc5d8a;
+}
+
+
+/* Scribble Red
+------------------------------------------------------------ */
+
+.scribble-red a,
+.scribble-red a:visited,
+.scribble-red h2 a:hover,
+.scribble-red #blog h2 a:hover {
+	color: #c6575c;
+}
+
+.scribble-red #header ul.nav li a:hover,
+.scribble-red #header ul.nav li a:active,
+.scribble-red #header ul.menu li a:hover,
+.scribble-red #header ul.menu li a:active {
+	background: #c6575c url(images/nav-top.png) repeat-x;
+}
+
+.scribble-red #header ul.nav li li a,
+.scribble-red #header ul.nav li li a:link,
+.scribble-red #header ul.nav li li a:visited,
+.scribble-red #header ul.menu li li a,
+.scribble-red #header ul.menu li li a:link,
+.scribble-red #header ul.menu li li a:visited,
+.scribble-red #header ul.nav li li a:hover,
+.scribble-red #header ul.nav li li a:active,
+.scribble-red #header ul.menu li li a:hover,
+.scribble-red #header ul.menu li li a:active,
+.scribble-red #nav li li a,
+.scribble-red #nav li li a:link,
+.scribble-red #nav li li a:visited,
+.scribble-red #subnav li li a,
+.scribble-red #subnav li li a:link,
+.scribble-red #subnav li li a:visited,
+.scribble-red .welcome-link {
+	background-color: #c6575c;
+}
+
+.scribble-red #nav li a:hover,
+.scribble-red #nav li a:active,
+.scribble-red #nav .current_page_item a,
+.scribble-red #nav .current-cat a,
+.scribble-red #nav .current-menu-item a,
+.scribble-red #nav li a:hover,
+.scribble-red #nav li a:active,
+.scribble-red #nav li:hover a,
+.scribble-red #subnav li a:hover,
+.scribble-red #subnav li a:active,
+.scribble-red #subnav .current_page_item a,
+.scribble-red #subnav .current-cat a,
+.scribble-red #subnav .current-menu-item a,
+.scribble-red #subnav li a:hover,
+.scribble-red #subnav li a:active,
+.scribble-red #subnav li:hover a {
+	background-color: #c6575c;
+	text-shadow: #c6575c 1px 1px;
+}
+
+.scribble-red h2 a,
+.scribble-red h2 a:visited {
+	color: #444;
+}
+
+.scribble-red input:hover[type="button"],
+.scribble-red input:hover[type="submit"] {
+	background-color: #c6575c;
+	border: 1px solid #c6575c;
+}
+
+.scribble-red .welcome-link:hover {
+	background-color: #ad4a4f;
+}
+
+
+/* Scribble Teal
+------------------------------------------------------------ */
+
+.scribble-teal a,
+.scribble-teal a:visited,
+.scribble-teal h2 a:hover,
+.scribble-teal #blog h2 a:hover {
+	color: #30b7b4;
+}
+
+.scribble-teal #header ul.nav li a:hover,
+.scribble-teal #header ul.nav li a:active,
+.scribble-teal #header ul.menu li a:hover,
+.scribble-teal #header ul.menu li a:active {
+	background: #30b7b4 url(images/nav-top.png) repeat-x;
+}
+
+.scribble-teal #header ul.nav li li a,
+.scribble-teal #header ul.nav li li a:link,
+.scribble-teal #header ul.nav li li a:visited,
+.scribble-teal #header ul.menu li li a,
+.scribble-teal #header ul.menu li li a:link,
+.scribble-teal #header ul.menu li li a:visited,
+.scribble-teal #header ul.nav li li a:hover,
+.scribble-teal #header ul.nav li li a:active,
+.scribble-teal #header ul.menu li li a:hover,
+.scribble-teal #header ul.menu li li a:active,
+.scribble-teal #nav li li a,
+.scribble-teal #nav li li a:link,
+.scribble-teal #nav li li a:visited,
+.scribble-teal #subnav li li a,
+.scribble-teal #subnav li li a:link,
+.scribble-teal #subnav li li a:visited,
+.scribble-teal .welcome-link {
+	background-color: #30b7b4;
+}
+
+.scribble-teal #nav li a:hover,
+.scribble-teal #nav li a:active,
+.scribble-teal #nav .current_page_item a,
+.scribble-teal #nav .current-cat a,
+.scribble-teal #nav .current-menu-item a,
+.scribble-teal #nav li a:hover,
+.scribble-teal #nav li a:active,
+.scribble-teal #nav li:hover a,
+.scribble-teal #subnav li a:hover,
+.scribble-teal #subnav li a:active,
+.scribble-teal #subnav .current_page_item a,
+.scribble-teal #subnav .current-cat a,
+.scribble-teal #subnav .current-menu-item a,
+.scribble-teal #subnav li a:hover,
+.scribble-teal #subnav li a:active,
+.scribble-teal #subnav li:hover a {
+	background-color: #30b7b4;
+	text-shadow: #30b7b4 1px 1px;
+}
+
+.scribble-teal h2 a,
+.scribble-teal h2 a:visited {
+	color: #444;
+}
+
+.scribble-teal input:hover[type="button"],
+.scribble-teal input:hover[type="submit"] {
+	background-color: #30b7b4;
+	border: 1px solid #30b7b4;
+}
+
+.scribble-teal .welcome-link:hover {
+	background-color: #299e9b;
+}

@@ -1,0 +1,498 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: prose\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-09 00:55-0000\n"
+"PO-Revision-Date: 2010-10-09 00:55-0000\n"
+"Last-Translator: Gary Jones <gamajo@gamajo.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Gary\\Documents\\NetBeansProjects\\Prose\n"
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/functions.php:72
+msgid "Copyright"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/functions.php:72
+msgid "on"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/functions.php:80
+msgid "This is the first column of the footer section."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/functions.php:85
+msgid "This is the second column of the footer section."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/functions.php:90
+msgid "This is the third column of the footer section."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:794
+msgid "Select type was not valid."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:834
+msgid "Design Settings Reset"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:837
+msgid "Design Settings Saved"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:840
+msgid "Design Settings Imported"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:843
+#, php-format
+msgid "You tried to import an incorrect file. The filename should start with \"%s\"."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:846
+msgid "There was a problem with the file you uploaded."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:850
+#, php-format
+msgid "The %s folder does not exist or is not writeable. Please create it or <a href=\"http://codex.wordpress.org/Changing_File_Permissions\">change file permissions</a> to 777."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:867
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:989
+msgid "Design Settings"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:931
+msgid "Toggle All"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:932
+msgid "The changes you made will be lost if you navigate away from this page."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:933
+msgid "Are you sure you want to reset?"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:990
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1004
+msgid "Save Settings"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:991
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1005
+msgid "Reset Settings"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1023
+msgid "Global Styles"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1024
+msgid "Global Links"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1025
+msgid "Wrap (content area)"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1026
+msgid "Header"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1027
+msgid "Header Title"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1028
+msgid "Header Tagline"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1029
+msgid "Primary Navigation"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1030
+msgid "Secondary Navigation"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1031
+msgid "Breadcrumb Navigation"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1032
+msgid "Post Info (before post)"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1033
+msgid "Post Meta (after post)"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1034
+msgid "Blockquotes"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1035
+msgid "Notice Box"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1036
+msgid "Headlines"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1037
+msgid "Post Title Links"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1038
+msgid "Sidebar Widget Headline"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1039
+msgid "Footer Widget Area"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1040
+msgid "Footer Widget Headline"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1041
+msgid "Footer Widget Links"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1042
+msgid "Footer"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1043
+msgid "Footer Links"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1044
+msgid "Input Boxes"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1045
+msgid "Submit Buttons"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1046
+msgid "General Settings"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1061
+#, php-format
+msgid "Start by customizing your <a href=\"%s\">background</a>."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1062
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1126
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1142
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1199
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1215
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1230
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1244
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1259
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1307
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1337
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1368
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1397
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1414
+msgid "Font Color"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1063
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1127
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1143
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1145
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1157
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1178
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1245
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1260
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1273
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1308
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1338
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1398
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1415
+msgid "Font"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1064
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1128
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1144
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1158
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1179
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1200
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1216
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1231
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1369
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1416
+msgid "Font Size"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1065
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1129
+msgid "Line Height"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1067
+msgid "All fonts listed are considered web-safe"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1077
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1161
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1182
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1354
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1382
+msgid "Link Color"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1078
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1163
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1184
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1355
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1383
+msgid "Link Decoration"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1079
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1356
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1384
+msgid "Link Hover Color"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1080
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1166
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1187
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1357
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1385
+msgid "Link Hover Decoration"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1091
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1112
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1156
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1177
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1214
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1229
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1243
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1258
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1324
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1396
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1412
+msgid "Background"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1092
+msgid "Top Margin"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1093
+msgid "Bottom Margin"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1094
+msgid "Padding"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1095
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1159
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1180
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1247
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1262
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1325
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1400
+msgid "Border"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1096
+msgid "Rounded Corner Radius"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1097
+msgid "Background Shadow"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1099
+msgid "Sample for background shadow:"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1109
+msgid "Header Height"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1110
+msgid "Header Title Area Width"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1111
+msgid "Header Widget Area Width"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1114
+#, php-format
+msgid "Save your settings before customizing your <a href=\"%s\">header</a>."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1124
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1140
+msgid "Top Padding"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1125
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1141
+msgid "Left Padding"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1160
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1181
+msgid "Inner Border"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1162
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1183
+msgid "Link Background"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1164
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1185
+msgid "Current/Link Hover"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1165
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1186
+msgid "Current/Link Background"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1201
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1217
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1232
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1276
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1312
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1342
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1371
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1417
+msgid "Text Transform"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1202
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1313
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1343
+msgid "Bottom Border"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1246
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1261
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1274
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1310
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1340
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1399
+msgid "Font Style"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1275
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1311
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1341
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1370
+msgid "Font Weight"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1277
+msgid "H1 Font Size"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1277
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1278
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1279
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1280
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1281
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1282
+msgid "Color"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1278
+msgid "H2 Font Size"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1279
+msgid "H3 Font Size"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1280
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1309
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1339
+msgid "H4 Font Size"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1281
+msgid "H5 Font Size"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1282
+msgid "H6 Font Size"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1293
+msgid "H2 Link Color"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1294
+msgid "H2 Link Decoration"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1295
+msgid "H2 Link Hover"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1296
+msgid "H2 Link Hover Decoration"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1413
+msgid "Background Hover"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1430
+msgid "Minify CSS?"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1431
+msgid "Check this box for a live site, uncheck for testing."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1432
+#, php-format
+msgid "Use the Editor to <a href=\"%s\">add/edit custom CSS</a>."
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1434
+msgid "Export Prose Settings"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1435
+msgid "Import Prose Settings File"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/admin/design-settings.php:1435
+msgid "Upload"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/functions/design-settings.php:186
+msgid "Note"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/structure/stylesheets.php:326
+msgid "This file is auto-generated from the settings page. Any direct edits here will be lost if the settings page is saved"
+msgstr ""
+
+#: C:\Users\Gary\Documents\NetBeansProjects\Prose/lib/structure/stylesheets.php:364
+msgid "This file is auto-generated from the style.css, the settings page and custom.css. Any direct edits here will be lost if the settings page is saved"
+msgstr ""
+

@@ -1,0 +1,115 @@
+.tabs-widget {
+	border: 0 !important;	
+	margin: 0 !important;	
+	padding: 0 !important;
+}
+
+ul.tabs {
+	list-style: none !important;
+	margin: 10px 0 0 !important;
+	padding: 0 !important;
+}
+
+ul.tabs li {
+	float: left;
+	margin-bottom: -1px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+}
+
+ul.tabs li a {
+	display: block;
+	margin: 0 3px !important;
+	outline: none;
+	padding: 0;
+	text-decoration: none;
+}
+
+ul.tabs li a img {
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 5px solid #000;
+	margin: 0;
+	max-width: none;
+	padding: 0;
+	/* for IE */
+	filter:alpha(opacity=20);
+	/* CSS3 standard */
+	opacity:0.2;
+}
+
+ul.tabs li a:hover img, ul.tabs li.active a img {
+	/* for IE */
+	filter:alpha(opacity=100);
+	/* CSS3 standard */
+	opacity:1.0;
+}
+
+.tab_container {
+	clear: both;
+	float: left;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	width: 890px;
+}
+
+.tab_content {
+	padding: 0px !important;
+}
+
+.tab_content .image {
+	float: left;
+	width: 380px;
+}
+
+.tab_content .image img {
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 10px solid #000;
+}
+
+.tab_content .text {
+	float: right;
+	margin: 10px 0 0;
+	width: 470px;
+}
+
+.tab_content h2 {
+	background: url(../images/dashed-line-dark.png) repeat-x bottom;
+	color: #e4e4e4;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 28px;
+	line-height: 38px;
+	margin: 0 0 20px;
+	padding: 0 0 15px;
+}
+
+.tab_content h2 a {
+	color: #fff;
+	font-size: 28px;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.tab_content, .tab_content p {
+	color: #484848;
+}
+
+.tab_content .byline, .tab_content .post-info {
+	background: #191919;
+	display: inline-block;
+	font-size: 10px;
+	margin: 0 0 15px;
+	padding: 1px 10px;
+	text-shadow: #000 -1px -1px;
+}
+
+.tab_content .post-comments {
+	background: none;
+	padding: 0;
+}

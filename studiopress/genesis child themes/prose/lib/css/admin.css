@@ -1,0 +1,24 @@
+#design-settings input {
+    margin-left: 5px;
+}
+#design-settings input.numeric {
+    text-align: center;
+}
+#design-settings input.checkbox,
+#design-settings input[type=checkbox] {
+    margin-left: 0;
+    margin-right: 5px;
+}
+#design-settings select {
+    margin-left: 5px;
+    padding: 3px;
+}
+#design-settings option {
+    padding-right: 10px;
+}
+#design-settings span.description strong {
+    text-transform: uppercase;
+}
+#design-settings form {
+    margin: 1em 0;
+}
