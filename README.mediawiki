@@ -1,7 +1,7 @@
 == Wordpress Premium Theme Collection for my-hardware.net ==
-'''Genesis Current version: 1.7.1 · Updated: 7/18/11
+'''Studiopress Genesis'''
 Requires: WP 3.2 · Compatible to: WP 3.2
-Features: 6 layout options, fixed width, threaded comments'''
+Features: 6 layout options, fixed width, threaded comments
 
 This is a Collection of Premium GPL Wordpress Themes that are free
 to copy but nevertheless for sale by the Developers.
