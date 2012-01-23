@@ -2,30 +2,46 @@
 /**
  * Adds loop structures.
  *
- * @package Genesis
+ * @category   Genesis
+ * @package    Structure
+ * @subpackage Loops
+ * @author     StudioPress
+ * @license    http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
+ * @link       http://www.studiopress.com/themes/genesis
  */
 
-add_action('genesis_loop', 'genesis_do_loop');
+add_action( 'genesis_loop', 'genesis_do_loop' );
 /**
- * Hook loops to the genesis_loop output hook so we can get
+ * Attach a loop to the genesis_loop output hook so we can get
  * some front-end output. Pretty basic stuff.
  *
- * @since 1.1
+ * @since 1.1.0
+ *
+ * @uses genesis_get_option() Get theme setting value
+ * @uses genesis_get_custom_field() Get custom field value
+ * @uses genesis_custom_loop() Do custom loop
+ * @uses genesis_standard_loop() Do standard loop
  */
 function genesis_do_loop() {
 
-	if ( is_page_template('page_blog.php') ) {
-		$include = genesis_get_option('blog_cat');
-		$exclude = genesis_get_option('blog_cat_exclude') ? explode(',', str_replace(' ', '', genesis_get_option('blog_cat_exclude'))) : '';
-		$paged = get_query_var('paged') ? get_query_var('paged') : 1;
+	if ( is_page_template( 'page_blog.php' ) ) {
+		$include = genesis_get_option( 'blog_cat' );
+		$exclude = genesis_get_option( 'blog_cat_exclude' ) ? explode( ',', str_replace( ' ', '', genesis_get_option( 'blog_cat_exclude' ) ) ) : '';
+		$paged   = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 
-		$cf = genesis_get_custom_field('query_args'); /** Easter Egg **/
-		$args = array('cat' => $include, 'category__not_in' => $exclude, 'showposts' => genesis_get_option('blog_cat_num'), 'paged' => $paged);
-		$query_args = wp_parse_args($cf, $args);
+		/** Easter Egg */
+		$query_args = wp_parse_args(
+			genesis_get_custom_field( 'query_args' ),
+			array(
+				'cat'              => $include,
+				'category__not_in' => $exclude,
+				'showposts'        => genesis_get_option( 'blog_cat_num' ),
+				'paged'            => $paged,
+			)
+		);
 
 		genesis_custom_loop( $query_args );
-	}
-	else {
+	} else {
 		genesis_standard_loop();
 	}
 
@@ -36,70 +52,34 @@ function genesis_do_loop() {
  * modification, in most circumstances where content needs to be displayed.
  *
  * It outputs basic wrapping HTML, but uses hooks to do most of its
- * content output like Title, Content, Post information, and Comments.
+ * content output like title, content, post information and comments.
  *
- * @since 1.1
+ * The action hooks called are:
+ *   genesis_before_post,
+ *   genesis_before_post_title,
+ *   genesis_post_title,
+ *   genesis_after_post_title,
+ *   genesis_before_post_content,
+ *   genesis_post_content
+ *   genesis_after_post_content
+ *   genesis_after_post,
+ *   genesis_after_endwhile,
+ *   genesis_loop_else (only if no posts were found).
+ *
+ * @since 1.1.0
+ *
+ * @global integer $loop_counter Increments on each loop pass
  */
 function genesis_standard_loop() {
+
 	global $loop_counter;
+
 	$loop_counter = 0;
 
-	if ( have_posts() ) : while ( have_posts() ) : the_post(); // the loop
+	if ( have_posts() ) : while ( have_posts() ) : the_post();
 
 	do_action( 'genesis_before_post' );
-?>
-	<div <?php post_class(); ?>>
-
-		<?php do_action( 'genesis_before_post_title' ); ?>
-		<?php do_action( 'genesis_post_title' ); ?>
-		<?php do_action( 'genesis_after_post_title' ); ?>
-
-		<?php do_action( 'genesis_before_post_content' ); ?>
-		<div class="entry-content">
-			<?php do_action( 'genesis_post_content' ); ?>
-		</div><!-- end .entry-content -->
-		<?php do_action( 'genesis_after_post_content' ); ?>
-
-	</div><!-- end .postclass -->
-<?php
-
-	do_action( 'genesis_after_post' );
-	$loop_counter++;
-
-	endwhile; /** end of one post **/
-	do_action( 'genesis_after_endwhile' );
-
-	else : /** if no posts exist **/
-	do_action( 'genesis_loop_else' );
-	endif; /** end loop **/
-}
-
-/**
- * This is a custom loop function, and is meant to be executed when a
- * custom query is needed. It accepts arguments in query_posts style
- * format to modify the custom WP_Query object.
- *
- * It outputs basic wrapping HTML, but uses hooks to do most of its
- * content output like Title, Content, Post information, and Comments.
- *
- * @since 1.1
- */
-function genesis_custom_loop( $args = array() ) {
-	global $wp_query, $more, $loop_counter;
-	$loop_counter = 0;
-
-	$defaults = array(); /** For forward compatibility **/
-	$args = apply_filters('genesis_custom_loop_args', wp_parse_args($args, $defaults), $args, $defaults);
-
-	/** save the original query **/
-	$orig_query = $wp_query;
-
-	$wp_query = new WP_Query($args);
-	if ( $wp_query->have_posts() ) : while ( $wp_query->have_posts() ) : $wp_query->the_post();
-	$more = 0;
-
-	do_action( 'genesis_before_post' );
-?>
+	?>
 	<div <?php post_class(); ?>>
 
 		<?php do_action( 'genesis_before_post_title' ); ?>
@@ -125,16 +105,70 @@ function genesis_custom_loop( $args = array() ) {
 	do_action( 'genesis_loop_else' );
 	endif; /** end loop **/
 
-	/** restore original query **/
-	$wp_query = $orig_query; wp_reset_query();
 }
 
 /**
- * Yet another custom loop function.
+ * This is a custom loop function, and is meant to be executed when a
+ * custom query is needed.
+ *
+ * It accepts arguments in query_posts style format to modify the custom
+ * WP_Query object.
+ *
+ * It outputs basic wrapping HTML, but uses hooks to do most of its
+ * content output like title, content, post information, and comments.
+ *
+ * The arguments can be passed in via the genesis_custom_loop_args filter.
+ *
+ * The action hooks called are the same as genesis_standard_loop().
+ *
+ * @since 1.1.0
+ *
+ * @uses genesis_standard_loop()
+ *
+ * @global WP_Query $wp_query Query object.
+ * @global integer $more
+ * @global integer $loop_counter Increments on each loop pass.
+ *
+ * @param array $args Loop configuration.
+ */
+function genesis_custom_loop( $args = array() ) {
+
+	global $wp_query, $more;
+
+	$defaults = array(); /** For forward compatibility **/
+	$args     = apply_filters( 'genesis_custom_loop_args', wp_parse_args( $args, $defaults ), $args, $defaults );
+
+	$wp_query = new WP_Query( $args );
+
+	/** Only set $more to 0 if we're on an archive */
+	$more = is_singular() ? $more : 0;
+
+	genesis_standard_loop();
+
+	/** Restore original query **/
+	wp_reset_query();
+
+}
+
+/**
+ * The grid loop - a specific implementation of a custom loop.
+ *
  * Outputs markup compatible with a Feature + Grid style layout.
  * All normal loop hooks present, except for genesis_post_content.
  *
- * @since 1.5
+ * The arguments can be filtered by the genesis_grid_loop_args filter.
+ *
+ * @since 1.5.0
+ *
+ * @uses g_ent() Pass entities through filter
+ * @uses genesis_custom_loop() Do custom loop
+ * @uses genesis_standard_loop() Do standard loop
+ * @uses genesis_reset_loop() Restores all default post loop output by rehooking all default functions
+ *
+ * @global array $_genesis_loop_args Associative array for grid loop configuration
+ * @global string $query_string Query string
+ * @param array $args Associative array for grid loop configuration
+ * @return null Returns early if posts_per_page is fewer than features
  */
 function genesis_grid_loop( $args = array() ) {
 
@@ -142,20 +176,26 @@ function genesis_grid_loop( $args = array() ) {
 	global $_genesis_loop_args, $query_string;
 
 	/** Parse args */
-	$args = apply_filters( 'genesis_grid_loop_args', wp_parse_args( $args, array(
-		'loop'					=> 'standard',
-		'features'				=> 2,
-		'features_on_all'		=> false,
-		'feature_image_size'	=> 0,
-		'feature_image_class'	=> 'alignleft post-image',
-		'feature_content_limit'	=> 0,
-		'grid_image_size'		=> 'thumbnail',
-		'grid_image_class'		=> 'alignleft post-image',
-		'grid_content_limit'	=> 0,
-		'more'					=> g_ent( __('Read more&hellip;', 'genesis') ),
-		'posts_per_page'		=> get_option('posts_per_page'),
-		'paged'					=> get_query_var('paged') ? get_query_var('paged') : 1
-	) ) );
+	$args = apply_filters(
+		'genesis_grid_loop_args',
+		wp_parse_args(
+			$args,
+			array(
+				'loop'					=> 'standard',
+				'features'				=> 2,
+				'features_on_all'		=> false,
+				'feature_image_size'	=> 0,
+				'feature_image_class'	=> 'alignleft post-image',
+				'feature_content_limit'	=> 0,
+				'grid_image_size'		=> 'thumbnail',
+				'grid_image_class'		=> 'alignleft post-image',
+				'grid_content_limit'	=> 0,
+				'more'					=> g_ent( __( 'Read more&hellip;', 'genesis' ) ),
+				'posts_per_page'		=> get_option( 'posts_per_page' ),
+				'paged'					=> get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
+			)
+		)
+	);
 
 	/** Error handler */
 	if ( $args['posts_per_page'] < $args['features'] ) {
@@ -178,12 +218,17 @@ function genesis_grid_loop( $args = array() ) {
 	/** Custom loop output */
 	add_filter( 'post_class', 'genesis_grid_loop_post_class' );
 	add_action( 'genesis_post_content', 'genesis_grid_loop_content' );
+	
+	/** Set query args */
+	$args = $_genesis_loop_args;
+	if ( isset( $args['features'] ) && is_numeric( $args['features'] ) )
+		unset( $args['features'] );
 
 	/** The loop */
-	if ( $_genesis_loop_args['loop'] == 'custom' ) {
-		genesis_custom_loop( $_genesis_loop_args );
+	if ( 'custom' == $_genesis_loop_args['loop'] ) {
+		genesis_custom_loop( $args );
 	} else {
-		query_posts( $_genesis_loop_args );
+		query_posts( $args );
 		genesis_standard_loop();
 	}
 
@@ -195,10 +240,15 @@ function genesis_grid_loop( $args = array() ) {
 }
 
 /**
- * This function filter the post class array to output custom classes
- * for the feature/grid layout, based on the grid loop args and the loop counter.
+ * Filters the post class array to output custom classes for the feature/grid
+ * layout, based on the grid loop args and the loop counter.
  *
- * @since 1.5
+ * @since 1.5.0
+ *
+ * @global array $_genesis_loop_args Associative array for grid loop config
+ * @global integer $loop_counter Increments on each loop pass
+ * @param array $classes Existing post classes
+ * @return array Amended post classes
  */
 function genesis_grid_loop_post_class( $classes ) {
 
@@ -227,35 +277,35 @@ function genesis_grid_loop_post_class( $classes ) {
 }
 
 /**
- * This function outputs specially formatted content, based on the grid loop args.
+ * Outputs specially formatted content, based on the grid loop args.
  *
- * @since 1.5
+ * @since 1.5.0
+ *
+ * @uses genesis_get_image() Returns an image pulled from the media gallery
+ * @uses the_content_limit() Echoes the limited content
+ *
+ * @global array $_genesis_loop_args  Associative array for grid loop configuration
  */
 function genesis_grid_loop_content() {
 
 	global $_genesis_loop_args;
 
 	if ( in_array( 'genesis-feature', get_post_class() ) ) {
-		if ( $_genesis_loop_args['feature_image_size'] ) {
+		if ( $_genesis_loop_args['feature_image_size'] )
 			printf( '<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), genesis_get_image( array( 'size' => $_genesis_loop_args['feature_image_size'], 'attr' => array( 'class' => esc_attr( $_genesis_loop_args['feature_image_class'] ) ) ) ) );
-		}
 
-		if ( $_genesis_loop_args['feature_content_limit'] ) {
-			the_content_limit( (int)$_genesis_loop_args['feature_content_limit'], esc_html( $_genesis_loop_args['more'] ) );
-		}
-		else {
+		if ( $_genesis_loop_args['feature_content_limit'] )
+			the_content_limit( (int) $_genesis_loop_args['feature_content_limit'], esc_html( $_genesis_loop_args['more'] ) );
+		else
 			the_content( esc_html( $_genesis_loop_args['more'] ) );
-		}
 	}
 	else {
-		if ( $_genesis_loop_args['grid_image_size'] ) {
+		if ( $_genesis_loop_args['grid_image_size'] )
 			printf( '<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), genesis_get_image( array( 'size' => $_genesis_loop_args['grid_image_size'], 'attr' => array( 'class' => esc_attr( $_genesis_loop_args['grid_image_class'] ) ) ) ) );
-		}
 
 		if ( $_genesis_loop_args['grid_content_limit'] ) {
-			the_content_limit( (int)$_genesis_loop_args['grid_content_limit'], esc_html( $_genesis_loop_args['more'] ) );
-		}
-		else {
+			the_content_limit( (int) $_genesis_loop_args['grid_content_limit'], esc_html( $_genesis_loop_args['more'] ) );
+		} else {
 			the_excerpt();
 			printf( '<a href="%s" class="more-link">%s</a>', get_permalink(), esc_html( $_genesis_loop_args['more'] ) );
 		}

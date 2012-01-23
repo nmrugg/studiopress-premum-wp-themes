@@ -10,6 +10,7 @@
 <strong>WIDGET AREAS</strong>
 Primary Sidebar - This is the primary sidebar if you are using the Content/Sidebar, Sidebar/Content, Content/Sidebar/Sidebar, Sidebar/Sidebar/Content or Sidebar/Content/Sidebar Site Layout option.
 Secondary Sidebar - This is the secondary sidebar if you are using the Content/Sidebar/Sidebar, Sidebar/Sidebar/Content or Sidebar/Content/Sidebar Site Layout option.
+Header Right - This is the widgeted area that appears at the top right of the header. If it is active then Genesis style will follow the Partial Header style otherwise it will follow the Full Image Header Style, if image header is selected. 
 
 <strong>INDEX.PHP FILE</strong>
 This file in the Genesis Framework controls archive, author, category, search and tag pages. If you wish to control them individually, you can create/use archive.php, author.php, category.php, search.php and tag.php files respectively.

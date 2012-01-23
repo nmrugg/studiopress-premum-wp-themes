@@ -1,22 +1,32 @@
 <?php
-/**
- * WARNING: This file is part of the core Genesis framework. DO NOT edit
- * this file under any circumstances. Please do all modifications
- * in the form of a child theme.
- *
- * Initialize the framework from template files.
- *
- * @package Genesis
+/*
+ WARNING: This file is part of the core Genesis framework. DO NOT edit
+ this file under any circumstances. Please do all modifications
+ in the form of a child theme.
  */
 
 /**
- * This function is used to initialize the framework in the various
- * template files. It pulls in all the basic, necessary components
- * like Header/Footer, the basic markup structure, and hooks.
+ * Initialize the framework from template files.
  *
- * @since 1.3
+ * This file is a core Genesis file and should not be edited.
+ *
+ * @category Genesis
+ * @package  Framework
+ * @author   StudioPress
+ * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
+ * @link     http://www.studiopress.com/themes/genesis
+ */
+
+/**
+ * Used to initialize the framework in the various template files.
+ *
+ * It pulls in all the necessary components like header and footer, the basic
+ * markup structure, and hooks.
+ *
+ * @since 1.3.0
  */
 function genesis() {
+
 	get_header();
 
 	do_action( 'genesis_before_content_sidebar_wrap' );
@@ -36,4 +46,5 @@ function genesis() {
 	do_action( 'genesis_after_content_sidebar_wrap' );
 
 	get_footer();
+
 }

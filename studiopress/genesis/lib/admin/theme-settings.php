@@ -2,501 +2,715 @@
 /**
  * Creates the Theme Settings page.
  *
- * @package Genesis
- * @todo document the functions in theme-settings.php
- */
-
-/**
- * This function registers the default values for Genesis theme settings
- */
-function genesis_theme_settings_defaults() {
-	$defaults = array( // define our defaults
-		'update' => 1,
-		'blog_title' => 'text',
-		'header_right' => 0,
-		'site_layout' => genesis_get_default_layout(),
-		'nav' => 1,
-		'nav_superfish' => 1,
-		'nav_extras_enable' => 0,
-		'nav_extras' => 'date',
-		'nav_extras_twitter_id' => '',
-		'nav_extras_twitter_text' => 'Follow me on Twitter',
-		'subnav' => 0,
-		'subnav_superfish' => 1,
-		'feed_uri' => '',
-		'comments_feed_uri' => '',
-		'redirect_feeds' => 0,
-		'comments_pages' => 0,
-		'comments_posts' => 1,
-		'trackbacks_pages' => 0,
-		'trackbacks_posts' => 1,
-		'breadcrumb_home' => 0,
-		'breadcrumb_single' => 0,
-		'breadcrumb_page' => 0,
-		'breadcrumb_archive' => 0,
-		'breadcrumb_404' => 0,
-		'content_archive' => 'full',
-		'content_archive_thumbnail' => 0,
-		'posts_nav' => 'older-newer',
-		'blog_cat' => '',
-		'blog_cat_exclude' => '',
-		'blog_cat_num' => 10,
-		'header_scripts' => '',
-		'footer_scripts' => '',
-		'theme_version' => PARENT_THEME_VERSION
-	);
-
-	return apply_filters('genesis_theme_settings_defaults', $defaults);
-}
-
-add_action('admin_init', 'genesis_register_theme_settings', 5);
-/**
- * This registers the settings field and adds defaults to the options table.
- * It also handles settings resets by pushing in the defaults.
- */
-function genesis_register_theme_settings() {
-	register_setting( GENESIS_SETTINGS_FIELD, GENESIS_SETTINGS_FIELD );
-	add_option( GENESIS_SETTINGS_FIELD, genesis_theme_settings_defaults() );
-
-	if ( ! isset($_REQUEST['page']) || $_REQUEST['page'] != 'genesis' )
-		return;
-
-	if ( genesis_get_option('reset') ) {
-		update_option(GENESIS_SETTINGS_FIELD, genesis_theme_settings_defaults());
-
-		genesis_admin_redirect( 'genesis', array( 'reset' => 'true' ) );
-		exit;
-	}
-
-}
-
-/**
- * Registers an option sanitization filter
- * NOTE: If the option is an "array" option type with "suboptions", you have to use the third param to specify the
- * suboption or suboptions you want the filter to apply to. DO NOT call this without the third parameter on an option
- * that is an array option, because in that case it will apply that filter to the array(), not each member.
- * NOTE: Use the 'genesis_settings_sanitizer_init' action to be notified when this function is safe to use
- * @param string $filter The filter to call (see  Genesis_Settings_Sanitizer::$available_filters for options)
- * @param string $option The WordPress option name
- * @param string|array $suboption (OPTIONAL) the suboption or suboptions you want to filter.
- */
-function genesis_add_option_filter( $filter, $option, $suboption = null ) {
-	return Genesis_Settings_Sanitizer::$instance->add_filter( $filter, $option, $suboption );
-}
-
-function genesis_settings_sanitizer_init() {
-	// Instantiate the Sanitizer
-	new Genesis_Settings_Sanitizer;
-}
-
-/**
- * Registers Genesis core option sanitization filters
- * @since 1.7.0
- */
-function genesis_register_core_sanitization_filters() {
-	genesis_add_option_filter( 'one_zero', GENESIS_SEO_SETTINGS_FIELD,
-		array(
-			'append_description_home',
-			'append_site_title',
-			'home_noindex',
-			'home_nofollow',
-			'home_noarchive',
-			'head_index_rel_link',
-			'head_parent_post_rel_link',
-			'head_start_post_rel_link',
-			'head_adjacent_posts_rel_link',
-			'head_wlwmanifest_link',
-			'head_shortlink',
-			'noindex_cat_archive',
-			'noindex_tag_archive',
-			'noindex_author_archive',
-			'noindex_date_archive',
-			'noindex_search_archive',
-			'noarchive',
-			'noarchive_cat_archive',
-			'noarchive_tag_archive',
-			'noarchive_author_archive',
-			'noarchive_date_archive',
-			'noarchive_search_archive',
-			'noodp',
-			'noydir',
-			'canonical_archives',
-		) );
-	genesis_add_option_filter( 'no_html', GENESIS_SEO_SETTINGS_FIELD,
-		array(
-			'home_doctitle',
-			'home_description',
-			'home_keywords',
-			'doctitle_sep',
-		) );
-	genesis_add_option_filter( 'one_zero', GENESIS_SETTINGS_FIELD,
-		array(
-			'show_info',
-			'update',
-			'update_email',
-			'redirect_feed',
-			'redirect_comments_feed',
-			'nav',
-			'nav_superfish',
-			'nav_extras_enable',
-			'subnav',
-			'subnav_superfish',
-			'breadcrumb_home',
-			'breadcrumb_single',
-			'breadcrumb_page',
-			'breadcrumb_archive',
-			'breadcrumb_404',
-			'comments_posts',
-			'comments_pages',
-			'trackbacks_posts',
-			'trackbacks_pages',
-			'content_archive_thumbnail',
-		) );
-	genesis_add_option_filter( 'requires_unfiltered_html', GENESIS_SETTINGS_FIELD,
-		array(
-			'header_scripts',
-			'footer_scripts',
-		) );
-}
-
-// Set a good example, and use the correct Genesis hook for determining when sanitization is available for use
-add_action( 'genesis_settings_sanitizer_init', 'genesis_register_core_sanitization_filters' );
-
-add_action( 'init', 'genesis_settings_sanitizer_init' );
-add_action('admin_notices', 'genesis_theme_settings_notice');
-/**
- * This is the notice that displays when you successfully save or reset
- * the theme settings.
- */
-function genesis_theme_settings_notice() {
-
-	if ( ! isset( $_REQUEST['page'] ) || $_REQUEST['page'] != 'genesis' )
-		return;
-
-	if ( isset( $_REQUEST['reset'] ) && 'true' == $_REQUEST['reset'] )
-		echo '<div id="message" class="updated"><p><strong>' . __( 'Settings reset.', 'genesis' ) . '</strong></p></div>';
-	elseif ( isset( $_REQUEST['settings-updated'] ) && $_REQUEST['settings-updated'] == 'true' )
-		echo '<div id="message" class="updated"><p><strong>' . __( 'Settings saved.' ) . '</strong></p></div>';
-
-}
-
-add_action('admin_menu', 'genesis_theme_settings_init');
-/**
- * This is a necessary go-between to get our scripts and boxes loaded
- * on the theme settings page only, and not the rest of the admin
- */
-function genesis_theme_settings_init() {
-	global $_genesis_theme_settings_pagehook;
-
-	add_action('load-'.$_genesis_theme_settings_pagehook, 'genesis_theme_settings_scripts');
-	add_action('load-'.$_genesis_theme_settings_pagehook, 'genesis_theme_settings_boxes');
-}
-
-function genesis_theme_settings_scripts() {
-	wp_enqueue_script('common');
-	wp_enqueue_script('wp-lists');
-	wp_enqueue_script('postbox');
-}
-
-function genesis_theme_settings_boxes() {
-	global $_genesis_theme_settings_pagehook;
-
-	add_meta_box('genesis-theme-settings-version', __('Information', 'genesis'), 'genesis_theme_settings_info_box', $_genesis_theme_settings_pagehook, 'main', 'high');
-	add_meta_box('genesis-theme-settings-feeds', __('Custom Feeds', 'genesis'), 'genesis_theme_settings_feeds_box', $_genesis_theme_settings_pagehook, 'main');
-	add_meta_box('genesis-theme-settings-layout', __('Default Layout', 'genesis'), 'genesis_theme_settings_layout_box', $_genesis_theme_settings_pagehook, 'main');
-	if ( ! current_theme_supports( 'genesis-custom-header' ) ) :
-	add_meta_box('genesis-theme-settings-header', __('Header Settings', 'genesis'), 'genesis_theme_settings_header_box', $_genesis_theme_settings_pagehook, 'main');
-	endif;
-	add_meta_box('genesis-theme-settings-nav', __('Navigation Settings', 'genesis'), 'genesis_theme_settings_nav_box', $_genesis_theme_settings_pagehook, 'main');
-	add_meta_box('genesis-theme-settings-breadcrumb', __('Breadcrumbs', 'genesis'), 'genesis_theme_settings_breadcrumb_box', $_genesis_theme_settings_pagehook, 'main');
-	add_meta_box('genesis-theme-settings-comments', __('Comments and Trackbacks', 'genesis'), 'genesis_theme_settings_comments_box', $_genesis_theme_settings_pagehook, 'main');
-	add_meta_box('genesis-theme-settings-posts', __('Content Archives', 'genesis'), 'genesis_theme_settings_post_archives_box', $_genesis_theme_settings_pagehook, 'main');
-	add_meta_box('genesis-theme-settings-blogpage', __('Blog Page', 'genesis'), 'genesis_theme_settings_blogpage_box', $_genesis_theme_settings_pagehook, 'main');
-	// These settings require the unfiltered_html capability
-	if ( current_user_can( 'unfiltered_html' ) )
-		add_meta_box('genesis-theme-settings-scripts', __('Header and Footer Scripts', 'genesis'), 'genesis_theme_settings_scripts_box', $_genesis_theme_settings_pagehook, 'main');
-
-	do_action( 'genesis_theme_settings_metaboxes', $_genesis_theme_settings_pagehook );
-}
-
-add_filter('screen_layout_columns', 'genesis_theme_settings_layout_columns', 10, 2);
-/**
- * Tell WordPress that we want only 2 columns available for our meta-boxes
- */
-function genesis_theme_settings_layout_columns($columns, $screen) {
-	global $_genesis_theme_settings_pagehook;
-	if ($screen == $_genesis_theme_settings_pagehook) {
-		// This page should only have 1 column option
-		$columns[$_genesis_theme_settings_pagehook] = 1;
-	}
-	return $columns;
-}
-
-/**
- * This function is what actually gets output to the page. It handles the markup,
- * builds the form, outputs necessary JS stuff, and fires <code>do_meta_boxes()</code>
- */
-function genesis_theme_settings_admin() {
-	global $_genesis_theme_settings_pagehook, $wp_meta_boxes;
-
-?>
-	<div id="genesis-theme-settings" class="wrap genesis-metaboxes">
-	<form method="post" action="options.php">
-
-		<?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false ); ?>
-		<?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false ); ?>
-		<?php settings_fields(GENESIS_SETTINGS_FIELD); // important! ?>
-		<input type="hidden" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[theme_version]>" value="<?php echo esc_attr(genesis_option('theme_version')); ?>" />
-		<input type="hidden" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[db_version]>" value="<?php echo esc_attr(genesis_option('db_version')); ?>" />
-
-		<?php screen_icon('options-general'); ?>
-		<h2>
-			<?php _e('Genesis - Theme Settings', 'genesis'); ?>
-			<input type="submit" class="button-primary genesis-h2-button" value="<?php _e('Save Settings', 'genesis') ?>" />
-			<input type="submit" class="button-highlighted genesis-h2-button" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'genesis'); ?>" onclick="return genesis_confirm('<?php echo esc_js( __('Are you sure you want to reset?', 'genesis') ); ?>');" />
-		</h2>
-
-		<div class="metabox-holder">
-			<div class="postbox-container" style="width: 99%;">
-				<?php
-				do_meta_boxes($_genesis_theme_settings_pagehook, 'main', null);
-
-				/** For Backward Compatiblility */
-				if ( isset( $wp_meta_boxes[$_genesis_theme_settings_pagehook]['column2'] ) )
-				do_meta_boxes($_genesis_theme_settings_pagehook, 'column2', null);
-				?>
-			</div>
-		</div>
-
-		<div class="bottom-buttons">
-			<input type="submit" class="button-primary" value="<?php _e('Save Settings', 'genesis') ?>" />
-			<input type="submit" class="button-highlighted" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[reset]" value="<?php _e('Reset Settings', 'genesis'); ?>" />
-		</div>
-	</form>
-	</div>
-	<script type="text/javascript">
-		//<![CDATA[
-		jQuery(document).ready( function($) {
-			// close postboxes that should be closed
-			$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-			// postboxes setup
-			postboxes.add_postbox_toggles('<?php echo $_genesis_theme_settings_pagehook; ?>');
-		});
-		//]]>
-	</script>
-
-<?php
-}
-
-/**
- * This next section defines functions that contain the content of the "boxes" that will be
- * output by default on the "Theme Settings" page. There's a bunch of them.
+ * Also contains functions used across all aspects of admin.
  *
- * FWIW, you can copy this syntax and load your own boxes on the theme settings page too.
+ * @category Genesis
+ * @package  Admin
+ * @author   StudioPress
+ * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
+ * @link     http://www.studiopress.com/themes/genesis
  */
-function genesis_theme_settings_info_box() { ?>
-	<p><strong><?php _e('Version:', 'genesis'); ?></strong> <?php genesis_option('theme_version'); ?> <?php echo g_ent('&middot;'); ?> <strong><?php _e('Released:', 'genesis'); ?></strong> <?php echo PARENT_THEME_RELEASE_DATE; ?></p>
 
-	<p><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[show_info]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[show_info]" value="1" <?php checked(1, genesis_get_option('show_info')); ?> /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[show_info]"><?php _e('Display Theme Information in your document source', 'genesis'); ?></label></p>
+/**
+ * Registers a new admin page, providing content and corresponding menu item
+ * for the Theme Settings page.
+ *
+ * Although this class was added in 1.8.0, some of the methods were originally
+ * standalone functions added in previous versions of Genesis.
+ *
+ * @category Genesis
+ * @package Admin
+ *
+ * @since 1.8.0
+ */
+class Genesis_Admin_Settings extends Genesis_Admin_Boxes {
 
-	<p><span class="description"><?php sprintf( __( 'This can be helpful for diagnosing problems with your theme when seeking assistance in the <a href="%s" target="_blank">support forums</a>.', 'genesis' ), 'http://www.studiopress.com/support/' ); ?></span></p>
+	/**
+	 * Create an admin menu item and settings page.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @uses GENESIS_SETTINGS_FIELD settings field key
+	 * @uses genesis_get_default_layout() Get default layout
+	 *
+	 * @global string $_genesis_theme_settings_pagehook Theme Settings page hook,
+	 * kept for backwards compatibility, since this class now uses $this->pagehook.
+	 */
+	function __construct() {
 
-	<p><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[update]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[update]" value="1" <?php checked(1, genesis_get_option('update')); ?> <?php disabled( 0, is_super_admin() ); ?> /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[update]"><?php _e('Enable Automatic Updates', 'genesis'); ?></label></p>
+		$page_id = 'genesis';
 
-	<div id="genesis_update_notification_setting">
-		<p><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[update_email]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[update_email]" value="1" <?php checked(1, genesis_get_option('update_email')); ?> <?php disabled( 0, is_super_admin() ); ?> /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[update_email]"><?php _e('Notify', 'genesis'); ?></label> <input type="text" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[update_email_address]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[update_email_address]" value="<?php echo esc_attr( genesis_option('update_email_address') ); ?>" size="30" <?php disabled( 0, is_super_admin() ); ?> /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[update_email_address]"><?php _e('when updates are available', 'genesis'); ?></label></p>
+		$menu_ops = apply_filters(
+			'genesis_theme_settings_menu_ops',
+			array(
+				'main_menu' => array(
+					'sep' => array(
+						'sep_position'   => '58.995',
+						'sep_capability' => 'edit_theme_options',
+					),
+					'page_title' => 'Theme Settings',
+					'menu_title' => 'Genesis',
+					'capability' => 'edit_theme_options',
+					'icon_url'   => PARENT_URL . '/images/genesis.gif',
+					'position'   => '58.996',
+				),
+				'first_submenu' => array( /** Do not use without 'main_menu' */
+					'page_title' => __( 'Theme Settings', 'genesis' ),
+					'menu_title' => __( 'Theme Settings', 'genesis' ),
+					'capability' => 'edit_theme_options',
+				),
+			)
+		);
 
-		<p><span class="description"><?php _e('If you provide an email address above, your blog can email you when a new version of Genesis is available.', 'genesis'); ?></span></p>
-	</div>
-<?php
-}
+		$page_ops = apply_filters(
+			'genesis_theme_settings_page_ops',
+			array(
+				'screen_icon'       => 'options-general',
+				'save_button_text'  => __( 'Save Settings', 'genesis' ),
+				'reset_button_text' => __( 'Reset Settings', 'genesis' ),
+				'saved_notice_text' => __( 'Settings saved.', 'genesis' ),
+				'reset_notice_text' => __( 'Settings reset.', 'genesis' ),
+				'error_notice_text' => __( 'Error saving settings.', 'genesis' ),
+			)
+		);
 
-function genesis_theme_settings_layout_box() { ?>
+		$settings_field = GENESIS_SETTINGS_FIELD;
 
-	<p class="genesis-layout-selector">
-	<?php
-	genesis_layout_selector( array( 'name' => GENESIS_SETTINGS_FIELD . '[site_layout]', 'selected' => genesis_get_option( 'site_layout' ) ) );
-	?>
-	</p>
+		$default_settings = apply_filters(
+			'genesis_theme_settings_defaults',
+			array(
+				'update'                    => 1,
+				'blog_title'                => 'text',
+				'header_right'              => 0,
+				'site_layout'               => genesis_get_default_layout(),
+				'nav'                       => 1,
+				'nav_superfish'             => 1,
+				'nav_extras_enable'         => 0,
+				'nav_extras'                => 'date',
+				'nav_extras_twitter_id'     => '',
+				'nav_extras_twitter_text'   => __( 'Follow me on Twitter', 'genesis' ),
+				'subnav'                    => 0,
+				'subnav_superfish'          => 1,
+				'feed_uri'                  => '',
+				'comments_feed_uri'         => '',
+				'redirect_feeds'            => 0,
+				'comments_pages'            => 0,
+				'comments_posts'            => 1,
+				'trackbacks_pages'          => 0,
+				'trackbacks_posts'          => 1,
+				'breadcrumb_home'           => 0,
+				'breadcrumb_single'         => 0,
+				'breadcrumb_page'           => 0,
+				'breadcrumb_archive'        => 0,
+				'breadcrumb_404'            => 0,
+				'breadcrumb_attachment'		=> 0,
+				'content_archive'           => 'full',
+				'content_archive_thumbnail' => 0,
+				'posts_nav'                 => 'older-newer',
+				'blog_cat'                  => '',
+				'blog_cat_exclude'          => '',
+				'blog_cat_num'              => 10,
+				'header_scripts'            => '',
+				'footer_scripts'            => '',
+				'theme_version'             => PARENT_THEME_VERSION,
+				'db_version'                => PARENT_DB_VERSION,
+			)
+		);
 
-	<br class="clear" />
+		$this->create( $page_id, $menu_ops, $page_ops, $settings_field, $default_settings );
 
-<?php
-}
+		add_action( 'genesis_settings_sanitizer_init', array( $this, 'sanitizer_filters' ) );
 
-function genesis_theme_settings_header_box() { ?>
+	}
 
-	<p><?php _e("Use for blog title/logo:", 'genesis'); ?>
-	<select name="<?php echo GENESIS_SETTINGS_FIELD; ?>[blog_title]">
-		<option value="text" <?php selected('text', genesis_get_option('blog_title')); ?>><?php _e("Dynamic text", 'genesis'); ?></option>
-		<option value="image" <?php selected('image', genesis_get_option('blog_title')); ?>><?php _e("Image logo", 'genesis'); ?></option>
-	</select></p>
+	/**
+	 * Registers each of the settings with a sanitization filter type.
+	 *
+	 * @since 1.7.0
+	 *
+	 * @uses genesis_add_option_filter() Assign filter to array of settings
+	 *
+	 * @see Genesis_Settings_Sanitizer::add_filter()
+	 */
+	public function sanitizer_filters() {
 
-<?php
-}
+		genesis_add_option_filter(
+			'one_zero',
+			$this->settings_field,
+			array(
+				'show_info',
+				'update',
+				'update_email',
+				'redirect_feed',
+				'redirect_comments_feed',
+				'nav',
+				'nav_superfish',
+				'nav_extras_enable',
+				'subnav',
+				'subnav_superfish',
+				'breadcrumb_home',
+				'breadcrumb_single',
+				'breadcrumb_page',
+				'breadcrumb_archive',
+				'breadcrumb_404',
+				'breadcrumb_attachment',
+				'comments_posts',
+				'comments_pages',
+				'trackbacks_posts',
+				'trackbacks_pages',
+				'content_archive_thumbnail',
+			)
+		);
 
-function genesis_theme_settings_nav_box() { ?>
+		genesis_add_option_filter(
+			'no_html',
+			$this->settings_field,
+			array( 'style_selection', )
+		);
 
-	<h4><?php _e( 'Primary Navigation', 'genesis' ); ?></h4>
+		genesis_add_option_filter(
+			'requires_unfiltered_html',
+			$this->settings_field,
+			array(
+				'header_scripts',
+				'footer_scripts',
+			)
+		);
 
-	<p><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav]" value="1" <?php checked(1, genesis_get_option('nav')); ?> /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav]"><?php _e("Include Primary Navigation Menu?", 'genesis'); ?></label>
-	</p>
+	}
 
-	<div id="genesis_nav_settings">
-		<p><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav_superfish]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav_superfish]" value="1" <?php checked(1, genesis_get_option('nav_superfish')); ?> /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav_superfish]"><?php _e("Enable Fancy Dropdowns?", 'genesis'); ?></label>
+	/**
+ 	 * Register meta boxes on the Theme Settings page.
+ 	 *
+ 	 * Some of the meta box additions are dependent on certain theme support or user
+ 	 * capabilities.
+ 	 *
+ 	 * The 'genesis_theme_settings_metaboxes' action hook is called at the end of
+ 	 * this function.
+ 	 *
+ 	 * @since 1.0.0
+ 	 *
+ 	 * @see Genesis_Admin_Settings::info_box() Callback for Information box
+ 	 * @see Genesis_Admin_Settings::style_box() Callback for Color Style box (if supported)
+ 	 * @see Genesis_Admin_Settings::feeds_box() Callback for Custom Feeds box
+ 	 * @see Genesis_Admin_Settings::layout_box() Callback for Default Layout box
+ 	 * @see Genesis_Admin_Settings::header_box() Callback for Header Settings box (if no custom header support)
+	 * @see Genesis_Admin_Settings::nav_box() Callback for Navigation Settings box
+ 	 * @see Genesis_Admin_Settings::breadcrumb_box() Callback for Breadcrumbs box
+ 	 * @see Genesis_Admin_Settings::comments_box() Callback for Comments and Trackbacks box
+ 	 * @see Genesis_Admin_Settings::post_archives_box() Callback for Content Archives box
+ 	 * @see Genesis_Admin_Settings::blogpage_box() Callback for Blog Page box
+ 	 * @see Genesis_Admin_Settings::scripts_box() Callback for Header and Footer box (if user has unfiltered_html capability)
+ 	 */
+	function metaboxes() {
+
+		/** Hidden form fields */
+		add_action( 'genesis_admin_before_metaboxes', array( $this, 'hidden_fields' ) );
+
+		add_meta_box( 'genesis-theme-settings-version', __( 'Information', 'genesis' ), array( $this, 'info_box' ), $this->pagehook, 'main', 'high' );
+
+		if ( current_theme_supports( 'genesis-style-selector' ) )
+			add_meta_box( 'genesis-theme-settings-style-selector', __( 'Color Style', 'genesis' ), array( $this, 'style_box' ), $this->pagehook, 'main' );
+
+		add_meta_box( 'genesis-theme-settings-feeds', __( 'Custom Feeds', 'genesis' ), array( $this, 'feeds_box' ), $this->pagehook, 'main' );
+		add_meta_box( 'genesis-theme-settings-layout', __( 'Default Layout', 'genesis' ), array( $this, 'layout_box' ), $this->pagehook, 'main' );
+
+		if ( ! current_theme_supports( 'genesis-custom-header' ) )
+			add_meta_box( 'genesis-theme-settings-header', __( 'Header Settings', 'genesis' ), array( $this, 'header_box' ), $this->pagehook, 'main' );
+
+		if ( current_theme_supports( 'genesis-menus' ) )
+			add_meta_box( 'genesis-theme-settings-nav', __( 'Navigation Settings', 'genesis' ), array( $this, 'nav_box' ), $this->pagehook, 'main' );
+
+		add_meta_box( 'genesis-theme-settings-breadcrumb', __( 'Breadcrumbs', 'genesis' ), array( $this, 'breadcrumb_box' ), $this->pagehook, 'main' );
+		add_meta_box( 'genesis-theme-settings-comments', __( 'Comments and Trackbacks', 'genesis' ), array( $this, 'comments_box' ), $this->pagehook, 'main' );
+		add_meta_box( 'genesis-theme-settings-posts', __( 'Content Archives', 'genesis' ), array( $this, 'post_archives_box' ), $this->pagehook, 'main' );
+		add_meta_box( 'genesis-theme-settings-blogpage', __( 'Blog Page', 'genesis' ), array( $this, 'blogpage_box' ), $this->pagehook, 'main' );
+
+		if ( current_user_can( 'unfiltered_html' ) )
+			add_meta_box( 'genesis-theme-settings-scripts', __( 'Header and Footer Scripts', 'genesis' ), array( $this, 'scripts_box' ), $this->pagehook, 'main' );
+
+		do_action( 'genesis_theme_settings_metaboxes', $this->pagehook );
+
+	}
+
+	/**
+	 * Outputs hidden form fields before the metaboxes.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 *
+	 * @param string $pagehook
+	 * @return null
+	 */
+	function hidden_fields( $pagehook ) {
+
+		if ( $pagehook != $this->pagehook )
+			return;
+
+		printf( '<input type="hidden" name="%s" value="%s" />', $this->get_field_name( 'theme_version' ), esc_attr( $this->get_field_value( 'theme_version' ) ) );
+		printf( '<input type="hidden" name="%s" value="%s" />', $this->get_field_name( 'db_version' ), esc_attr( $this->get_field_value( 'db_version' ) ) );
+
+	}
+
+	/**
+	 * Callback for Theme Settings Information meta box.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 * @uses PARENT_THEME_RELEASE_DATE
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function info_box() {
+
+		?>
+		<p><strong><?php _e( 'Version:', 'genesis' ); ?></strong> <?php echo $this->get_field_value( 'theme_version' ); ?> <?php echo g_ent( '&middot;' ); ?> <strong><?php _e( 'Released:', 'genesis' ); ?></strong> <?php echo PARENT_THEME_RELEASE_DATE; ?></p>
+
+		<p>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'show_info' ); ?>" id="<?php echo $this->get_field_id( 'show_info' ); ?>" value="1"<?php checked( $this->get_field_value( 'show_info' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'show_info' ); ?>"><?php _e( 'Display Theme Information in your document source', 'genesis' ); ?></label>
 		</p>
 
-		<p><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav_extras_enable]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav_extras_enable]" value="1" <?php checked(1, genesis_get_option('nav_extras_enable')); ?> /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav_extras_enable]"><?php _e('Enable Extras on Right Side?', 'genesis'); ?></label></p>
+		<p><span class="description"><?php sprintf( __( 'This can be helpful for diagnosing problems with your theme when seeking assistance in the <a href="%s" target="_blank">support forums</a>.', 'genesis' ), 'http://www.studiopress.com/support/' ); ?></span></p>
 
-		<div id="genesis_nav_extras_settings">
-			<p><?php _e("Display the following:", 'genesis'); ?>
-			<select name="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav_extras]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav_extras]">
-				<option value="date" <?php selected('date', genesis_get_option('nav_extras')); ?>><?php _e("Today's date", 'genesis'); ?></option>
-				<option value="rss" <?php selected('rss', genesis_get_option('nav_extras')); ?>><?php _e("RSS feed links", 'genesis'); ?></option>
-				<option value="search" <?php selected('search', genesis_get_option('nav_extras')); ?>><?php _e("Search form", 'genesis'); ?></option>
-				<option value="twitter" <?php selected('twitter', genesis_get_option('nav_extras')); ?>><?php _e("Twitter link", 'genesis'); ?></option>
+		<p>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'update' ); ?>" id="<?php echo $this->get_field_id( 'update' ); ?>" value="1"<?php checked( $this->get_field_value( 'update' ) ) . disabled( is_super_admin(), 0 ); ?> />
+			<label for="<?php echo $this->get_field_id( 'update' ); ?>"><?php _e( 'Enable Automatic Updates', 'genesis' ); ?></label></p>
+
+		<div id="genesis_update_notification_setting">
+			<p>
+				<input type="checkbox" name="<?php echo $this->get_field_name( 'update_email' ); ?>" id="<?php echo $this->get_field_id( 'update_email' ); ?>" value="1"<?php checked( $this->get_field_value( 'update_email' ) ) . disabled( is_super_admin(), 0 ); ?> />
+				<label for="<?php echo $this->get_field_id( 'update_email' ); ?>"><?php _e( 'Notify', 'genesis' ); ?></label>
+				<input type="text" name="<?php echo $this->get_field_name( 'update_email_address' ); ?>" id="<?php echo $this->get_field_id( 'update_email_address' ); ?>" value="<?php echo esc_attr( $this->get_field_value( 'update_email_address' ) ); ?>" size="30"<?php disabled( 0, is_super_admin() ); ?> />
+				<label for="<?php echo $this->get_field_id( 'update_email_address' ); ?>"><?php _e( 'when updates are available', 'genesis' ); ?></label>
+			</p>
+
+			<p><span class="description"><?php _e( 'If you provide an email address above, your blog can email you when a new version of Genesis is available.', 'genesis' ); ?></span></p>
+		</div>
+		<?php
+
+	}
+
+	/**
+	 * Callback for Theme Settings Color Style meta box.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function style_box() {
+
+		$current = $this->get_field_value( 'style_selection' );
+		$styles  = get_theme_support( 'genesis-style-selector' );
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'style_selection' ); ?>"><?php _e( 'Color Style:', 'genesis' ); ?></label>
+			<select name="<?php echo $this->get_field_name( 'style_selection' ); ?>" id="<?php echo $this->get_field_id( 'style_selection' ); ?>">
+				<option value=""><?php _e( 'Default', 'genesis' ); ?></option>
+				<?php
+				if ( ! empty( $styles ) ) {
+					$styles = array_shift( $styles );
+					foreach ( (array) $styles as $style => $title ) {
+						?><option value="<?php echo esc_attr( $style ); ?>"<?php selected( $current, $style ); ?>><?php echo esc_html( $title ); ?></option><?php
+					}
+				}
+				?>
+			</select>
+		</p>
+
+		<p><span class="description"><?php _e( 'Please select the color style from the drop down list and save your settings.', 'genesis' ); ?></span></p>
+		<?php
+
+	}
+
+	/**
+	 * Callback for Theme Settings Default Layout meta box.
+	 *
+	 * A version of a site layout setting has been in Genesis since at least 0.2.0,
+	 * but it was moved to its own meta box in 1.7.0.
+	 *
+	 * @since 1.7.0
+	 *
+	 * @uses genesis_layout_selector() Outputs form elements for layout picker
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function layout_box() {
+
+		?>
+		<p class="genesis-layout-selector">
+		<?php
+		genesis_layout_selector( array( 'name' => $this->get_field_name( 'site_layout' ), 'selected' => $this->get_field_value( 'site_layout' ), 'type' => 'site' ) );
+		?>
+		</p>
+
+		<br class="clear" />
+		<?php
+
+	}
+
+	/**
+	 * Callback for Theme Settings Header meta box.
+	 *
+	 * @since 1.7.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function header_box() {
+		?>
+
+		<p><?php _e( 'Use for blog title/logo:', 'genesis' ); ?>
+			<select name="<?php echo $this->get_field_name( 'blog_title' ); ?>">
+				<option value="text"<?php selected( $this->get_field_value( 'blog_title' ), 'text' ); ?>><?php _e( 'Dynamic text', 'genesis' ); ?></option>
+				<option value="image"<?php selected( $this->get_field_value( 'blog_title' ), 'image' ); ?>><?php _e( 'Image logo', 'genesis' ); ?></option>
 			</select></p>
-			<div id="genesis_nav_extras_twitter">
-				<p><?php _e("Enter Twitter ID:", 'genesis'); ?>
-				<input type="text" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav_extras_twitter_id]" value="<?php echo esc_attr( genesis_get_option('nav_extras_twitter_id') ); ?>" size="27" /></p>
-				<p><?php _e("Twitter Link Text:", 'genesis'); ?>
-				<input type="text" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[nav_extras_twitter_text]" value="<?php echo esc_attr( genesis_get_option('nav_extras_twitter_text') ); ?>" size="27" /></p>
+
+		<?php
+
+	}
+
+	/**
+	 * Callback for Theme Settings Navigation Settings meta box.
+	 *
+	 * @category Genesis
+	 * @package Admin
+	 * @subpackage Theme-Settings
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function nav_box() {
+
+		?>
+		<?php if ( genesis_nav_menu_supported( 'primary' ) ) : ?>
+		<h4><?php _e( 'Primary Navigation', 'genesis' ); ?></h4>
+
+		<p>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'nav' ); ?>" id="<?php echo $this->get_field_id( 'nav' ); ?>" value="1"<?php checked( $this->get_field_value( 'nav' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'nav' ); ?>"><?php _e( 'Include Primary Navigation Menu?', 'genesis' ); ?></label>
+		</p>
+
+		<div id="genesis_nav_settings">
+			<p>
+				<input type="checkbox" name="<?php echo $this->get_field_name( 'nav_superfish' ); ?>" id="<?php echo $this->get_field_id( 'nav_superfish' ); ?>" value="1"<?php checked( $this->get_field_value( 'nav_superfish' ) ); ?> />
+				<label for="<?php echo $this->get_field_id( 'nav_superfish' ); ?>"><?php _e( 'Enable Fancy Dropdowns?', 'genesis' ); ?></label>
+			</p>
+
+			<p>
+				<input type="checkbox" name="<?php echo $this->get_field_name( 'nav_extras_enable' ); ?>" id="<?php echo $this->get_field_id( 'nav_extras_enable' ); ?>" value="1"<?php checked( $this->get_field_value( 'nav_extras_enable' ) ); ?> />
+				<label for="<?php echo $this->get_field_id( 'nav_extras_enable' ); ?>"><?php _e( 'Enable Extras on Right Side?', 'genesis' ); ?></label>
+			</p>
+
+			<div id="genesis_nav_extras_settings">
+				<p>
+					<label for="<?php echo $this->get_field_id( 'nav_extras' ); ?>"><?php _e( 'Display the following:', 'genesis' ); ?></label>
+					<select name="<?php echo $this->get_field_name( 'nav_extras' ); ?>" id="<?php echo $this->get_field_id( 'nav_extras' ); ?>">
+						<option value="date"<?php selected( $this->get_field_value( 'nav_extras' ), 'date' ); ?>><?php _e( 'Today\'s date', 'genesis' ); ?></option>
+						<option value="rss"<?php selected( $this->get_field_value( 'nav_extras' ), 'rss' ); ?>><?php _e( 'RSS feed links', 'genesis' ); ?></option>
+						<option value="search"<?php selected( $this->get_field_value( 'nav_extras' ), 'search' ); ?>><?php _e( 'Search form', 'genesis' ); ?></option>
+						<option value="twitter"<?php selected( $this->get_field_value( 'nav_extras' ), 'twitter' ); ?>><?php _e( 'Twitter link', 'genesis' ); ?></option>
+					</select>
+				</p>
+				<div id="genesis_nav_extras_twitter">
+					<p>
+						<label for="<?php echo $this->get_field_id( 'nav_extras_twitter_id' ); ?>"><?php _e( 'Enter Twitter ID:', 'genesis' ); ?></label>
+						<input type="text" name="<?php echo $this->get_field_name( 'nav_extras_twitter_id' ); ?>" id="<?php echo $this->get_field_id( 'nav_extras_twitter_id' ); ?>" value="<?php echo esc_attr( $this->get_field_value( 'nav_extras_twitter_id' ) ); ?>" size="27" />
+					</p>
+					<p>
+						<label for="<?php echo $this->get_field_id( 'nav_extras_twitter_text' ); ?>"><?php _e( 'Twitter Link Text:', 'genesis' ); ?></label>
+						<input type="text" name="<?php echo $this->get_field_name( 'nav_extras_twitter_text' ); ?>" id="<?php echo $this->get_field_id( 'nav_extras_twitter_text' ); ?>" value="<?php echo esc_attr( $this->get_field_value( 'nav_extras_twitter_text' ) ); ?>" size="27" />
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<hr class="div" />
+		<hr class="div" />
+		<?php endif; ?>
 
-	<h4><?php _e( 'Secondary Navigation', 'genesis' ); ?></h4>
+		<?php if ( genesis_nav_menu_supported( 'secondary' ) ) : ?>
+		<h4><?php _e( 'Secondary Navigation', 'genesis' ); ?></h4>
 
-	<p><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[subnav]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[subnav]" value="1" <?php checked(1, genesis_get_option('subnav')); ?> /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[subnav]"><?php _e("Include Secondary Navigation Menu?", 'genesis'); ?></label>
-	</p>
-
-	<div id="genesis_subnav_settings">
-		<p><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[subnav_superfish]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[subnav_superfish]" value="1" <?php checked(1, genesis_get_option('subnav_superfish')); ?> /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[subnav_superfish]"><?php _e("Enable Fancy Dropdowns?", 'genesis'); ?></label>
+		<p>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'subnav' ); ?>" id="<?php echo $this->get_field_id( 'subnav' ); ?>" value="1"<?php checked( $this->get_field_value( 'subnav' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'subnav' ); ?>"><?php _e( 'Include Secondary Navigation Menu?', 'genesis' ); ?></label>
 		</p>
-	</div>
 
-	<hr class="div" />
+		<div id="genesis_subnav_settings">
+			<p>
+				<input type="checkbox" name="<?php echo $this->get_field_name( 'subnav_superfish' ); ?>" id="<?php echo $this->get_field_id( 'subnav_superfish' ); ?>" value="1"<?php checked( $this->get_field_value( 'subnav_superfish' ) ); ?> />
+				<label for="<?php echo $this->get_field_id( 'subnav_superfish' ); ?>"><?php _e( 'Enable Fancy Dropdowns?', 'genesis' ); ?></label>
+			</p>
+		</div>
 
-	<p><span class="description"><?php printf( __('In order to use the navigation menus, you must build a <a href="%s">custom menu</a>, then assign it to the proper Menu Location.', 'genesis'), admin_url('nav-menus.php') ); ?></span></p>
+		<hr class="div" />
+		<?php endif; ?>
 
-<?php
-}
-
-function genesis_theme_settings_feeds_box() { ?>
-
-	<p><?php _e('Enter your custom feed URI:', 'genesis'); ?><br />
-	<input type="text" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[feed_uri]" value="<?php echo esc_attr( genesis_get_option('feed_uri') ); ?>" size="50" /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[redirect_feed]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[redirect_feed]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[redirect_feed]" value="1" <?php checked(1, genesis_get_option('redirect_feed')); ?> /> <?php _e("Redirect Feed?", 'genesis'); ?></label></p>
-
-	<p><?php _e('Enter your custom comments feed URI:', 'genesis'); ?><br />
-	<input type="text" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[comments_feed_uri]" value="<?php echo esc_attr( genesis_get_option('comments_feed_uri') ); ?>" size="50" /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[redirect_comments_feed]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[redirect_comments_feed]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[redirect_comments_feed]" value="1" <?php checked(1, genesis_get_option('redirect_comments__feed')); ?> /> <?php _e("Redirect Feed?", 'genesis'); ?></label></p>
-
-	<p><span class="description"><?php printf( __('If your custom feed(s) are not handled by Feedburner, we do not recommend that you use the redirect options.', 'genesis') ); ?></span></p>
-
-<?php
-}
-
-function genesis_theme_settings_comments_box() { ?>
-	<p><label><?php _e('Enable Comments', 'genesis'); ?></label>
-	<label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[comments_posts]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[comments_posts]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[comments_posts]" value="1" <?php checked(1, genesis_get_option('comments_posts')); ?> /> <?php _e("on posts?", 'genesis'); ?></label>
-
-	<label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[comments_pages]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[comments_pages]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[comments_pages]" value="1" <?php checked(1, genesis_get_option('comments_pages')); ?> /> <?php _e("on pages?", 'genesis'); ?></label>
-	</p>
-
-	<p><label><?php _e('Enable Trackbacks', 'genesis'); ?></label>
-	<label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[trackbacks_posts]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[trackbacks_posts]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[trackbacks_posts]" value="1" <?php checked(1, genesis_get_option('trackbacks_posts')); ?> /> <?php _e("on posts?", 'genesis'); ?></label>
-
-	<label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[trackbacks_pages]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[trackbacks_pages]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[trackbacks_pages]" value="1" <?php checked(1, genesis_get_option('trackbacks_pages')); ?> /> <?php _e("on pages?", 'genesis'); ?></label>
-	</p>
-
-	<p><span class="description"><?php _e("Comments and Trackbacks can also be disabled on a per post/page basis when creating/editing posts/pages.", 'genesis'); ?></span></p>
-
-<?php
-}
-
-function genesis_theme_settings_breadcrumb_box() { ?>
-
-	<h4><?php _e( 'Enable on:', 'genesis' ); ?></h4>
-
-	<label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_home]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_home]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_home]" value="1" <?php checked(1, genesis_get_option('breadcrumb_home')); ?> /> <?php _e("Front Page", 'genesis'); ?></label>
-
-	<label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_single]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_single]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_single]" value="1" <?php checked(1, genesis_get_option('breadcrumb_single')); ?> /> <?php _e("Posts", 'genesis'); ?></label>
-
-	<label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_page]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_page]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_page]" value="1" <?php checked(1, genesis_get_option('breadcrumb_page')); ?> /> <?php _e("Pages", 'genesis'); ?></label>
-
-	<label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_archive]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_archive]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_archive]" value="1" <?php checked(1, genesis_get_option('breadcrumb_archive')); ?> /> <?php _e("Archives", 'genesis'); ?></label>
-
-	<label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_404]"><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_404]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[breadcrumb_404]" value="1" <?php checked(1, genesis_get_option('breadcrumb_404')); ?> /> <?php _e("404 Page", 'genesis'); ?></label>
-	</p>
-
-	<p><span class="description"><?php _e('Breadcrumbs are a great way of letting your visitors find out where they are on your site with just a glance. You can enable/disable them on certain areas of your site.', 'genesis'); ?></span></p>
-<?php
-}
-
-function genesis_theme_settings_post_archives_box() { ?>
-	<p><?php _e("Select one of the following:", 'genesis'); ?>
-	<select name="<?php echo GENESIS_SETTINGS_FIELD; ?>[content_archive]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[content_archive]">
-		<option value="full" <?php selected('full', genesis_get_option('content_archive')); ?>><?php _e("Display post content", 'genesis'); ?></option>
-		<option value="excerpts" <?php selected('excerpts', genesis_get_option('content_archive')); ?>><?php _e("Display post excerpts", 'genesis'); ?></option>
-	</select></p>
-
-	<div id="genesis_content_limit_setting">
-		<p><label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[content_archive_limit]"><?php _e('Limit content to', 'genesis'); ?></label> <input type="text" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[content_archive_limit]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[content_archive_limit]" value="<?php echo esc_attr( genesis_option('content_archive_limit') ); ?>" size="3" /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[content_archive_limit]"><?php _e('characters', 'genesis'); ?></label></p>
-
-		<p><span class="description"><?php _e('Using this option will limit the text and strip all formatting from the text displayed. To use this option, choose "Display post content" in the select box above.', 'genesis'); ?></span></p>
-	</div>
-
-	<p><input type="checkbox" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[content_archive_thumbnail]" id="<?php echo GENESIS_SETTINGS_FIELD; ?>[content_archive_thumbnail]" value="1" <?php checked(1, genesis_get_option('content_archive_thumbnail')); ?> /> <label for="<?php echo GENESIS_SETTINGS_FIELD; ?>[content_archive_thumbnail]"><?php _e("Include the Featured Image?", 'genesis'); ?></label>
-	</p>
-
-	<p id="genesis_image_size"><?php _e('Image Size', 'genesis'); ?>:
-	<?php $sizes = genesis_get_image_sizes(); ?>
-	<select name="<?php echo GENESIS_SETTINGS_FIELD; ?>[image_size]">
+		<p><span class="description"><?php printf( __( 'In order to use the navigation menus, you must build a <a href="%s">custom menu</a>, then assign it to the proper Menu Location.', 'genesis' ), admin_url( 'nav-menus.php' ) ); ?></span></p>
 		<?php
-		foreach( (array) $sizes as $name => $size ) :
-		echo '<option value="'.$name.'" '.selected($name, genesis_get_option('image_size'), FALSE).'>'.$name.' ('.$size['width'].'x'.$size['height'].')</option>';
-		endforeach;
+
+	}
+
+	/**
+	 * Callback for Theme Settings Custom Feeds meta box.
+	 *
+	 * @since 1.3.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function feeds_box() {
+
 		?>
-	</select></p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'feed_uri' ); ?>"><?php _e( 'Enter your custom feed URI:', 'genesis' ); ?></label><br />
+			<input type="text" name="<?php echo $this->get_field_name( 'feed_uri' ); ?>" id="<?php echo $this->get_field_id( 'feed_uri' ); ?>" value="<?php echo esc_attr( $this->get_field_value( 'feed_uri' ) ); ?>" size="50" />
 
-	<p><?php _e("Select Post Navigation Technique:", 'genesis'); ?>
-	<select name="<?php echo GENESIS_SETTINGS_FIELD; ?>[posts_nav]">
-		<option value="older-newer" <?php selected('older-newer', genesis_get_option('posts_nav')); ?>><?php _e("Older / Newer", 'genesis'); ?></option>
-		<option value="prev-next" <?php selected('prev-next', genesis_get_option('posts_nav')); ?>><?php _e("Previous / Next", 'genesis'); ?></option>
-		<option value="numeric" <?php selected('numeric', genesis_get_option('posts_nav')); ?>><?php _e("Numeric", 'genesis'); ?></option>
-	</select></p>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'redirect_feed' ); ?>" id="<?php echo $this->get_field_id( 'redirect_feed' ); ?>" value="1"<?php checked( $this->get_field_value( 'redirect_feed' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'redirect_feed' ); ?>"><?php _e( 'Redirect Feed?', 'genesis' ); ?></label>
+		</p>
 
-	<p><span class="description"><?php _e("These options will affect any blog listings page, including archive, author, blog, category, search, and tag pages.", 'genesis'); ?></span></p>
-<?php
-}
+		<p>
+			<label for="<?php echo $this->get_field_id( 'comments_feed_uri' ); ?>"><?php _e( 'Enter your custom comments feed URI:', 'genesis' ); ?></label><br />
+			<input type="text" name="<?php echo $this->get_field_name( 'comments_feed_uri' ); ?>" id="<?php echo $this->get_field_id( 'comments_feed_uri' ); ?>" value="<?php echo esc_attr( $this->get_field_value( 'comments_feed_uri' ) ); ?>" size="50" />
 
-function genesis_theme_settings_blogpage_box() { ?>
-	<p><?php _e("Display which category:", 'genesis'); ?>
-	<?php wp_dropdown_categories(array('selected' => genesis_get_option('blog_cat'), 'name' => GENESIS_SETTINGS_FIELD.'[blog_cat]', 'orderby' => 'Name' , 'hierarchical' => 1, 'show_option_all' => __("All Categories", 'genesis'), 'hide_empty' => '0' )); ?></p>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'redirect_comments_feed' ); ?>" id="<?php echo $this->get_field_id( 'redirect_comments_feed' ); ?>" value="1"<?php checked( $this->get_field_value( 'redirect_comments__feed' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'redirect_comments_feed' ); ?>"><?php _e( 'Redirect Feed?', 'genesis' ); ?></label>
+		</p>
 
-	<p><?php _e("Exclude the following Category IDs:", 'genesis'); ?><br />
-	<input type="text" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[blog_cat_exclude]" value="<?php echo esc_attr( genesis_get_option('blog_cat_exclude') ); ?>" size="40" /><br />
-	<small><strong><?php _e("Comma separated - 1,2,3 for example", 'genesis'); ?></strong></small></p>
+		<p><span class="description"><?php printf( __( 'If your custom feed(s) are not handled by Feedburner, we do not recommend that you use the redirect options.', 'genesis' ) ); ?></span></p>
+		<?php
 
-	<p><?php _e('Number of Posts to Show', 'genesis'); ?>:
-	<input type="text" name="<?php echo GENESIS_SETTINGS_FIELD; ?>[blog_cat_num]" value="<?php echo esc_attr( genesis_option('blog_cat_num') ); ?>" size="2" /></p>
-<?php
-}
+	}
 
-function genesis_theme_settings_scripts_box() { ?>
-	<p><?php _e("Enter scripts/code you would like output to <code>wp_head()</code>:", 'genesis'); ?></p>
+	/**
+	 * Callback for Theme Settings Comments meta box.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function comments_box() {
 
-	<textarea name="<?php echo GENESIS_SETTINGS_FIELD; ?>[header_scripts]" cols="78" rows="8"><?php echo esc_textarea( genesis_get_option('header_scripts') ); ?></textarea>
+		?>
+		<p>
+			<?php _e( 'Enable Comments', 'genesis' ); ?>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'comments_posts' ); ?>" id="<?php echo $this->get_field_id( 'comments_posts' ); ?>" value="1"<?php checked( $this->get_field_value( 'comments_posts' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'comments_posts' ); ?>" title="Enable comments on posts"><?php _e( 'on posts?', 'genesis' ); ?></label>
 
-	<p><span class="description"><?php _e('The <code>wp_head()</code> hook executes immediately before the closing <code>&lt;/head&gt;</code> tag in the document source.', 'genesis'); ?></span></p>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'comments_pages' ); ?>" id="<?php echo $this->get_field_id( 'comments_pages' ); ?>" value="1"<?php checked( $this->get_field_value( 'comments_pages' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'comments_pages' ); ?>" title="Enable comments on pages"><?php _e( 'on pages?', 'genesis' ); ?></label>
+		</p>
 
-	<hr class="div" />
+		<p>
+			<?php _e( 'Enable Trackbacks', 'genesis' ); ?>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'trackbacks_posts' ); ?>" id="<?php echo $this->get_field_id( 'trackbacks_posts' ); ?>" value="1"<?php checked( $this->get_field_value( 'trackbacks_posts' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'trackbacks_posts' ); ?>" title="Enable trackbacks on posts"><?php _e( 'on posts?', 'genesis' ); ?></label>
 
-	<p><?php _e("Enter scripts/code you would like output to <code>wp_footer()</code>:", 'genesis'); ?></p>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'trackbacks_pages' ); ?>" id="<?php echo $this->get_field_id( 'trackbacks_pages' ); ?>" value="1"<?php checked( $this->get_field_value( 'trackbacks_pages' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'trackbacks_pages' ); ?>" title="Enable trackbacks on pages"><?php _e( 'on pages?', 'genesis' ); ?></label>
+		</p>
 
-	<textarea name="<?php echo GENESIS_SETTINGS_FIELD; ?>[footer_scripts]" cols="78" rows="8"><?php echo esc_textarea( genesis_get_option('footer_scripts') ); ?></textarea>
+		<p><span class="description"><?php _e( 'Comments and Trackbacks can also be disabled on a per post/page basis when creating/editing posts/pages.', 'genesis' ); ?></span></p>
+		<?php
 
-	<p><span class="description"><?php _e('The <code>wp_footer()</code> hook executes immediately before the closing <code>&lt;/body&gt;</code> tag in the document source.', 'genesis'); ?></span></p>
-<?php
+	}
+
+	/**
+	 * Callback for Theme Settings Custom Feeds meta box.
+	 *
+	 * @since 1.3.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function breadcrumb_box() {
+
+		?>
+		<h4><?php _e( 'Enable on:', 'genesis' ); ?></h4>
+		<p>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'breadcrumb_home' ); ?>" id="<?php echo $this->get_field_id( 'breadcrumb_home' ); ?>" value="1"<?php checked( $this->get_field_value( 'breadcrumb_home' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'breadcrumb_home' ); ?>"><?php _e( 'Front Page', 'genesis' ); ?></label>
+
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'breadcrumb_single' ); ?>" id="<?php echo $this->get_field_id( 'breadcrumb_single' ); ?>" value="1"<?php checked( $this->get_field_value( 'breadcrumb_single' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'breadcrumb_single' ); ?>"><?php _e( 'Posts', 'genesis' ); ?></label>
+
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'breadcrumb_page' ); ?>" id="<?php echo $this->get_field_id( 'breadcrumb_page' ); ?>" value="1"<?php checked( $this->get_field_value( 'breadcrumb_page' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'breadcrumb_page' ); ?>"><?php _e( 'Pages', 'genesis' ); ?></label>
+
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'breadcrumb_archive' ); ?>" id="<?php echo $this->get_field_id( 'breadcrumb_archive' ); ?>" value="1"<?php checked( $this->get_field_value( 'breadcrumb_archive' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'breadcrumb_archive' ); ?>"><?php _e( 'Archives', 'genesis' ); ?></label>
+
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'breadcrumb_404' ); ?>" id="<?php echo $this->get_field_id( 'breadcrumb_404' ); ?>" value="1"<?php checked( $this->get_field_value( 'breadcrumb_404' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'breadcrumb_404' ); ?>"><?php _e( '404 Page', 'genesis' ); ?></label>
+
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'breadcrumb_attachment' ); ?>" id="<?php echo $this->get_field_id( 'breadcrumb_attachment' ); ?>" value="1"<?php checked( $this->get_field_value( 'breadcrumb_attachment' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'breadcrumb_attachment' ); ?>"><?php _e( 'Attachment Page', 'genesis' ); ?></label>
+		</p>
+
+		<p><span class="description"><?php _e( 'Breadcrumbs are a great way of letting your visitors find out where they are on your site with just a glance. You can enable/disable them on certain areas of your site.', 'genesis' ); ?></span></p>
+		<?php
+
+	}
+
+	/**
+	 * Callback for Theme Settings Post Archives meta box.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 * @uses genesis_get_images_sizes() Retrieves list of registered image sizes
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function post_archives_box() {
+
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'content_archive' ); ?>"><?php _e( 'Select one of the following:', 'genesis' ); ?></label>
+			<select name="<?php echo $this->get_field_name( 'content_archive' ); ?>" id="<?php echo $this->get_field_id( 'content_archive' ); ?>">
+			<?php
+			$archive_display = apply_filters(
+				'genesis_archive_display_options',
+				array(
+					'full'     => __( 'Display post content', 'genesis' ),
+					'excerpts' => __( 'Display post excerpts', 'genesis' ),
+				)
+			);
+			foreach ( (array) $archive_display as $value => $name )
+				echo '<option value="' . esc_attr( $value ) . '"' . selected( $this->get_field_value( 'content_archive' ), esc_attr( $value ), false ) . '>' . esc_html( $name ) . '</option>' . "\n";
+			?>
+			</select>
+		</p>
+
+		<div id="genesis_content_limit_setting">
+			<p>
+				<label for="<?php echo $this->get_field_id( 'content_archive_limit' ); ?>"><?php _e( 'Limit content to', 'genesis' ); ?>
+				<input type="text" name="<?php echo $this->get_field_name( 'content_archive_limit' ); ?>" id="<?php echo $this->get_field_id( 'content_archive_limit' ); ?>" value="<?php echo esc_attr( $this->get_field_value( 'content_archive_limit' ) ); ?>" size="3" />
+				<?php _e( 'characters', 'genesis' ); ?></label>
+			</p>
+
+			<p><span class="description"><?php _e( 'Using this option will limit the text and strip all formatting from the text displayed. To use this option, choose "Display post content" in the select box above.', 'genesis' ); ?></span></p>
+		</div>
+
+		<p>
+			<input type="checkbox" name="<?php echo $this->get_field_name( 'content_archive_thumbnail' ); ?>" id="<?php echo $this->get_field_id( 'content_archive_thumbnail' ); ?>" value="1"<?php checked( $this->get_field_value( 'content_archive_thumbnail' ) ); ?> />
+			<label for="<?php echo $this->get_field_id( 'content_archive_thumbnail' ); ?>"><?php _e( 'Include the Featured Image?', 'genesis' ); ?></label>
+		</p>
+
+		<p id="genesis_image_size">
+			<label for="<?php echo $this->get_field_id( 'image_size' ); ?>"><?php _e( 'Image Size:', 'genesis' ); ?></label>
+			<select name="<?php echo $this->get_field_name( 'image_size' ); ?>" id="<?php echo $this->get_field_id( 'image_size' ); ?>">
+			<?php
+			$sizes = genesis_get_image_sizes();
+			foreach ( (array) $sizes as $name => $size )
+				echo '<option value="' . $name . '"' . selected( $this->get_field_value( 'image_size' ), $name, FALSE ) . '>' . $name . ' (' . $size['width'] . ' &#215; ' . $size['height'] . ')</option>' . "\n";
+			?>
+			</select>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'posts_nav' ); ?>"><?php _e( 'Select Post Navigation Technique:', 'genesis' ); ?></label>
+			<select name="<?php echo $this->get_field_name( 'posts_nav' ); ?>" id="<?php echo $this->get_field_id( 'posts_nav' ); ?>">
+				<option value="older-newer"<?php selected( 'older-newer', $this->get_field_value( 'posts_nav' ) ); ?>><?php _e( 'Older / Newer', 'genesis' ); ?></option>
+				<option value="prev-next"<?php selected( 'prev-next', $this->get_field_value( 'posts_nav' ) ); ?>><?php _e( 'Previous / Next', 'genesis' ); ?></option>
+				<option value="numeric"<?php selected( 'numeric', $this->get_field_value( 'posts_nav' ) ); ?>><?php _e( 'Numeric', 'genesis' ); ?></option>
+			</select>
+		</p>
+
+		<p><span class="description"><?php _e( 'These options will affect any blog listings page, including archive, author, blog, category, search, and tag pages.', 'genesis' ); ?></span></p>
+		<?php
+
+	}
+
+	/**
+	 * Callback for Theme Settings Blog Page meta box.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function blogpage_box() {
+
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'blog_cat' ); ?>"><?php _e( 'Display which category:', 'genesis' ); ?></label>
+			<?php wp_dropdown_categories( array( 'selected' => $this->get_field_value( 'blog_cat' ), 'name' => $this->get_field_name( 'blog_cat' ), 'orderby' => 'Name', 'hierarchical' => 1, 'show_option_all' => __( 'All Categories', 'genesis' ), 'hide_empty' => '0' ) ); ?>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'blog_cat_exclude' ); ?>"><?php _e( 'Exclude the following Category IDs:', 'genesis' ); ?><br />
+				<input type="text" name="<?php echo $this->get_field_name( 'blog_cat_exclude' ); ?>" id="<?php echo $this->get_field_id( 'blog_cat_exclude' ); ?>" value="<?php echo esc_attr( $this->get_field_value( 'blog_cat_exclude' ) ); ?>" size="40" />
+				<br /><small><strong><?php _e( 'Comma separated - 1,2,3 for example', 'genesis' ); ?></strong></small>
+			</label>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'blog_cat_num' ); ?>"><?php _e( 'Number of Posts to Show:', 'genesis' ); ?></label>
+			<input type="text" name="<?php echo $this->get_field_name( 'blog_cat_num' ); ?>" id="<?php echo $this->get_field_id( 'blog_cat_num' ); ?>" value="<?php echo esc_attr( $this->get_field_value( 'blog_cat_num' ) ); ?>" size="2" />
+		</p>
+		<?php
+
+	}
+
+	/**
+	 * Callback for Theme Settings Header / Footer Scripts meta box.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses Genesis_Admin::get_field_name() Construct full field name
+	 * @uses Genesis_Admin::get_field_value() Retrieve value of key under $this->settings_field
+	 *
+	 * @see Genesis_Admin_Settings::metaboxes()
+	 */
+	function scripts_box() {
+
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'header_scripts' ); ?>"><?php printf( __( 'Enter scripts or code you would like output to %s:', 'genesis' ), '<code>wp_head()</code>' ); ?></label>
+		</p>
+
+		<textarea name="<?php echo $this->get_field_name( 'header_scripts' ); ?>" id="<?php echo $this->get_field_id( 'header_scripts' ); ?>" cols="78" rows="8"><?php echo esc_textarea( $this->get_field_value( 'header_scripts' ) ); ?></textarea>
+
+		<p><span class="description"><?php printf( __( 'The %1$s hook executes immediately before the closing %2$s tag in the document source.', 'genesis' ), '<code>wp_head()</code>', '<code>&lt;/head&gt;</code>' ); ?></span></p>
+
+		<hr class="div" />
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'footer_scripts' ); ?>"><?php printf( __( 'Enter scripts or code you would like output to %s:', 'genesis' ), '<code>wp_footer()</code>' ); ?></label>
+		</p>
+
+		<textarea name="<?php echo $this->get_field_name( 'footer_scripts' ); ?>" id="<?php echo $this->get_field_id( 'header_scripts' ); ?>" cols="78" rows="8"><?php echo esc_textarea( $this->get_field_value( 'footer_scripts' ) ); ?></textarea>
+
+		<p><span class="description"><?php printf( __( 'The %1$s hook executes immediately before the closing %2$s tag in the document source.', 'genesis' ), '<code>wp_footer()</code>', '<code>&lt;/body&gt;</code>' ); ?></span></p>
+		<?php
+
+	}
+
 }

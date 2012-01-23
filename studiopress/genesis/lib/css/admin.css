@@ -6,17 +6,26 @@ hr.div {
 	margin: 10px 0;
 }
 
-/** Genesis buttons in H2 */
-.genesis-h2-button {
-	margin: 0 0 0 4px;
-	position: relative;
-	top: -3px;
+/** Fix notice placment on our admin pages */
+.wrap div.updated,
+.wrap div.error {
+    clear: both;
 }
 
 /** Genesis metabox Styles **/
 .genesis-metaboxes {
 	width: 650px;
 	padding-bottom: 20px;
+}
+.genesis-metaboxes h2 {
+	float: left;
+}
+.genesis-metaboxes .top-buttons {
+	float: right;
+	padding-right: 20px;
+}
+.genesis-metaboxes .top-buttons input {
+	margin-left: 10px;
 }
 .genesis-metaboxes .bottom-buttons {
 	text-align: right;
@@ -33,7 +42,12 @@ hr.div {
 }
 .genesis-metaboxes .inside {
 	padding: 0 10px;
-	overflow: hidden;
+}
+.genesis-metaboxes fieldset {
+	margin-top: 1em;
+}
+.genesis-metaboxes legend {
+	line-height: 140%;
 }
 
 
@@ -72,12 +86,16 @@ hr.div {
 }
 
 /** Layout Selector, no JS */
-.no-js .genesis-layout-selector input {
+.no-js .genesis-layout-selector input,
+.ie8 .genesis-layout-selector input {
 	display: inline;
 }
 .no-js .genesis-layout-selector label.box img,
 .no-js .genesis-layout-selector label.box img:hover,
-.no-js .genesis-layout-selector label.box.selected img {
+.no-js .genesis-layout-selector label.box.selected img,
+.ie8 .genesis-layout-selector label.box img,
+.ie8 .genesis-layout-selector label.box img:hover,
+.ie8 .genesis-layout-selector label.box.selected img {
 	border: 3px solid transparent;
 }
 

@@ -1,25 +1,31 @@
 <?php
+/*
+ WARNING: This file is part of the core Genesis framework. DO NOT edit
+ this file under any circumstances. Please do all modifications
+ in the form of a child theme.
+ */
+
 /**
- * WARNING: This file is part of the core Genesis framework. DO NOT edit
- * this file under any circumstances. Please do all modifications
- * in the form of a child theme.
+ * Initializes the framework by doing some basic things like defining constants
+ * and loading framework components from the /lib directory.
  *
- * This file initializes the framework by doing some
- * basic things like defining constants, and loading
- * framework components from the /lib directory.
+ * This file is a core Genesis file and should not be edited.
  *
- * @package Genesis
+ * @category Genesis
+ * @package  Framework
+ * @author   StudioPress
+ * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
+ * @link     http://www.studiopress.com/themes/genesis
  */
 
 /** Run the genesis_pre Hook */
 do_action( 'genesis_pre' );
 
-
 add_action( 'genesis_init', 'genesis_theme_support' );
 /**
- * This function activates default theme features
+ * Activates default theme features.
  *
- * @since 1.6
+ * @since 1.6.0
  */
 function genesis_theme_support() {
 
@@ -34,8 +40,24 @@ function genesis_theme_support() {
 	add_theme_support( 'genesis-readme-menu' );
 	add_theme_support( 'genesis-auto-updates' );
 	
+	if ( ! current_theme_supports( 'genesis-menus' ) )
+		add_theme_support( 'genesis-menus', array( 'primary' => __( 'Primary Navigation Menu', 'genesis' ), 'secondary' => __( 'Secondary Navigation Menu', 'genesis' ) ) );
+
 	if ( ! current_theme_supports( 'genesis-structural-wraps' ) )
 		add_theme_support( 'genesis-structural-wraps', array( 'header', 'nav', 'subnav', 'footer-widgets', 'footer' ) );
+
+}
+
+add_action( 'genesis_init', 'genesis_post_type_support' );
+/**
+ * Initialize post type support for Genesis features (Layout selector, SEO).
+ *
+ * @since 1.8.0
+ */
+function genesis_post_type_support() {
+
+	add_post_type_support( 'post', array( 'genesis-seo', 'genesis-layouts' ) );
+	add_post_type_support( 'page', array( 'genesis-seo', 'genesis-layouts' ) );
 
 }
 
@@ -43,15 +65,15 @@ add_action( 'genesis_init', 'genesis_constants' );
 /**
  * This function defines the Genesis theme constants
  *
- * @since 1.6
+ * @since 1.6.0
  */
 function genesis_constants() {
 
 	/** Define Theme Info Constants */
 	define( 'PARENT_THEME_NAME', 'Genesis' );
-	define( 'PARENT_THEME_VERSION', '1.7.1' );
-	define( 'PARENT_DB_VERSION', '1703' );
-	define( 'PARENT_THEME_RELEASE_DATE', date_i18n( 'F j, Y', '1310965200' ) );
+	define( 'PARENT_THEME_VERSION', '1.8.0' );
+	define( 'PARENT_DB_VERSION', '1802' );
+	define( 'PARENT_THEME_RELEASE_DATE', date_i18n( 'F j, Y', '1327078800' ) );
 	#define( 'PARENT_THEME_RELEASE_DATE', 'TBD' );
 
 	/** Define Directory Location Constants */
@@ -99,9 +121,16 @@ function genesis_constants() {
 
 add_action( 'genesis_init', 'genesis_load_framework' );
 /**
- * This function loads all the framework files and features
+ * Loads all the framework files and features.
  *
- * @since 1.6
+ * The genesis_pre_framework action hook is called before any of the files are
+ * required().
+ *
+ * If a child theme defines GENESIS_LOAD_FRAMEWORK as false before requiring
+ * this init.php file, then this function will abort before any other framework
+ * files are loaded.
+ *
+ * @since 1.6.0
  */
 function genesis_load_framework() {
 
@@ -116,6 +145,7 @@ function genesis_load_framework() {
 	require_once( GENESIS_LIB_DIR . '/framework.php' );
 
 	/** Load Classes */
+	require_once( GENESIS_CLASSES_DIR . '/admin.php' );
 	require_once( GENESIS_CLASSES_DIR . '/breadcrumb.php' );
 	require_once( GENESIS_CLASSES_DIR . '/sanitization.php' );
 
@@ -124,7 +154,6 @@ function genesis_load_framework() {
 	require_once( GENESIS_FUNCTIONS_DIR . '/general.php' );
 	require_once( GENESIS_FUNCTIONS_DIR . '/options.php' );
 	require_once( GENESIS_FUNCTIONS_DIR . '/image.php' );
-	require_once( GENESIS_FUNCTIONS_DIR . '/admin.php' );
 	require_once( GENESIS_FUNCTIONS_DIR . '/menu.php' );
 	require_once( GENESIS_FUNCTIONS_DIR . '/layout.php' );
 	require_once( GENESIS_FUNCTIONS_DIR . '/formatting.php' );
