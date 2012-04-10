@@ -1,0 +1,1658 @@
+/*
+	Theme Name: Blissful Child Theme
+	Theme URL: http://www.studiopress.com/themes/blissful
+	Description: Blissful is a 2 or 3-column Widget-ready child theme created for the Genesis Framework.
+	Author: StudioPress
+	Author URI: http://www.studiopress.com/
+	Version: 1.0
+	
+	Template: genesis
+	Template Version: 1.6
+
+	License: GNU General Public License v2.0
+	License URI: http://www.opensource.org/licenses/gpl-license.php
+*/
+ 
+/* Table of Contents
+
+* Defaults
+* Body
+* Hyperlinks
+* Wrap
+* Header
+* Image Header - Partial Width
+* Image Header - Full Width
+* Navigation Constants
+* Header Right Navigation
+* Primary Navigation
+* Primary Navigation Extras
+* Secondary Navigation
+* Inner
+* Breadcrumb
+* Taxonomy Description
+* Content
+* Column Classes
+* Featured Post Grid
+* Headlines
+* Unordered / Ordered Lists
+* Post Info
+* Post Meta
+* Author Box
+* Sticky Posts
+* Archive Page
+* Post Icons
+* Images
+* Post Navigation
+* Primary / Secondary Sidebars
+* Dropdowns
+* Featured Page / Post
+* User Profile
+* Buttons
+* Search Form
+* eNews & Updates Widget
+* Calendar Widget
+* Footer
+* Footer Widgets
+* Comments
+* Gravity Forms
+
+*/
+
+/* Defaults
+------------------------------------------------------------ */
+
+body,
+h1,
+h2,
+h2 a,
+h2 a:visited,
+h3,
+h4,
+h5,
+h6,
+p,
+input,
+select,
+textarea {
+	color: #555;
+	font-family: "Century Gothic", AppleGothic, Arial, sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	line-height: 22px;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+input,
+select,
+textarea {
+	line-height: normal;
+}
+
+blockquote,
+input,
+select,
+textarea,
+.author-box,
+.breadcrumb,
+.sticky,
+.taxonomy-description,
+.wp-caption {
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+}
+
+blockquote,
+.breadcrumb,
+.taxonomy-description {
+	border: none;
+	color: #555;
+	font-family: "Courier New", Courier, monospace;
+}
+
+ol,
+ol li,
+ul,
+ul li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ol li {
+	list-style-type: decimal;
+}
+
+ul li {
+	list-style-type: square;
+}
+
+
+/* Body
+------------------------------------------------------------ */
+
+body {
+	background: url(images/bg.png);
+}
+
+
+/* Hyperlinks
+------------------------------------------------------------ */
+
+a,
+a:visited {
+	color: #c19286;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a img {
+	border: none;
+}
+
+
+/* Wrap
+------------------------------------------------------------ */
+
+#wrap {
+	background-color: #fff;
+	margin: 0 auto;
+	width: 960px;
+	-moz-box-shadow: 0 4px 8px #666; 
+	-webkit-box-shadow: 0 4px 8px #666;
+}
+
+
+/* Header
+------------------------------------------------------------ */
+
+#header {
+	background: url(images/header.png) no-repeat;
+	height: 120px;
+	width: 960px;
+}
+
+#title-area {
+	float: left;
+	overflow: hidden;
+	padding: 53px 0 0;
+	width: 400px;
+}
+	
+#title {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
+	padding: 0 0 0 25px;
+}
+
+#title a,
+#title a:hover {
+	color: #888;
+	text-decoration: none;
+}
+
+#title a:hover {
+	color: #555;
+}
+
+#description {
+	font-size: 12px;
+	font-style: italic;
+	letter-spacing: 1px;
+	padding: 12px 0 0 50px;
+}
+
+#header .widget-area {
+	float: right;
+	padding: 0 70px 0 0;
+	text-align: right;
+	width: 480px;
+}
+
+#header .widget-area img {
+	margin: 0;
+}
+
+
+/* Image Header - Partial Width
+------------------------------------------------------------ */
+
+.header-image #title-area,
+.header-image #title,
+.header-image #title a {
+	display: block;
+	float: left;
+	height: 120px;
+	overflow: hidden;
+	padding: 0;
+	text-indent: -9999px;
+	width: 400px;
+}
+
+.header-image #description {
+	display: block;
+	overflow: hidden;
+}
+
+
+/* Image Header - Full Width
+------------------------------------------------------------ */
+
+.header-full-width #title-area,
+.header-full-width #title,
+.header-full-width #title a {
+	width: 960px;
+}
+
+
+/* Navigation Constants
+------------------------------------------------------------ */
+
+li:hover ul ul,
+li.sfHover ul ul {
+	left: -9999px;
+}
+
+li:hover,
+li.sfHover { 
+	position: static;
+}
+
+
+/* Header Right Navigation
+------------------------------------------------------------ */
+
+#header ul.nav,
+#header ul.menu {
+	float: right;
+}
+
+#header ul.nav ul,
+#header ul.menu ul {
+	float: right;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#header ul.nav li,
+#header ul.menu li {
+	background-color: #333;
+	float: left;
+	list-style-type: none;
+	text-transform: uppercase;
+}
+
+#header ul.nav li a,
+#header ul.menu li a {
+	color: #fff;
+	display: block;
+	font-size: 12px;
+	padding: 7px 10px 5px;
+	position: relative;
+	text-decoration: none;
+}
+
+#header ul.nav li a:hover,
+#header ul.nav li a:active,
+#header ul.nav .current_page_item a,
+#header ul.nav .current-cat a,
+#header ul.nav .current-menu-item a,
+#header ul.menu li a:hover,
+#header ul.menu li a:active,
+#header ul.menu .current_page_item a,
+#header ul.menu .current-cat a,
+#header ul.menu .current-menu-item a {
+	background-color: #000;
+	color: #fff;
+}
+
+#header ul.nav li a.sf-with-ul,
+#header ul.menu li a.sf-with-ul {
+	padding-right: 25px;
+}	
+
+#header ul.nav li a .sf-sub-indicator,
+#header ul.menu li a .sf-sub-indicator {
+	background: url(images/arrow-down.png) no-repeat;
+	display: block;
+	height: 10px;
+	overflow: hidden;
+	position: absolute;
+	right: 10px;
+	text-indent: -9999px;
+	top: 12px;
+	width: 10px;
+}
+
+#header ul.nav li li a,
+#header ul.nav li li a:link,
+#header ul.nav li li a:visited,
+#header ul.menu li li a,
+#header ul.menu li li a:link,
+#header ul.menu li li a:visited {
+	background-color: #333;
+	border: 1px solid #666;
+	border-top-width: 0;
+	color: #fff;
+	font-size: 11px;
+	padding: 5px 10px;
+	position: relative;
+	width: 158px;
+}
+
+#header ul.nav li li a:hover,
+#header ul.nav li li a:active,
+#header ul.menu li li a:hover,
+#header ul.menu li li a:active {
+	background-color: #000;
+}
+
+#header ul.nav li li a .sf-sub-indicator,
+#header ul.menu li li a .sf-sub-indicator {
+	background: url(images/arrow-right.png) no-repeat;
+	top: 10px;
+}
+
+#header ul.nav li ul,
+#header ul.menu li ul {
+	height: auto;
+	left: -9999px;
+	position: absolute;
+	width: 180px;
+	z-index: 9999;
+}
+
+#header ul.nav li ul a,
+#header ul.menu li ul a { 
+	width: 160px;
+}
+
+#header ul.nav li ul ul,
+#header ul.menu li ul ul {
+	margin: -31px 0 0 179px;
+}
+
+#header ul.nav li:hover>ul,
+#header ul.nav li.sfHover ul,
+#header ul.menu li:hover>ul,
+#header ul.menu li.sfHover ul {
+	left: auto;
+}
+
+
+/* Primary Navigation
+------------------------------------------------------------ */
+
+#nav {
+	clear: both;
+	color: #555;
+	font-family: "Courier New", Courier, monospace;
+	overflow: hidden;
+	text-transform: uppercase;
+	width: 960px;
+}
+
+#nav ul {
+	float: left;
+	padding: 0 0 0 10px;
+	width: 950px;
+}
+
+#nav ul ul {
+	padding: 0;
+	width: 100%;
+}
+
+#nav li {
+	float: left;
+	list-style-type: none;
+}
+
+#nav li a {
+	color: #555;
+	display: block;
+	font-size: 14px;
+	margin: 0;
+	padding: 10px;
+	position: relative;
+	text-decoration: none;
+}
+
+#nav li a:hover,
+#nav li a:active,
+#nav .current_page_item a,
+#nav .current-cat a,
+#nav .current-menu-item a {
+	color: #000;
+}
+
+#nav li a .sf-sub-indicator {
+	display: block;
+	height: 10px;
+	overflow: hidden;
+	position: absolute;
+	right: 10px;
+	text-indent: -9999px;
+	top: 12px;
+	width: 10px;
+}
+
+#nav li li a,
+#nav li li a:link,
+#nav li li a:visited {
+	background-color: #fff;
+	border: 1px solid #888;
+	border-top-width: 0;
+	color: #555;
+	font-size: 12px;
+	padding: 5px 10px;
+	position: relative;
+	text-transform: lowercase;
+	width: 138px;
+}
+
+#nav li li a:hover,
+#nav li li a:active {
+	color: #000;
+}
+
+#nav li ul {
+	height: auto;
+	left: -9999px;
+	position: absolute;
+	width: 160px;
+	z-index: 9999;
+}
+
+#nav li ul a { 
+	width: 140px;
+}
+
+#nav li ul ul {
+	margin: -33px 0 0 159px;
+}
+
+#nav li:hover ul,
+#nav li.sfHover ul {
+	left: auto;
+}
+
+
+/* Primary Navigation Extras
+------------------------------------------------------------ */
+
+#nav li.right {
+	float: right;
+	padding: 10px;
+}
+
+#nav li.right a {
+	background: none;
+	border: none;
+	color: #555;
+	display: inline;
+	text-decoration: none;
+}
+
+#nav li.right a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+#nav li.search {
+	padding: 3px 10px 0;
+}
+
+#nav li.rss a {
+	background: url(images/rss.png) no-repeat center left;
+	margin: 0 0 0 10px;
+	padding: 10px 0 10px 16px;
+}
+
+#nav li.twitter a {
+	background: url(images/twitter-nav.png) no-repeat center left;
+	padding: 7px 0 5px 20px;
+}
+
+
+/* Secondary Navigation
+------------------------------------------------------------ */
+
+#subnav {
+	background-color: #f5f5f5;
+	border-top: 5px solid #fff;
+	clear: both;
+	color: #fff;
+	font-family: "Courier New", Courier, monospace;
+	overflow: hidden;
+	text-transform: lowercase;
+	width: 960px;
+}
+
+#subnav ul {
+	float: left;
+	padding: 0 0 0 5px;
+	width: 955px;
+}
+
+#subnav ul ul {
+	padding: 0;
+	width: 100%;
+}
+
+#subnav li {
+	float: left;
+	list-style-type: none;
+}
+
+#subnav li a {
+	color: #555;
+	display: block;
+	font-size: 14px;
+	margin: 0;
+	padding: 5px 10px;
+	position: relative;
+	text-decoration: none;
+}
+
+#subnav li a:hover,
+#subnav li a:active,
+#subnav .current_page_item a,
+#subnav .current-cat a,
+#subnav .current-menu-item a {
+	color: #000;
+}
+
+#subnav li a .sf-sub-indicator {
+	display: block;
+	height: 10px;
+	overflow: hidden;
+	position: absolute;
+	right: 10px;
+	text-indent: -9999px;
+	top: 12px;
+	width: 10px;
+}
+
+#subnav li li a,
+#subnav li li a:link,
+#subnav li li a:visited {
+	background-color: #fff;
+	border: 1px solid #888;
+	border-top-width: 0;
+	color: #555;
+	font-size: 12px;
+	padding: 5px 10px;
+	position: relative;
+	text-transform: lowercase;
+	width: 138px;
+}
+
+#subnav li li a:hover,
+#subnav li li a:active {
+	color: #000;
+}
+
+#subnav li ul {
+	height: auto;
+	left: -9999px;
+	position: absolute;
+	width: 160px;
+	z-index: 9999;
+}
+
+#subnav li ul a { 
+	width: 140px;
+}
+
+#subnav li ul ul {
+	margin: -33px 0 0 159px;
+}
+
+#subnav li:hover ul,
+#subnav li.sfHover ul {
+	left: auto;
+}
+
+
+/* Inner
+------------------------------------------------------------ */
+
+#inner {
+	overflow: hidden;
+	padding: 20px 30px;
+	width: 900px;
+}
+
+
+/* Breadcrumb
+------------------------------------------------------------ */
+
+.breadcrumb {
+	margin: 0 0 30px;
+	padding: 5px 10px;
+}
+
+
+/* Taxonomy Description
+------------------------------------------------------------ */
+
+.taxonomy-description {
+	margin: 0 0 30px;
+	padding: 10px;
+}
+
+
+/* Content
+------------------------------------------------------------ */
+
+#content .widget-wrap {
+	margin: 0 0 20px;
+	overflow: hidden;
+}
+
+#content {
+	float: left;
+	width: 570px;
+}
+
+.sidebar-content #content {
+	float: right;
+}
+
+.full-width-content #content {
+	width: 900px;
+}
+
+blockquote {
+	margin: 5px 15px 15px;
+	padding: 10px 20px 0 15px;
+}
+
+.post {
+	margin: 0 0 40px;
+}
+
+.home .post {
+	margin: 0 0 20px;
+}
+
+.entry-content {
+	overflow: hidden;
+}
+
+.entry-content p {
+	padding: 0 0 15px;
+}
+
+.clear {
+	clear: both;
+}
+
+.clear-line {
+	border-bottom: 1px solid #ddd;
+	clear: both;
+	margin: 0 0 15px;
+}
+
+
+/* Column Classes
+------------------------------------------------------------ */
+
+.five-sixths,
+.four-fifths,
+.four-sixths,
+.one-fifth,
+.one-fourth,
+.one-half,
+.one-sixth,
+.one-third,
+.three-fifths,
+.three-fourths,
+.three-sixths,
+.two-fifths,
+.two-fourths,
+.two-sixths,
+.two-thirds {
+	float: left;
+	margin: 0 0 20px;
+	padding-left: 3%;
+}
+
+.one-half,
+.three-sixths,
+.two-fourths {
+	width: 48%;
+}
+
+.one-third,
+.two-sixths {
+	width: 31%;
+}
+
+.four-sixths,
+.two-thirds {
+	width: 65%;
+}
+
+.one-fourth {
+	width: 22.5%;
+}
+
+.three-fourths {
+	width: 73.5%;
+}
+
+.one-fifth {
+	width: 17.4%;
+}
+
+.two-fifths {
+	width: 37.8%;
+}
+
+.three-fifths {
+	width: 58.2%;
+}
+
+.four-fifths {
+	width: 78.6%;
+}
+
+.one-sixth {
+	width: 14%;
+}
+
+.five-sixths {
+	width: 82%;
+}
+
+.first {
+	clear: both;
+	padding-left: 0;
+}
+
+
+/* Featured Post Grid
+------------------------------------------------------------ */
+
+.genesis-grid-even {
+	float: right;
+	padding: 0 0 15px;
+	width: 48%;
+}
+
+.genesis-grid-odd {
+	clear: both;
+	float: left;
+	padding: 0 0 15px;
+	width: 48%;
+}
+
+.genesis-grid-even,
+.genesis-grid-odd {
+	margin: 0 0 20px;
+}
+
+
+/* Headlines
+------------------------------------------------------------ */
+
+h1,
+h2,
+h2 a,
+h3,
+h4,
+h5,
+h6 {
+	color: #555;
+	font-family: "Courier New", Courier, monospace;
+}
+
+h1,
+h2,
+h2 a,
+h2 a:visited {
+	color: #555;
+	font-size: 20px;
+}
+
+.page h1,
+.post h1,
+.archive h2 {
+	background: #fef4f2 url(images/headline-post.png) no-repeat left;
+	height: 34px;
+	margin: 0 0 10px -30px;
+	padding: 13px 0 0 80px;
+}
+
+.sidebar-content .page h1,
+.sidebar-content .post h1 {
+	margin: 0 -30px 10px 0;
+}
+
+.home #content h2 {
+	background: #fef4f2 url(images/headline-post-1.png) no-repeat left;
+	height: 34px;
+	margin: 0 0 10px -30px;
+	padding: 13px 0 0 80px;
+}
+
+.home.sidebar-content #content h2 {
+	margin: 0 -30px 10px 0;
+}
+
+.home #content .category-category-1 h2 {
+	background: #fef4f2 url(images/headline-post-1.png) no-repeat left;
+}
+
+.home #content .category-category-2 h2 {
+	background: #fef4f2 url(images/headline-post-2.png) no-repeat left;
+}
+
+.home  #content .category-category-3 h2 {
+	background: #fef4f2 url(images/headline-post-3.png) no-repeat left;
+}
+
+.home #content .category-category-4 h2 {
+	background: #fef4f2 url(images/headline-post-4.png) no-repeat left;
+}
+
+.home #content .category-category-5 h2 {
+	background: #fef4f2 url(images/headline-post-5.png) no-repeat left;
+}
+
+.home #content h2 a,
+.home #content h2 a:visited {
+	color: #555;
+	font-size: 20px;
+	line-height: 24px;
+}
+
+.home #content h2 a:hover {
+	color: #222;
+}
+
+h2 a:hover,
+#footer-widgets .widget-area h2 a:hover {
+	color: #888;
+	text-decoration: none;
+}
+
+#footer-widgets .widget-area h2 a,
+#footer-widgets .widget-area h2 a:visited {
+	color: #222;
+	font-size: 16px;
+	line-height: 24px;
+	text-transform: uppercase;
+}
+
+
+h3 {
+	font-size: 18px;
+}
+
+h4 {
+	font-size: 16px;
+}
+
+.home #content h4 {
+	margin: 0 0 10px;
+}
+
+.widget-area h4 {
+	background-color: #f5f5f5;
+	color: #555;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0 0 10px;
+	padding: 5px 5px 5px 10px;
+	text-transform: uppercase;
+}
+
+#footer-widgets .widget-area h4 {
+	background: none;
+	border-bottom: 1px solid #fff;
+	font-size: 20px;
+	font-weight: normal;
+	margin: 0 0 5px;
+	padding: 0 0 5px;
+	text-transform: none;
+}
+
+h5 {
+	font-size: 14px;
+}
+
+h6 {
+	font-size: 12px;
+}
+
+
+/* Unordered / Ordered Lists
+------------------------------------------------------------ */
+
+.entry-content ol,
+.entry-content ul {
+	margin: 0;
+	padding: 0 0 15px;
+}
+
+.entry-content ol {
+	margin: 0 0 0 30px;
+}
+
+.archive-page ul li,
+.entry-content ul li {
+	list-style-type: square;
+	margin: 0 0 0 25px;
+	padding: 0;
+}
+
+.entry-content .post ol li,
+.entry-content .page ol li {
+	margin: 0 0 0 25px;
+}
+
+.archive-page ul li,
+.entry-content .post ul li,
+.entry-content .page ul li {
+	list-style-type: square;
+}
+
+.archive-page ul ul,
+.entry-content ul ul,
+.entry-content ol ol {
+	padding: 0;
+}
+
+
+/* Post Info
+------------------------------------------------------------ */
+
+.post-info {
+	font-size: 11px;
+	margin: 5px 0 10px;
+	text-transform: uppercase;
+}
+
+.single .post-info {
+	margin: 5px 0 15px;
+}
+
+
+/* Post Meta
+------------------------------------------------------------ */
+
+.post-meta {
+	border-top: 1px solid #ddd;
+	clear: both;
+	font-size: 11px;
+	padding: 5px 0 0;
+	text-transform: uppercase;
+}
+
+
+/* Author Box
+------------------------------------------------------------ */
+
+.author-box {
+	margin: 0 0 40px;
+	padding: 10px;
+	overflow: hidden;
+}
+
+
+/* Sticky Posts
+------------------------------------------------------------ */
+
+.sticky {
+	margin: 0 0 40px;
+	padding: 10px;
+}
+
+
+/* Archive Page
+------------------------------------------------------------ */
+
+.archive-page {
+	float: left;
+	padding: 20px 0;
+	width: 50%;
+}
+
+
+/* Post Icons
+------------------------------------------------------------ */
+
+.post-comments,
+.tags {
+	padding: 0 0 0 2px;
+}
+
+
+/* Images
+------------------------------------------------------------ */
+
+img {
+	max-width: 100%
+}
+
+img.alignleft,
+img.alignright,
+.alignleft img,
+.alignright img {
+	max-width: none;
+}
+
+.avatar,
+.featuredpage img,
+.featuredpost img,
+.post-image {	
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 4px;
+}
+
+#content .featuredpage img,
+#content .featuredpost img {	
+	padding: 9px;
+}
+
+#content .featuredpage a img:hover,
+#content .featuredpost a img:hover {	
+	background-color: #f5f5f5;
+}
+
+.author-box .avatar {
+	float: left;
+	margin: 0 10px 0 0;
+}
+
+.post-image {
+	margin: 0 10px 10px 0;
+}
+
+.comment-list li .avatar { 
+	background-color: #fff;
+	float: left;
+	height: 35px;
+	margin: 0 5px 0 0;
+	padding: 4px;
+	width: 35px;
+}
+
+img.centered,
+.aligncenter {
+	display: block;
+	margin: 0 auto 10px;
+}
+
+img.alignnone {
+	display: inline;
+	margin: 0 0 10px;
+}
+
+img.alignleft {
+	display: inline;
+	margin: 0 10px 10px 0;
+}
+
+img.alignright {
+	display: inline;
+	margin: 0 0 10px 10px;
+}
+
+.alignleft {
+	float: left;
+	margin: 0 10px 0 0;
+}
+
+.alignright {
+	float: right;
+	margin: 0 0 0 10px;
+}
+
+.wp-caption {
+	padding: 5px 0 0 1px;
+	text-align: center;
+}
+
+p.wp-caption-text {
+	font-size: 11px;
+	line-height: 12px;
+	padding: 5px 0;
+}
+
+.wp-smiley,
+.wp-wink {
+	border: none;
+	float: none;
+}
+
+
+/* Post Navigation
+------------------------------------------------------------ */
+
+.navigation {
+	overflow: hidden;
+	padding: 20px 0;
+	width: 100%;
+}
+
+.navigation li {
+	display: inline;
+}
+
+.navigation li a,
+.navigation li.disabled,
+.navigation li a:hover,
+.navigation li.active a {
+	border: 1px solid #ddd;
+	padding: 5px 8px;
+}
+
+.navigation li a:hover,
+.navigation li.active a {
+	background-color: #f5f5f5;
+}
+
+
+/* Primary / Secondary Sidebars
+------------------------------------------------------------ */
+
+#sidebar {
+	display: inline;
+	float: right;
+	font-size: 12px;
+	line-height: 20px;
+	width: 300px;
+}
+
+.sidebar-split-left {
+	display: inline;
+	float: left;
+	width: 155px;
+}
+	
+.sidebar-split-right {
+	display: inline;
+	float: right;
+	width: 125px;
+}
+
+.sidebar-split-bottom {
+	clear: both;
+	width: 300px;
+}
+
+.sidebar-content #sidebar {
+	float: left;
+}
+
+#sidebar .widget {
+	margin: 0 0 20px;
+	overflow: hidden;
+}
+
+#sidebar img {
+	margin: 0 0 8px;
+}
+
+#sidebar p {
+	font-size: 12px;
+	line-height: 20px;
+	padding: 0;
+}
+
+.widget-area ol ol,
+.widget-area ul ul {
+	margin: 0 0 0 15px;
+}
+
+.widget-area ul li {
+	border-bottom: 1px solid #ddd;
+	font-family: "Courier New", Courier, monospace;
+	list-style-type: none;
+	margin: 0 0 6px 2px;
+	padding: 0 0 6px;
+ 	word-wrap: break-word;
+}
+
+.widget-area li a,
+.widget-area li a:visited {
+	color: #222;
+	text-decoration: none;
+}
+
+.widget-area li a:hover {
+	color: #888;
+}
+
+
+/* Dropdowns
+------------------------------------------------------------ */
+
+#cat,
+.widget_archive select {
+	display: inline;
+	font-size: 12px;
+	padding: 3px;
+	width: 100%;
+}
+
+
+/* Featured Page / Post
+------------------------------------------------------------ */
+
+.featuredpage,
+.featuredpost {
+	clear: both;
+	margin: 0;
+	overflow: hidden;
+}
+
+.featuredpage .page,
+.featuredpost .post {
+	border-bottom: 1px solid #fff;
+	margin: 0 0 5px;
+	overflow: hidden;
+	padding: 5px 0 0;
+}
+
+.home #content .featuredpage .page,
+.home #content .featuredpost .post {
+	border-bottom: none;
+	float: left;
+	margin: 0 10px 0 0;
+	padding: 0;
+}
+
+#sidebar .featuredpage .page,
+#sidebar .featuredpost .post {
+	margin: 0;
+	padding: 0;
+}
+
+.more-from-category {
+	padding: 0 10px;
+}
+
+
+/* User Profile
+------------------------------------------------------------ */
+
+.user-profile {
+	overflow: hidden;
+}
+
+.user-profile p {
+	padding: 10px 10px 0;
+}
+
+.user-profile .posts_link {
+	padding: 0 0 0 10px;
+}
+
+
+/* Buttons
+------------------------------------------------------------ */
+
+div.gform_footer input.button,
+.enews #subbutton,
+.reply a,
+.reply a:visited,
+.searchsubmit,
+#submit {
+	background-color: #888;
+	border: 1px solid #888;
+	color: #fff;
+	cursor: pointer;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 4px 5px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.reply a,
+.reply a:visited {
+	padding: 3px 5px 2px;
+}
+
+div.gform_footer input.button:hover,
+.enews #subbutton:hover,
+.reply a:hover,
+.searchsubmit:hover,
+#submit:hover {
+	border: 1px solid #555;
+	background-color: #555;
+	color: #fff;
+	text-decoration: none;
+}
+
+
+/* Search Form
+------------------------------------------------------------ */
+
+#header .searchform {
+	float: right;
+	padding: 40px 0 0;
+}
+
+#nav .searchform {
+	float: right;
+}
+
+.s {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 12px;
+	margin: 5px 2px 0 0;
+	padding: 5px 0 5px 5px;
+	width: 220px;
+}
+
+#nav .s {
+	margin: 5px -2px 0 0;
+}
+
+
+/* eNews and Update Widget
+------------------------------------------------------------ */
+
+.enews p {
+	padding: 10px 10px 0;
+}
+
+.enews #subscribe {
+	padding: 0 0 0 10px;
+}
+
+.enews #subbox {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 12px;
+	margin: 5px 5px 0 0;
+	padding: 4px 0 4px 5px;
+	width: 230px;
+}
+
+
+/* Calendar Widget
+------------------------------------------------------------ */
+
+#wp-calendar {
+	width: 100%;
+}
+
+#wp-calendar caption {
+	font-size: 12px;
+	font-style: italic;
+	padding: 2px 5px 0 0;
+	text-align: right;
+}
+
+#wp-calendar thead {
+	background-color: #f5f5f5;
+	font-weight: bold;
+	margin: 10px 0 0;
+}
+
+#wp-calendar td {
+	background-color: #f5f5f5;
+	padding: 2px;
+	text-align: center;
+}
+
+
+/* Footer Widgets
+------------------------------------------------------------ */
+
+#footer-widgets {
+	background-color: #fef3f1;
+	clear: both;
+	font-size: 12px;
+	line-height: 20px;
+	overflow: hidden;
+	padding: 15px 0 0;
+	width: 960px;
+}
+	
+#footer-widgets .wrap {
+	margin: 0 auto;
+	width: 920px;
+}
+
+#footer-widgets p {
+	font-size: 12px;
+    font-weight: normal;
+   	line-height: 20px;
+	margin: 0;
+	padding: 0 0 10px;
+}
+	
+#footer-widgets a,
+#footer-widgets a:visited {
+	color: #c19286;
+	text-decoration: none;
+}
+	
+#footer-widgets a:hover {
+	color: #555;
+	text-decoration: none;
+}
+	
+#footer-widgets ul {
+	list-style-type: none;
+	margin: 0 0 15px;
+	padding: 0;
+}
+	
+#footer-widgets ul li {
+	border-bottom: 1px solid #fff;
+	background: none;
+	list-style-type: none;
+	margin: 0 0 5px;
+	padding: 0 0 5px;
+}
+
+.footer-widgets-1,
+.footer-widgets-2 {
+	width: 450px;
+	float: left;
+	margin: 0;
+	padding: 0 0 10px;
+}
+
+.footer-widgets-2 {
+	float: right;
+}
+	
+.footer-widgets-3 {
+	clear: both;
+	padding: 5px 0 0;
+	width: 920px;
+}
+
+
+/* Footer
+------------------------------------------------------------ */
+
+#footer {
+	background-color: #f5f5f5;
+	border-bottom: 5px solid #fff;
+	border-top: 5px solid #fff;
+	clear: both;
+	overflow: hidden;
+	padding: 7px 0 5px;
+	text-transform: lowercase;
+	width: 960px;
+}
+
+#footer p {
+	color: #555;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 13px;
+}
+
+#footer a,
+#footer a:visited {
+	color: #555;
+}
+
+#footer .gototop {
+	float: left;
+	padding: 0 0 0 12px;
+	width: 200px;
+}
+
+#footer .creds {
+	float: right;
+	padding: 0 12px 0 0;
+	text-align: right;
+	width: 730px;
+}
+
+
+/* Comments
+------------------------------------------------------------ */
+
+#comments,
+#respond {
+	margin: 0 0 20px;
+	overflow: hidden;
+}
+
+#author,
+#comment,
+#email,
+#url {
+	font-size: 12px;
+	margin: 10px 5px 0 0;
+	padding: 5px;
+	width: 250px;
+}
+
+#comment {
+	height: 150px;
+	margin: 10px 0;
+	width: 98%;
+}
+
+.ping-list {
+	margin: 0 0 40px;
+}
+
+.comment-list ol,
+.ping-list ol {
+	margin: 0;
+	padding: 10px;
+}
+
+.comment-list li,
+.ping-list li {
+	font-weight: bold;
+	list-style: none;
+	margin: 10px 0 0;
+	padding: 10px;
+}
+
+.comment-list li ul li {
+	list-style-type: none;
+}
+
+.comment-list p,
+.ping-list p {
+	font-weight: normal;
+	margin: 10px 5px 10px 0;
+	padding: 0;
+	text-transform: none;
+}
+
+.comment-list ul.children {
+	margin-top: 20px;
+}
+
+.comment-list ul.children li.comment  {
+	background: #fff;
+}
+
+.comment-list cite,
+.ping-list cite {
+	font-style: normal;
+	font-weight: bold;
+}
+
+.commentmetadata {
+	font-weight:normal;
+}
+
+.comment-author { 
+	background: #e5e5e5;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 8px 10px 0;
+}
+
+.comment-meta { 
+	background: #e5e5e5;
+	font-size: 12px;
+	padding: 0 10px 8px;
+}
+
+.nocomments {
+	text-align: center;
+}
+
+#comments .navigation {
+	display: block;
+	padding: 0;
+}
+
+.thread-alt,
+.thread-even {
+	background: #f5f5f5;
+}
+
+.alt,
+.depth-1,
+.even {
+	border: 1px solid #ddd;
+}
+
+
+/* Gravity Forms
+------------------------------------------------------------ */
+
+div.gform_wrapper input,
+div.gform_wrapper select,
+div.gform_wrapper textarea {
+	color: #333;
+	font-family: "Century Gothic", AppleGothic, Arial, sans-serif;
+	font-size: 12px;
+	padding: 4px 5px !important;
+}
+
+div.gform_footer input.button {
+	color: #fff;
+}
+
+div.gform_wrapper .ginput_complex label {
+	font-size: 12px;
+}
+
+div.gform_wrapper li,
+div.gform_wrapper form li {
+	margin: 0 0 10px;
+}
+
+div.gform_wrapper .gform_footer {
+	border: none;
+	margin: 0;
+	padding: 0;
+}

@@ -1,0 +1,2526 @@
+/*
+	Theme Name: Nitrous Child Theme
+	Theme URI: http://www.studiopress.com/themes/nitrous
+	Description: Nitrous is a two or three column child theme created for the Genesis Framework.
+	Author: StudioPress
+	Author URI: http://www.studiopress.com/
+
+	Version: 1.0
+	
+	Tags: black, custom-background, custom-header, custom-menu, featured-images, fixed-width, gray, left-sidebar, one-column, right-sidebar, sticky-post, theme-options, threaded-comments, three-columns, translation-ready, two-columns, white
+	
+	Template: genesis
+	Template Version: 1.7.1
+
+	License: GNU General Public License v2.0
+	License URI: http://www.opensource.org/licenses/gpl-license.php
+*/
+
+/* Table of Contents
+
+* Import Fonts
+* Defaults
+* Hyperlinks
+* Body
+* Wrap
+* Header
+* Image Header - Partial Width
+* Image Header - Full Width
+* Navigation Constants
+* Header Right Navigation
+* Primary Navigation
+* Primary Navigation Extras
+* Secondary Navigation
+* Welcome
+* Featured
+* Portfolio
+* Inner
+* Breadcrumb
+* Taxonomy Description
+* Content-Sidebar Wrap
+* Content
+* Column Classes
+* Headlines
+* Unordered / Ordered Lists
+* Post Info
+* Post Meta
+* Author Box
+* Archive Page
+* Post Icons
+* Images
+* Post Navigation
+* Primary / Secondary Sidebars
+* Dropdowns
+* Featured Page / Post
+* User Profile
+* Buttons
+* Search Form
+* eNews & Updates Widget
+* Calendar Widget
+* Footer Widgets
+* Footer
+* Comments
+* Gravity Forms
+* Nitrous Brown
+* Nitrous Green
+* Nitrous Olive
+* Nitrous Orange
+* Nitrous Pink
+* Nitrous Purple
+* Nitrous Red
+* Nitrous Silver
+* Nitrous Teal
+
+*/
+
+
+/* Import Fonts
+------------------------------------------------------------ */
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+
+/* Defaults
+------------------------------------------------------------ */
+
+body,
+h1,
+h2,
+h2 a,
+h2 a:visited,
+h3,
+h4,
+h5,
+h6,
+p,
+input,
+select,
+textarea {
+	color: #666;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 22px;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+input,
+select,
+textarea,
+.sticky,
+.taxonomy-description {
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+}
+
+li,
+ol,
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ol li {
+	list-style-type: decimal;
+}
+
+
+/* Hyperlinks
+------------------------------------------------------------ */
+
+a,
+a:visited {
+	color: #15a0f8;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a img {
+	border: none;
+}
+
+
+/* Body
+------------------------------------------------------------ */
+
+body {
+	background: url(images/body.png);
+}
+
+
+/* Wrap
+------------------------------------------------------------ */
+
+#wrap {
+	background: url(images/wrap.png) repeat-x;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+
+/* Header
+------------------------------------------------------------ */
+
+#header {
+	min-height: 120px;
+	margin: 0 auto;
+	overflow: hidden;
+	width: 960px;
+}
+
+#title-area {
+	float: left;
+	overflow: hidden;
+	padding: 30px 0 0;
+	width: 350px;
+}
+	
+#title {
+	font-family: 'Oswald', arial, serif;
+	font-size: 48px;
+	line-height: 48px;
+	text-transform: uppercase;
+}
+
+#title a,
+#title a:hover {
+	color: #15a0f8;
+	text-align: center;
+	text-decoration: none;
+}
+
+#description {
+	display: none;
+}
+
+#header .widget-area {
+	float: right;
+	width: 600px;
+}
+
+
+/* Image Header - Partial Width
+------------------------------------------------------------ */
+
+.header-image #title-area,
+.header-image #title,
+.header-image #title a {
+	display: block;
+	float: left;
+	height: 120px;
+	overflow: hidden;
+	padding: 0;
+	text-indent: -9999px;
+	width: 350px;
+}
+
+.header-image #description {
+	display: block;
+	overflow: hidden;
+}
+
+
+/* Image Header - Full Width
+------------------------------------------------------------ */
+
+.header-full-width #title-area,
+.header-full-width #title,
+.header-full-width #title a {
+	width: 920px;
+}
+
+
+/* Navigation Constants
+------------------------------------------------------------ */
+
+li:hover ul ul,
+li.sfHover ul ul {
+	left: -9999px;
+}
+
+li:hover,
+li.sfHover { 
+	position: static;
+}
+
+
+/* Header Right Navigation
+------------------------------------------------------------ */
+
+#header ul.nav,
+#header ul.menu {
+	float: right;
+	padding: 40px 0 0;
+}
+
+#header ul.nav ul,
+#header ul.menu ul {
+	float: right;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#header ul.nav li,
+#header ul.menu li {
+	float: left;
+	list-style-type: none;
+	text-transform: uppercase;
+}
+
+#header ul.nav li a,
+#header ul.menu li a {
+	color: #ddd;
+	display: block;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 13px;
+	padding: 7px 15px 5px;
+	position: relative;
+	text-decoration: none;
+}
+
+#header ul.nav li a:hover,
+#header ul.nav li a:active,
+#header ul.nav .current_page_item a,
+#header ul.nav .current-cat a,
+#header ul.nav .current-menu-item a,
+#header ul.menu li a:hover,
+#header ul.menu li a:active,
+#header ul.menu .current_page_item a,
+#header ul.menu .current-cat a,
+#header ul.menu .current-menu-item a {
+	background-color: #15a0f8;
+	color: #fff;
+}
+
+#header ul.nav li a:hover,
+#header ul.nav li a:active,
+#header ul.nav .current_page_item a,
+#header ul.nav .current-cat a,
+#header ul.nav .current-menu-item a,
+#header ul.menu li a:hover,
+#header ul.menu li a:active,
+#header ul.menu .current_page_item a,
+#header ul.menu .current-cat a,
+#header ul.menu .current-menu-item a {
+	-khtml-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#header ul.nav li a .sf-sub-indicator,
+#header ul.menu li a .sf-sub-indicator {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	text-indent: -9999px;
+}
+
+#header ul.nav li li a,
+#header ul.nav li li a:link,
+#header ul.nav li li a:visited,
+#header ul.menu li li a,
+#header ul.menu li li a:link,
+#header ul.menu li li a:visited {
+	background-color: #15a0f8;
+	border-bottom: 1px solid #fff;
+	color: #fff;
+	font-size: 12px;
+	padding: 6px 10px 4px;
+	position: relative;
+	text-transform: none;
+	width: 138px;
+}
+
+#header ul.nav li li a,
+#header ul.nav li li a,
+#header ul.menu li li a,
+#header ul.menu li li a,
+#header ul.nav li li a:hover,
+#header ul.nav li li a:active,
+#header ul.menu li li a:hover,
+#header ul.menu li li a:active {
+	-khtml-border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
+	border-radius: 0 !important;
+	color: #333;
+}
+
+#header ul.nav li ul,
+#header ul.menu li ul {
+	height: auto;
+	left: -9999px;
+	margin: -5px 0 0;
+	position: absolute;
+	width: 160px;
+	z-index: 9999;
+}
+
+#header ul.nav li ul a,
+#header ul.menu li ul a { 
+	width: 140px;
+}
+
+#header ul.nav li ul ul,
+#header ul.menu li ul ul {
+	margin: -33px 0 0 158px;
+}
+
+#header ul.nav li:hover>ul,
+#header ul.nav li.sfHover ul,
+#header ul.menu li:hover>ul,
+#header ul.menu li.sfHover ul {
+	left: auto;
+}
+
+
+/* Primary Navigation
+------------------------------------------------------------ */
+
+#nav {
+	background-color: #fff;
+	clear: both;
+	overflow: hidden;
+}
+
+#nav .wrap {
+	color: #666;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 13px;
+	margin: 0 auto;
+	width: 960px;
+}
+
+#nav ul {
+	float: left;
+	width: 100%;
+}
+
+#nav li {
+	float: left;
+	list-style-type: none;
+}
+
+#nav li a {
+	border-right: 1px solid #ddd;
+	color: #666;
+	display: block;
+	padding: 12px 20px 10px;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#nav li a:hover,
+#nav li a:active,
+#nav .current_page_item a,
+#nav .current-cat a,
+#nav .current-menu-item a {
+	color: #15a0f8;
+}
+
+#nav li a .sf-sub-indicator {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	text-indent: -9999px;
+}
+
+#nav li li a,
+#nav li li a:link,
+#nav li li a:visited {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-top-width: 0;
+	color: #666;
+	font-size: 12px;
+	padding: 6px 10px 4px;
+	position: relative;
+	text-transform: none;
+	width: 138px;
+}
+
+#nav li li a:hover,
+#nav li li a:active {
+	color: #15a0f8;
+}
+
+#nav li ul {
+	height: auto;
+	left: -9999px;
+	margin: 0 0 0 -1px;
+	position: absolute;
+	width: 160px;
+	z-index: 9999;
+}
+
+#nav li ul a { 
+	width: 140px;
+}
+
+#nav li ul ul {
+	margin: -33px 0 0 159px;
+}
+
+#nav li:hover>ul,
+#nav li.sfHover ul {
+	left: auto;
+}
+
+
+/* Primary Navigation Extras
+------------------------------------------------------------ */
+
+#nav li.right {
+	float: right;
+	padding: 12px 20px 10px;;
+	text-transform: uppercase;
+}
+
+#nav li.right a {
+	background: none;
+	border: none;
+	color: #444;
+	display: inline;
+	text-decoration: none;
+}
+
+#nav li.right a:hover {
+	color: #15a0f8;
+	text-decoration: none;
+}
+
+#nav li.search {
+	padding: 0 10px;
+}
+
+#nav li.rss a {
+	background: url(images/rss.png) no-repeat center left;
+	margin: 0 0 0 10px;
+	padding: 2px 0 0 16px;
+}
+
+#nav li.twitter a {
+	background: url(images/twitter-nav.png) no-repeat center left;
+	padding: 0 0 0 20px;
+}
+
+
+/* Secondary Navigation
+------------------------------------------------------------ */
+
+#subnav {
+	background-color: #fff;
+	border-top: 1px solid #ddd;
+	clear: both;
+	overflow: hidden;
+}
+
+#subnav .wrap {
+	color: #666;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 13px;
+	margin: 0 auto;
+	width: 960px;
+}
+
+#subnav ul {
+	float: left;
+	width: 100%;
+}
+
+#subnav li {
+	float: left;
+	list-style-type: none;
+}
+
+#subnav li a {
+	border-right: 1px solid #ddd;
+	color: #666;
+	display: block;
+	padding: 12px 20px 10px;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#subnav li a:hover,
+#subnav li a:active,
+#subnav .current_page_item a,
+#subnav .current-cat a,
+#subnav .current-menu-item a {
+	color: #15a0f8;
+}
+
+#subnav li a .sf-sub-indicator {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	text-indent: -9999px;
+}
+
+#subnav li li a,
+#subnav li li a:link,
+#subnav li li a:visited {
+	background-color: #fff;
+	border: 1px solid #eee;
+	border-top-width: 0;
+	color: #666;
+	font-size: 12px;
+	padding: 6px 10px 4px;
+	position: relative;
+	text-transform: none;
+	width: 138px;
+}
+
+#subnav li li a:hover,
+#subnav li li a:active {
+	color: #15a0f8;
+}
+
+#subnav li ul {
+	height: auto;
+	left: -9999px;
+	position: absolute;
+	width: 160px;
+	z-index: 9999;
+}
+
+#subnav li ul a { 
+	width: 140px;
+}
+
+#subnav li ul ul {
+	margin: -33px 0 0 159px;
+}
+
+#subnav li:hover>ul,
+#subnav li.sfHover ul {
+	left: auto;
+}
+
+
+/* Inner
+------------------------------------------------------------ */
+
+#inner {
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 25px 0 20px;
+	width: 960px;
+}
+
+
+/* Welcome
+------------------------------------------------------------ */
+
+.welcome {
+	border-bottom: 3px double #ddd;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 15px 0;
+	width: 960px;
+}
+
+.welcome p {
+	color: #444;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 24px;
+	font-weight: normal;
+	line-height: 36px;
+	font-style: italic;
+}
+
+
+/* Featured
+------------------------------------------------------------ */
+
+.featured {
+	border-bottom: 3px double #ddd;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 0 0 25px;
+	width: 960px;
+}
+
+.featured p {
+	padding: 0 0 15px;
+}
+
+
+/* Portfolio
+------------------------------------------------------------ */
+
+.portfolio {
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 25px 0 5px;
+	width: 960px;
+}
+
+.portfolio p {
+	font-size: 13px;
+	line-height: 20px;
+	padding: 0;
+}
+
+
+/* Breadcrumb
+------------------------------------------------------------ */
+
+.breadcrumb {
+	background: #f5f5f5;
+	color: #444;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 12px;
+	margin: 0 auto 30px;
+	padding: 5px 10px;
+}
+
+.breadcrumb a,
+.breadcrumb a:visited {
+	text-decoration: none;
+}
+
+.breadcrumb a:hover {
+	text-decoration: underline;
+}
+
+
+/* Taxonomy Description
+------------------------------------------------------------ */
+
+.taxonomy-description {
+	margin: 0 0 30px;
+	padding: 10px;
+}
+
+
+/* Content-Sidebar Wrap
+------------------------------------------------------------ */
+
+#content-sidebar-wrap {
+	float: left;
+	width: 790px;
+}
+
+.content-sidebar #content-sidebar-wrap,
+.sidebar-content #content-sidebar-wrap {
+	width: 960px;
+}
+
+.sidebar-content-sidebar #content-sidebar-wrap,
+.sidebar-sidebar-content #content-sidebar-wrap {
+	float: right;
+}
+
+.full-width-content #content-sidebar-wrap {
+	width: 960px;
+}
+
+
+/* Content
+------------------------------------------------------------ */
+
+#content {
+	-khtml-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 3px 5px #ddd; 
+	-webkit-box-shadow: 0 3px 5px #ddd;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	float: left;
+	padding: 25px;
+	width: 440px;
+}
+
+.home.full-width-content #content {
+	-khtml-border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-box-shadow: none; 
+	-webkit-box-shadow: none;
+	background: none;
+	border: none;
+	border-radius: 0;
+	padding: 0;
+}
+
+
+.content-sidebar #content,
+.sidebar-content #content {
+	width: 610px;
+}
+
+.sidebar-content #content,
+.sidebar-sidebar-content #content {
+	float: right;
+}
+
+.full-width-content #content {
+	width: 910px;
+}
+
+.home.full-width-content #content {
+	width: 960px;
+}
+
+blockquote {
+	background: url(images/blockquote.png) no-repeat top left;
+	margin: 0 0 20px;
+	padding: 25px 30px 5px 70px;
+}
+
+blockquote p {
+	color: #999;
+	font-family: Georgia, Times, 'Times New Roman', serif;
+	font-size: 14px;
+	font-style: italic;
+}
+
+.post {
+	border-bottom: 3px double #eee;
+	margin: 0 0 25px;
+	overflow: hidden;
+	padding: 0 0 25px;
+}
+
+.featured .post,
+.portfolio .post {
+	overflow: visible;
+}
+
+.single .post {
+	background: none;
+	border: none;
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+.entry-content a,
+.entry-content a:visited {
+	text-decoration: underline;
+}
+
+.entry-content a:hover {
+	text-decoration: none;
+}
+
+.entry-content .archive-page a,
+.entry-content .archive-page a:visited {
+	text-decoration: none;
+}
+
+.entry-content .archive-page a:hover {
+	text-decoration: underline;
+}
+
+.entry-content p,
+.page .entry-content p {
+	padding: 0 0 20px;
+}
+
+p.subscribe-to-comments {
+   padding: 20px 0 10px;
+}
+
+.clear {
+	clear: both;
+}
+
+.clear-line {
+	border-bottom: 3px double #eee;
+	clear: both;
+	margin: 0 0 15px;
+}
+
+
+/* Column Classes
+------------------------------------------------------------ */
+
+.five-sixths,
+.four-fifths,
+.four-sixths,
+.one-fifth,
+.one-fourth,
+.one-half,
+.one-sixth,
+.one-third,
+.three-fifths,
+.three-fourths,
+.three-sixths,
+.two-fifths,
+.two-fourths,
+.two-sixths,
+.two-thirds {
+	float: left;
+	margin: 0 0 20px;
+	padding-left: 3%;
+}
+
+.one-half,
+.three-sixths,
+.two-fourths {
+	width: 48%;
+}
+
+.one-third,
+.two-sixths {
+	width: 31%;
+}
+
+.four-sixths,
+.two-thirds {
+	width: 65%;
+}
+
+.one-fourth {
+	width: 22.5%;
+}
+
+.three-fourths {
+	width: 73.5%;
+}
+
+.one-fifth {
+	width: 17.4%;
+}
+
+.two-fifths {
+	width: 37.8%;
+}
+
+.three-fifths {
+	width: 58.2%;
+}
+
+.four-fifths {
+	width: 78.6%;
+}
+
+.one-sixth {
+	width: 14%;
+}
+
+.five-sixths {
+	width: 82%;
+}
+
+.first {
+	clear: both;
+	padding-left: 0;
+}
+
+
+/* Headlines
+------------------------------------------------------------ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #444;
+	font-family: 'Droid Sans', arial, serif;
+	margin: 0 0 10px;
+}
+
+h1,
+h2,
+h2 a,
+h2 a:visited {
+	color: #444;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 30px;
+	line-height: 36px;
+}
+
+.featured h2,
+.featured h2 a,
+.featured h2 a:visited {
+	font-size: 24px;
+	line-height: 30px;
+	margin: 0 0 10px;
+	padding: 20px 0 0;
+}
+
+.portfolio h2,
+.portfolio h2 a,
+.portfolio h2 a:visited {
+	font-size: 18px;
+	line-height: 24px;
+	margin: 0 0 5px;
+}
+
+.widget-area h2,
+.widget-area h2 a {
+	font-size: 14px;
+	line-height: 24px;
+	margin: 0;
+	text-transform: none;
+}
+
+h2 a:hover {
+	color: #15a0f8;
+	text-decoration: none;
+}
+
+h3 {
+	font-size: 24px;
+}
+
+h4,
+h4 a,
+h4 a:hover,
+h4 a:visited {
+	color: #444;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.widget-area h4,
+.widget-area h4 a {
+	font-size: 16px;
+	margin: 0 0 5px;
+	text-transform: uppercase;
+}
+
+h5 {
+	font-size: 18px;
+}
+
+h6 {
+	font-size: 16px;
+}
+
+
+/* Unordered / Ordered Lists
+------------------------------------------------------------ */
+
+.entry-content ol,
+.entry-content ul {
+	margin: 0;
+	padding: 0 0 20px;
+}
+
+.entry-content ol {
+	margin: 0;
+}
+
+.archive-page ul li,
+.entry-content ul li {
+	list-style-type: square;
+	margin: 0 0 0 30px;
+	padding: 0;
+}
+
+.entry-content ol li {
+	margin: 0 0 0 35px;
+}
+
+.archive-page ul ul,
+.entry-content ul ul,
+.entry-content ol ol {
+	padding: 0;
+}
+
+
+/* Post Info
+------------------------------------------------------------ */
+
+.post-info {
+	font-size: 11px;
+	margin: 5px 0 15px;
+	text-transform: uppercase;
+}
+
+
+/* Post Meta
+------------------------------------------------------------ */
+
+.post-meta {
+	background-color: #f5f5f5;
+	clear: both;
+	font-size: 11px;
+	padding: 7px 10px 5px;
+	text-transform: uppercase;
+}
+
+
+/* Author Box
+------------------------------------------------------------ */
+
+.author-box {
+	background-color: #f5f5f5;
+	margin: 0 0 40px;
+	padding: 10px;
+	overflow: hidden;
+}
+
+
+/* Archive Page
+------------------------------------------------------------ */
+
+.archive-page {
+	float: left;
+	padding: 20px 0 0;
+	width: 48%;
+}
+
+
+/* Post Icons
+------------------------------------------------------------ */
+
+.categories {
+	background: url(images/icon-categories.png) no-repeat top left;
+	padding: 2px 0 2px 22px;
+}
+	
+.post-comments {
+	background: url(images/icon-comments.png) no-repeat top left;
+	margin: 0 0 0 10px;
+	padding: 2px 0 2px 22px;
+}
+
+.tags {
+	background: url(images/icon-tags.png) no-repeat top left;
+	margin: 0 0 0 10px;
+	padding: 2px 0 2px 20px;
+}
+	
+.time {
+	background: url(images/icon-time.png) no-repeat top left;
+	padding: 2px 0 2px 21px;
+}
+
+
+/* Images
+------------------------------------------------------------ */
+
+.featured a img,
+.portfolio a img {
+	-khtml-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 3px 5px #ddd; 
+	-webkit-box-shadow: 0 3px 5px #ddd;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 9px;
+}
+
+.featured a:hover img,
+.portfolio a:hover img {
+	border: 1px solid #bbb;
+}
+
+.featured .featuredpage img,
+.featured .featuredpost img {
+	margin: 0 20px 0 0;
+}
+
+.sidebar .featuredpage img,
+.sidebar .featuredpost img {
+	-khtml-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	margin: 0 0 10px;
+	padding: 9px;
+}
+
+.portfolio a img {
+	margin: 0 10px;
+}
+
+.avatar,
+.post-image {	
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+	padding: 4px;
+}
+
+.author-box .avatar {
+	background-color: #fff;
+	float: left;
+	height: 80px;
+	margin: 0 10px 0 0;
+	width: 80px;
+}
+
+.post-image {
+	margin: 0 10px 10px 0;
+}
+
+.comment-list li .avatar { 
+	background-color: #fff;
+	float: left;
+	height: 30px;
+	margin: 0 5px 0 0;
+	padding: 4px;
+	width: 30px;
+}
+
+img.centered,
+.aligncenter {
+	display: block;
+	margin: 0 auto 10px;
+}
+
+img.alignnone {
+	display: inline;
+	margin: 0 0 10px;
+}
+
+img.alignleft {
+	display: inline;
+	margin: 0 20px 10px 0;
+}
+
+img.alignright {
+	display: inline;
+	margin: 0 0 10px 20px;
+}
+
+.alignleft {
+	float: left;
+	margin: 0 20px 10px 0;
+}
+
+.alignright {
+	float: right;
+	margin: 0 0 10px 20px;
+}
+
+.wp-caption {
+	background-color: #f5f5f5;
+	padding: 10px;
+	text-align: center;
+}
+
+p.wp-caption-text {
+	font-size: 11px;
+	line-height: 12px;
+	padding: 10px 0 0;
+}
+
+.wp-smiley,
+.wp-wink {
+	border: none;
+	float: none;
+}
+
+.gallery-caption {
+}
+
+
+/* Post Navigation
+------------------------------------------------------------ */
+
+.navigation {
+	overflow: hidden;
+	padding: 20px 0;
+	width: 100%;
+}
+
+.navigation li {
+	display: inline;
+}
+
+.navigation li a,
+.navigation li.disabled,
+.navigation li a:hover,
+.navigation li.active a {
+	border: 1px solid #ddd;
+	padding: 5px 8px;
+}
+
+.navigation li a:hover,
+.navigation li.active a {
+	background-color: #f5f5f5;
+}
+
+
+/* Primary / Secondary Sidebars
+------------------------------------------------------------ */
+
+.sidebar {
+	display: inline;
+	float: right;
+	font-size: 13px;
+	line-height: 20px;
+	margin: 0 0 20px;
+	padding: 15px 0 0;
+	width: 270px;
+}
+
+#sidebar-alt {
+	float: left;
+	padding: 15px 15px 5px;
+	width: 130px;
+}
+
+.sidebar p {
+	font-size: 13px;
+	line-height: 20px;
+}
+
+.sidebar-content #sidebar,
+.sidebar-sidebar-content #sidebar {
+	float: left;
+}
+
+.content-sidebar-sidebar #sidebar-alt {
+	float: right;
+}
+
+.sidebar .widget {
+	border-bottom: 3px double #ddd;
+	margin: 0 0 15px;
+	padding: 0 0 20px;
+}
+
+.widget-area ol,
+.widget-area ul {
+	margin: 0 0 0 20px;
+}
+
+.widget-area ul li {
+	list-style-type: square;
+ 	word-wrap: break-word;
+}
+
+.widget-area ol li {
+	list-style-type: decimal;
+}
+
+
+/* Dropdowns
+------------------------------------------------------------ */
+
+#cat,
+.widget_archive select {
+	background-color: #fff;
+	color: #15a0f8;
+	display: inline;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 12px;
+	margin: 2px 0 0;
+	padding: 3px;
+	width: 100%;
+}
+
+
+/* Featured Page / Post
+------------------------------------------------------------ */
+
+.featuredpage,
+.featuredpost {
+	clear: both;
+}
+
+.featured .featuredpage,
+.featured .featuredpost {
+	padding: 0 0 0 10px;
+}
+
+.featuredpage .page,
+.featuredpost .post {
+	border: none;
+	margin: 0 ;
+	padding: 0;
+}
+
+.sidebar .featuredpage .page,
+.sidebar .featuredpost .post {
+	border-bottom: 1px solid #ddd;
+	margin: 0 0 5px;
+	padding: 0 0 5px;
+}
+
+.portfolio .featuredpage .page,
+.portfolio .featuredpost .post {
+	float: left;
+	margin: 0 20px 0 0;
+	width: 172px;
+}
+
+
+/* User Profile
+------------------------------------------------------------ */
+
+.user-profile {
+	overflow: hidden;
+}
+
+
+/* Buttons
+------------------------------------------------------------ */
+
+div.gform_footer input.button,
+input[type="button"],
+input[type="submit"],
+.featured .more-link {
+	-khtml-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: #15a0f8;
+	border-radius: 5px;
+	border: 1px solid #15a0f8;
+	color: #fff !important;
+	cursor: pointer;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 2px 7px;
+	text-decoration: none;
+}
+
+.featured .more-link {
+	line-height: 40px;
+	padding: 10px;
+}
+
+div.gform_footer input.button:hover,
+input:hover[type="button"],
+input:hover[type="submit"],
+.featured .more-link:hover {
+	background-color: #1289ee;
+	border: 1px solid #1289ee;
+	color: #fff;
+	text-decoration: none;
+}
+
+
+/* Search Form
+------------------------------------------------------------ */
+
+#header .searchform {
+	float: right;
+	padding: 40px 0 0;
+}
+
+#nav .searchform {
+	float: right;
+	margin: 3px 0 0;
+}
+
+.s {
+	-khtml-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: #fff;
+	border-radius: 5px;
+	color: #15a0f8;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 12px;
+	margin: 5px 1px 0 0;
+	padding: 2px 0 3px 7px;
+	width: 190px;
+}
+
+#nav .s {
+	background-color: #eee;
+}
+
+
+/* eNews and Update Widget
+------------------------------------------------------------ */
+
+.enews #subbox {
+	-khtml-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: #fff;
+	border-radius: 5px;
+	color: #15a0f8;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 12px;
+	margin: 5px 5px 0 0;
+	padding: 2px 0 3px 7px;
+	width: 210px;
+}
+
+
+/* Calendar Widget
+------------------------------------------------------------ */
+
+#wp-calendar {
+	width: 100%;
+}
+
+#wp-calendar caption {
+	font-size: 12px;
+	font-style: italic;
+	padding: 2px 5px 0 0;
+	text-align: right;
+}
+
+#wp-calendar thead {
+	background-color: #f5f5f5;
+	font-weight: bold;
+	margin: 10px 0 0;
+}
+
+#wp-calendar td {
+	background-color: #f5f5f5;
+	padding: 2px;
+	text-align: center;
+}
+
+
+/* Footer Widgets
+------------------------------------------------------------ */
+ 
+#footer-widgets {
+	border-top: 3px double #ddd;
+	clear: both;
+	font-size: 12px;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 25px 0 10px;
+	width: 960px;
+}
+ 
+#footer-widgets .widget {
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+#footer-widgets p {
+	padding: 0 0 15px;
+}
+ 
+#footer-widgets ul {
+	list-style-type: none;
+	margin: 0 0 15px;
+}
+ 
+#footer-widgets ul li {
+	list-style-type: square;
+	margin: 0 0 0 15px;
+}
+
+#footer-widgets #wp-calendar thead,
+#footer-widgets #wp-calendar td {
+	background: none;
+}
+
+.footer-widgets-1 {
+	float: left;
+	padding: 0 30px 0 0;
+	width: 300px;
+}
+ 
+.footer-widgets-2 {
+	float: left;
+	width: 300px;
+}
+ 
+.footer-widgets-3 {
+	float: right;
+	width: 300px;
+}
+
+
+/* Footer
+------------------------------------------------------------ */
+
+#footer {
+	background-color: #222;
+	clear: both;
+	overflow: hidden;
+	padding: 20px 0;
+}
+
+
+#footer .wrap {
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 12px;
+	margin: 0 auto;
+	width: 960px;
+}
+
+#footer p {
+	color: #ddd;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 12px;
+}
+
+#footer a,
+#footer a:visited {
+	color: #ddd;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: #15a0f8;
+	text-decoration: none;
+}
+
+#footer .gototop {
+	float: left;
+	width: 200px;
+}
+
+#footer .creds {
+	float: right;
+	text-align: right;
+	width: 755px;
+}
+
+
+/* Comments
+------------------------------------------------------------ */
+
+#comments,
+#respond {
+	margin: 0 0 30px;
+	overflow: hidden;
+}
+
+#comments {
+	font-size: 13px;
+	line-height: 20px;
+}
+
+#author,
+#comment,
+#email,
+#url {
+	font-size: 12px;
+	margin: 10px 5px 0 0;
+	padding: 5px;
+	width: 250px;
+}
+
+#comment {
+	height: 150px;
+	margin: 10px 0;
+	width: 98%;
+}
+
+.ping-list {
+	margin: 0 0 40px;
+}
+
+.comment-list ol,
+.ping-list ol {
+	margin: 0;
+	padding: 10px;
+}
+
+.comment-list li,
+.ping-list li {
+	font-weight: bold;
+	list-style: none;
+	margin: 10px 0 0;
+	padding: 10px;
+}
+
+.comment-list li ul li {
+	list-style-type: none;
+}
+
+.comment-list p,
+.ping-list p {
+	font-size: 13px;
+	font-weight: normal;
+	line-height: 20px;
+	margin: 10px 5px 10px 0;
+	padding: 0;
+	text-transform: none;
+}
+
+.comment-list ul.children {
+	margin-top: 20px;
+}
+
+.comment-list ul.children li.comment  {
+	background: #fff;
+}
+
+.comment-list cite,
+.ping-list cite {
+	font-style: normal;
+	font-weight: bold;
+}
+
+.commentmetadata {
+	font-weight:normal;
+}
+
+.comment-author { 
+	background: #e5e5e5;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 8px 10px 0;
+}
+
+.comment-meta { 
+	background: #e5e5e5;
+	font-size: 12px;
+	padding: 0 10px 8px;
+}
+
+.nocomments {
+	text-align: center;
+}
+
+#comments .navigation {
+	display: block;
+	padding: 0;
+}
+
+.bypostauthor {
+}
+
+.thread-alt,
+.thread-even {
+	background: #f5f5f5;
+}
+
+.alt,
+.depth-1,
+.even {
+	border: 1px solid #ddd;
+}
+
+
+/* Gravity Forms
+------------------------------------------------------------ */
+
+div.gform_wrapper input,
+div.gform_wrapper select,
+div.gform_wrapper textarea {
+	color: #555 !important;
+	font-size: 13px !important;
+	padding: 4px 5px !important;
+}
+
+div.gform_footer input.button {
+	color: #fff;
+}
+
+div.gform_wrapper .ginput_complex label {
+	font-size: 12px;
+}
+
+div.gform_wrapper li,
+div.gform_wrapper form li {
+	margin: 0 0 10px;
+}
+
+div.gform_wrapper .gform_footer {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* Nitrous Brown
+------------------------------------------------------------ */
+
+.nitrous-brown a,
+.nitrous-brown a:visited,
+.nitrous-brown #title a,
+.nitrous-brown #title a:hover,
+.nitrous-brown #nav li a:hover,
+.nitrous-brown #nav li a:active,
+.nitrous-brown #nav .current_page_item a,
+.nitrous-brown #nav .current-cat a,
+.nitrous-brown #nav .current-menu-item a,
+.nitrous-brown #nav li li a:hover,
+.nitrous-brown #nav li li a:active,
+.nitrous-brown #nav li.right a:hover,
+.nitrous-brown #subnav li a:hover,
+.nitrous-brown #subnav li a:active,
+.nitrous-brown #subnav .current_page_item a,
+.nitrous-brown #subnav .current-cat a,
+.nitrous-brown #subnav .current-menu-item a,
+.nitrous-brown #subnav li li a:hover,
+.nitrous-brown #subnav li li a:active,
+.nitrous-brown #cat,
+.nitrous-brown .widget_archive select,
+.nitrous-brown .s,
+.nitrous-brown .enews #subbox,
+.nitrous-brown #footer a:hover {
+	color: #827b5b;
+}
+
+.nitrous-brown h2 a,
+.nitrous-brown h2 a:visited {
+	color: #444;
+}
+
+.nitrous-brown h2 a:hover {
+	color: #827b5b !important;
+}
+
+.nitrous-brown #header ul.nav li a:hover,
+.nitrous-brown #header ul.nav li a:active,
+.nitrous-brown #header ul.nav .current_page_item a,
+.nitrous-brown #header ul.nav .current-cat a,
+.nitrous-brown #header ul.nav .current-menu-item a,
+.nitrous-brown #header ul.menu li a:hover,
+.nitrous-brown #header ul.menu li a:active,
+.nitrous-brown #header ul.menu .current_page_item a,
+.nitrous-brown #header ul.menu .current-cat a,
+.nitrous-brown #header ul.menu .current-menu-item a,
+.nitrous-brown #header ul.nav li li a,
+.nitrous-brown #header ul.nav li li a:link,
+.nitrous-brown #header ul.nav li li a:visited,
+.nitrous-brown #header ul.menu li li a,
+.nitrous-brown #header ul.menu li li a:link,
+.nitrous-brown #header ul.menu li li a:visited
+.nitrous-brown div.gform_footer input.button,
+.nitrous-brown input[type="button"],
+.nitrous-brown input[type="submit"],
+.nitrous-brown .more-link {
+	background-color: #827b5b;
+}
+
+.nitrous-brown #header ul.nav li li a,
+.nitrous-brown #header ul.nav li li a:link,
+.nitrous-brown #header ul.nav li li a:visited,
+.nitrous-brown #header ul.menu li li a,
+.nitrous-brown #header ul.menu li li a:link,
+.nitrous-brown #header ul.menu li li a:visited {
+	border-bottom: 1px solid #fff;
+}
+
+.nitrous-brown div.gform_footer input.button,
+.nitrous-brown input[type="button"],
+.nitrous-brown input[type="submit"],
+.nitrous-brown .more-link {
+	background-color: #827b5b !important;
+	border: 1px solid #827b5b !important;
+}
+
+.nitrous-brown div.gform_footer input.button:hover,
+.nitrous-brown input:hover[type="button"],
+.nitrous-brown input:hover[type="submit"],
+.nitrous-brown .more-link:hover {
+	background-color: #6f694e !important;
+	border: 1px solid #6f694e !important;
+}
+
+
+/* Nitrous Green
+------------------------------------------------------------ */
+
+.nitrous-green a,
+.nitrous-green a:visited,
+.nitrous-green #title a,
+.nitrous-green #title a:hover,
+.nitrous-green #nav li a:hover,
+.nitrous-green #nav li a:active,
+.nitrous-green #nav .current_page_item a,
+.nitrous-green #nav .current-cat a,
+.nitrous-green #nav .current-menu-item a,
+.nitrous-green #nav li li a:hover,
+.nitrous-green #nav li li a:active,
+.nitrous-green #nav li.right a:hover,
+.nitrous-green #subnav li a:hover,
+.nitrous-green #subnav li a:active,
+.nitrous-green #subnav .current_page_item a,
+.nitrous-green #subnav .current-cat a,
+.nitrous-green #subnav .current-menu-item a,
+.nitrous-green #subnav li li a:hover,
+.nitrous-green #subnav li li a:active,
+.nitrous-green #cat,
+.nitrous-green .widget_archive select,
+.nitrous-green .s,
+.nitrous-green .enews #subbox,
+.nitrous-green #footer a:hover {
+	color: #31bb16;
+}
+
+.nitrous-green h2 a,
+.nitrous-green h2 a:visited {
+	color: #444;
+}
+
+.nitrous-green h2 a:hover {
+	color: #31bb16 !important;
+}
+
+.nitrous-green #header ul.nav li a:hover,
+.nitrous-green #header ul.nav li a:active,
+.nitrous-green #header ul.nav .current_page_item a,
+.nitrous-green #header ul.nav .current-cat a,
+.nitrous-green #header ul.nav .current-menu-item a,
+.nitrous-green #header ul.menu li a:hover,
+.nitrous-green #header ul.menu li a:active,
+.nitrous-green #header ul.menu .current_page_item a,
+.nitrous-green #header ul.menu .current-cat a,
+.nitrous-green #header ul.menu .current-menu-item a,
+.nitrous-green #header ul.nav li li a,
+.nitrous-green #header ul.nav li li a:link,
+.nitrous-green #header ul.nav li li a:visited,
+.nitrous-green #header ul.menu li li a,
+.nitrous-green #header ul.menu li li a:link,
+.nitrous-green #header ul.menu li li a:visited
+.nitrous-green div.gform_footer input.button,
+.nitrous-green input[type="button"],
+.nitrous-green input[type="submit"],
+.nitrous-green .more-link {
+	background-color: #31bb16;
+}
+
+.nitrous-green #header ul.nav li li a,
+.nitrous-green #header ul.nav li li a:link,
+.nitrous-green #header ul.nav li li a:visited,
+.nitrous-green #header ul.menu li li a,
+.nitrous-green #header ul.menu li li a:link,
+.nitrous-green #header ul.menu li li a:visited {
+	border-bottom: 1px solid #fff;
+}
+
+.nitrous-green div.gform_footer input.button,
+.nitrous-green input[type="button"],
+.nitrous-green input[type="submit"],
+.nitrous-green .more-link {
+	background-color: #31bb16 !important;
+	border: 1px solid #31bb16 !important;
+}
+
+.nitrous-green div.gform_footer input.button:hover,
+.nitrous-green input:hover[type="button"],
+.nitrous-green input:hover[type="submit"],
+.nitrous-green .more-link:hover {
+	background-color: #2aa213 !important;
+	border: 1px solid #2aa213 !important;
+}
+
+
+/* Nitrous Olive
+------------------------------------------------------------ */
+
+.nitrous-olive a,
+.nitrous-olive a:visited,
+.nitrous-olive #title a,
+.nitrous-olive #title a:hover,
+.nitrous-olive #nav li a:hover,
+.nitrous-olive #nav li a:active,
+.nitrous-olive #nav .current_page_item a,
+.nitrous-olive #nav .current-cat a,
+.nitrous-olive #nav .current-menu-item a,
+.nitrous-olive #nav li li a:hover,
+.nitrous-olive #nav li li a:active,
+.nitrous-olive #nav li.right a:hover,
+.nitrous-olive #subnav li a:hover,
+.nitrous-olive #subnav li a:active,
+.nitrous-olive #subnav .current_page_item a,
+.nitrous-olive #subnav .current-cat a,
+.nitrous-olive #subnav .current-menu-item a,
+.nitrous-olive #subnav li li a:hover,
+.nitrous-olive #subnav li li a:active,
+.nitrous-olive #cat,
+.nitrous-olive .widget_archive select,
+.nitrous-olive .s,
+.nitrous-olive .enews #subbox,
+.nitrous-olive #footer a:hover {
+	color: #82987d;
+}
+
+.nitrous-olive h2 a,
+.nitrous-olive h2 a:visited {
+	color: #444;
+}
+
+.nitrous-olive h2 a:hover {
+	color: #82987d !important;
+}
+
+.nitrous-olive #header ul.nav li a:hover,
+.nitrous-olive #header ul.nav li a:active,
+.nitrous-olive #header ul.nav .current_page_item a,
+.nitrous-olive #header ul.nav .current-cat a,
+.nitrous-olive #header ul.nav .current-menu-item a,
+.nitrous-olive #header ul.menu li a:hover,
+.nitrous-olive #header ul.menu li a:active,
+.nitrous-olive #header ul.menu .current_page_item a,
+.nitrous-olive #header ul.menu .current-cat a,
+.nitrous-olive #header ul.menu .current-menu-item a,
+.nitrous-olive #header ul.nav li li a,
+.nitrous-olive #header ul.nav li li a:link,
+.nitrous-olive #header ul.nav li li a:visited,
+.nitrous-olive #header ul.menu li li a,
+.nitrous-olive #header ul.menu li li a:link,
+.nitrous-olive #header ul.menu li li a:visited
+.nitrous-olive div.gform_footer input.button,
+.nitrous-olive input[type="button"],
+.nitrous-olive input[type="submit"],
+.nitrous-olive .more-link {
+	background-color: #82987d;
+}
+
+.nitrous-olive #header ul.nav li li a,
+.nitrous-olive #header ul.nav li li a:link,
+.nitrous-olive #header ul.nav li li a:visited,
+.nitrous-olive #header ul.menu li li a,
+.nitrous-olive #header ul.menu li li a:link,
+.nitrous-olive #header ul.menu li li a:visited {
+	border-bottom: 1px solid #fff;
+}
+
+.nitrous-olive div.gform_footer input.button,
+.nitrous-olive input[type="button"],
+.nitrous-olive input[type="submit"],
+.nitrous-olive .more-link {
+	background-color: #82987d !important;
+	border: 1px solid #82987d !important;
+}
+
+.nitrous-olive div.gform_footer input.button:hover,
+.nitrous-olive input:hover[type="button"],
+.nitrous-olive input:hover[type="submit"],
+.nitrous-olive .more-link:hover {
+	background-color: #6f826b !important;
+	border: 1px solid #6f826b !important;
+}
+
+
+/* Nitrous Orange
+------------------------------------------------------------ */
+
+.nitrous-orange a,
+.nitrous-orange a:visited,
+.nitrous-orange #title a,
+.nitrous-orange #title a:hover,
+.nitrous-orange #nav li a:hover,
+.nitrous-orange #nav li a:active,
+.nitrous-orange #nav .current_page_item a,
+.nitrous-orange #nav .current-cat a,
+.nitrous-orange #nav .current-menu-item a,
+.nitrous-orange #nav li li a:hover,
+.nitrous-orange #nav li li a:active,
+.nitrous-orange #nav li.right a:hover,
+.nitrous-orange #subnav li a:hover,
+.nitrous-orange #subnav li a:active,
+.nitrous-orange #subnav .current_page_item a,
+.nitrous-orange #subnav .current-cat a,
+.nitrous-orange #subnav .current-menu-item a,
+.nitrous-orange #subnav li li a:hover,
+.nitrous-orange #subnav li li a:active,
+.nitrous-orange #cat,
+.nitrous-orange .widget_archive select,
+.nitrous-orange .s,
+.nitrous-orange .enews #subbox,
+.nitrous-orange #footer a:hover {
+	color: #d57e15;
+}
+
+.nitrous-orange h2 a,
+.nitrous-orange h2 a:visited {
+	color: #444;
+}
+
+.nitrous-orange h2 a:hover {
+	color: #d57e15 !important;
+}
+
+.nitrous-orange #header ul.nav li a:hover,
+.nitrous-orange #header ul.nav li a:active,
+.nitrous-orange #header ul.nav .current_page_item a,
+.nitrous-orange #header ul.nav .current-cat a,
+.nitrous-orange #header ul.nav .current-menu-item a,
+.nitrous-orange #header ul.menu li a:hover,
+.nitrous-orange #header ul.menu li a:active,
+.nitrous-orange #header ul.menu .current_page_item a,
+.nitrous-orange #header ul.menu .current-cat a,
+.nitrous-orange #header ul.menu .current-menu-item a,
+.nitrous-orange #header ul.nav li li a,
+.nitrous-orange #header ul.nav li li a:link,
+.nitrous-orange #header ul.nav li li a:visited,
+.nitrous-orange #header ul.menu li li a,
+.nitrous-orange #header ul.menu li li a:link,
+.nitrous-orange #header ul.menu li li a:visited
+.nitrous-orange div.gform_footer input.button,
+.nitrous-orange input[type="button"],
+.nitrous-orange input[type="submit"],
+.nitrous-orange .more-link {
+	background-color: #d57e15;
+}
+
+.nitrous-orange #header ul.nav li li a,
+.nitrous-orange #header ul.nav li li a:link,
+.nitrous-orange #header ul.nav li li a:visited,
+.nitrous-orange #header ul.menu li li a,
+.nitrous-orange #header ul.menu li li a:link,
+.nitrous-orange #header ul.menu li li a:visited {
+	border-bottom: 1px solid #fff;
+}
+
+.nitrous-orange div.gform_footer input.button,
+.nitrous-orange input[type="button"],
+.nitrous-orange input[type="submit"],
+.nitrous-orange .more-link {
+	background-color: #d57e15 !important;
+	border: 1px solid #d57e15 !important;
+}
+
+.nitrous-orange div.gform_footer input.button:hover,
+.nitrous-orange input:hover[type="button"],
+.nitrous-orange input:hover[type="submit"],
+.nitrous-orange .more-link:hover {
+	background-color: #bd6c12 !important;
+	border: 1px solid #bd6c12 !important;
+}
+
+
+/* Nitrous Pink
+------------------------------------------------------------ */
+
+.nitrous-pink a,
+.nitrous-pink a:visited,
+.nitrous-pink #title a,
+.nitrous-pink #title a:hover,
+.nitrous-pink #nav li a:hover,
+.nitrous-pink #nav li a:active,
+.nitrous-pink #nav .current_page_item a,
+.nitrous-pink #nav .current-cat a,
+.nitrous-pink #nav .current-menu-item a,
+.nitrous-pink #nav li li a:hover,
+.nitrous-pink #nav li li a:active,
+.nitrous-pink #nav li.right a:hover,
+.nitrous-pink #subnav li a:hover,
+.nitrous-pink #subnav li a:active,
+.nitrous-pink #subnav .current_page_item a,
+.nitrous-pink #subnav .current-cat a,
+.nitrous-pink #subnav .current-menu-item a,
+.nitrous-pink #subnav li li a:hover,
+.nitrous-pink #subnav li li a:active,
+.nitrous-pink #cat,
+.nitrous-pink .widget_archive select,
+.nitrous-pink .s,
+.nitrous-pink .enews #subbox,
+.nitrous-pink #footer a:hover {
+	color: #ea6ab8;
+}
+
+.nitrous-pink h2 a,
+.nitrous-pink h2 a:visited {
+	color: #444;
+}
+
+.nitrous-pink h2 a:hover {
+	color: #ea6ab8 !important;
+}
+
+.nitrous-pink #header ul.nav li a:hover,
+.nitrous-pink #header ul.nav li a:active,
+.nitrous-pink #header ul.nav .current_page_item a,
+.nitrous-pink #header ul.nav .current-cat a,
+.nitrous-pink #header ul.nav .current-menu-item a,
+.nitrous-pink #header ul.menu li a:hover,
+.nitrous-pink #header ul.menu li a:active,
+.nitrous-pink #header ul.menu .current_page_item a,
+.nitrous-pink #header ul.menu .current-cat a,
+.nitrous-pink #header ul.menu .current-menu-item a,
+.nitrous-pink #header ul.nav li li a,
+.nitrous-pink #header ul.nav li li a:link,
+.nitrous-pink #header ul.nav li li a:visited,
+.nitrous-pink #header ul.menu li li a,
+.nitrous-pink #header ul.menu li li a:link,
+.nitrous-pink #header ul.menu li li a:visited
+.nitrous-pink div.gform_footer input.button,
+.nitrous-pink input[type="button"],
+.nitrous-pink input[type="submit"],
+.nitrous-pink .more-link {
+	background-color: #ea6ab8;
+}
+
+.nitrous-pink #header ul.nav li li a,
+.nitrous-pink #header ul.nav li li a:link,
+.nitrous-pink #header ul.nav li li a:visited,
+.nitrous-pink #header ul.menu li li a,
+.nitrous-pink #header ul.menu li li a:link,
+.nitrous-pink #header ul.menu li li a:visited {
+	border-bottom: 1px solid #fff;
+}
+
+.nitrous-pink div.gform_footer input.button,
+.nitrous-pink input[type="button"],
+.nitrous-pink input[type="submit"],
+.nitrous-pink .more-link {
+	background-color: #ea6ab8 !important;
+	border: 1px solid #ea6ab8 !important;
+}
+
+.nitrous-pink div.gform_footer input.button:hover,
+.nitrous-pink input:hover[type="button"],
+.nitrous-pink input:hover[type="submit"],
+.nitrous-pink .more-link:hover {
+	background-color: #d75ba0 !important;
+	border: 1px solid #d75ba0 !important;
+}
+
+
+/* Nitrous Purple
+------------------------------------------------------------ */
+
+.nitrous-purple a,
+.nitrous-purple a:visited,
+.nitrous-purple #title a,
+.nitrous-purple #title a:hover,
+.nitrous-purple #nav li a:hover,
+.nitrous-purple #nav li a:active,
+.nitrous-purple #nav .current_page_item a,
+.nitrous-purple #nav .current-cat a,
+.nitrous-purple #nav .current-menu-item a,
+.nitrous-purple #nav li li a:hover,
+.nitrous-purple #nav li li a:active,
+.nitrous-purple #nav li.right a:hover,
+.nitrous-purple #subnav li a:hover,
+.nitrous-purple #subnav li a:active,
+.nitrous-purple #subnav .current_page_item a,
+.nitrous-purple #subnav .current-cat a,
+.nitrous-purple #subnav .current-menu-item a,
+.nitrous-purple #subnav li li a:hover,
+.nitrous-purple #subnav li li a:active,
+.nitrous-purple #cat,
+.nitrous-purple .widget_archive select,
+.nitrous-purple .s,
+.nitrous-purple .enews #subbox,
+.nitrous-purple #footer a:hover {
+	color: #ae24d6;
+}
+
+.nitrous-purple h2 a,
+.nitrous-purple h2 a:visited {
+	color: #444;
+}
+
+.nitrous-purple h2 a:hover {
+	color: #ae24d6 !important;
+}
+
+.nitrous-purple #header ul.nav li a:hover,
+.nitrous-purple #header ul.nav li a:active,
+.nitrous-purple #header ul.nav .current_page_item a,
+.nitrous-purple #header ul.nav .current-cat a,
+.nitrous-purple #header ul.nav .current-menu-item a,
+.nitrous-purple #header ul.menu li a:hover,
+.nitrous-purple #header ul.menu li a:active,
+.nitrous-purple #header ul.menu .current_page_item a,
+.nitrous-purple #header ul.menu .current-cat a,
+.nitrous-purple #header ul.menu .current-menu-item a,
+.nitrous-purple #header ul.nav li li a,
+.nitrous-purple #header ul.nav li li a:link,
+.nitrous-purple #header ul.nav li li a:visited,
+.nitrous-purple #header ul.menu li li a,
+.nitrous-purple #header ul.menu li li a:link,
+.nitrous-purple #header ul.menu li li a:visited
+.nitrous-purple div.gform_footer input.button,
+.nitrous-purple input[type="button"],
+.nitrous-purple input[type="submit"],
+.nitrous-purple .more-link {
+	background-color: #ae24d6;
+}
+
+.nitrous-purple #header ul.nav li li a,
+.nitrous-purple #header ul.nav li li a:link,
+.nitrous-purple #header ul.nav li li a:visited,
+.nitrous-purple #header ul.menu li li a,
+.nitrous-purple #header ul.menu li li a:link,
+.nitrous-purple #header ul.menu li li a:visited {
+	border-bottom: 1px solid #fff;
+}
+
+.nitrous-purple div.gform_footer input.button,
+.nitrous-purple input[type="button"],
+.nitrous-purple input[type="submit"],
+.nitrous-purple .more-link {
+	background-color: #ae24d6 !important;
+	border: 1px solid #ae24d6 !important;
+}
+
+.nitrous-purple div.gform_footer input.button:hover,
+.nitrous-purple input:hover[type="button"],
+.nitrous-purple input:hover[type="submit"],
+.nitrous-purple .more-link:hover {
+	background-color: #961fbe !important;
+	border: 1px solid #961fbe !important;
+}
+
+
+/* Nitrous Red
+------------------------------------------------------------ */
+
+.nitrous-red a,
+.nitrous-red a:visited,
+.nitrous-red #title a,
+.nitrous-red #title a:hover,
+.nitrous-red #nav li a:hover,
+.nitrous-red #nav li a:active,
+.nitrous-red #nav .current_page_item a,
+.nitrous-red #nav .current-cat a,
+.nitrous-red #nav .current-menu-item a,
+.nitrous-red #nav li li a:hover,
+.nitrous-red #nav li li a:active,
+.nitrous-red #nav li.right a:hover,
+.nitrous-red #subnav li a:hover,
+.nitrous-red #subnav li a:active,
+.nitrous-red #subnav .current_page_item a,
+.nitrous-red #subnav .current-cat a,
+.nitrous-red #subnav .current-menu-item a,
+.nitrous-red #subnav li li a:hover,
+.nitrous-red #subnav li li a:active,
+.nitrous-red #cat,
+.nitrous-red .widget_archive select,
+.nitrous-red .s,
+.nitrous-red .enews #subbox,
+.nitrous-red #footer a:hover {
+	color: #de324f;
+}
+
+.nitrous-red h2 a,
+.nitrous-red h2 a:visited {
+	color: #444;
+}
+
+.nitrous-red h2 a:hover {
+	color: #de324f !important;
+}
+
+.nitrous-red #header ul.nav li a:hover,
+.nitrous-red #header ul.nav li a:active,
+.nitrous-red #header ul.nav .current_page_item a,
+.nitrous-red #header ul.nav .current-cat a,
+.nitrous-red #header ul.nav .current-menu-item a,
+.nitrous-red #header ul.menu li a:hover,
+.nitrous-red #header ul.menu li a:active,
+.nitrous-red #header ul.menu .current_page_item a,
+.nitrous-red #header ul.menu .current-cat a,
+.nitrous-red #header ul.menu .current-menu-item a,
+.nitrous-red #header ul.nav li li a,
+.nitrous-red #header ul.nav li li a:link,
+.nitrous-red #header ul.nav li li a:visited,
+.nitrous-red #header ul.menu li li a,
+.nitrous-red #header ul.menu li li a:link,
+.nitrous-red #header ul.menu li li a:visited
+.nitrous-red div.gform_footer input.button,
+.nitrous-red input[type="button"],
+.nitrous-red input[type="submit"],
+.nitrous-red .more-link {
+	background-color: #de324f;
+}
+
+.nitrous-red #header ul.nav li li a,
+.nitrous-red #header ul.nav li li a:link,
+.nitrous-red #header ul.nav li li a:visited,
+.nitrous-red #header ul.menu li li a,
+.nitrous-red #header ul.menu li li a:link,
+.nitrous-red #header ul.menu li li a:visited {
+	border-bottom: 1px solid #fff;
+}
+
+.nitrous-red div.gform_footer input.button,
+.nitrous-red input[type="button"],
+.nitrous-red input[type="submit"],
+.nitrous-red .more-link {
+	background-color: #de324f !important;
+	border: 1px solid #de324f !important;
+}
+
+.nitrous-red div.gform_footer input.button:hover,
+.nitrous-red input:hover[type="button"],
+.nitrous-red input:hover[type="submit"],
+.nitrous-red .more-link:hover {
+	background-color: #c72b43 !important;
+	border: 1px solid #c72b43 !important;
+}
+
+
+/* Nitrous Silver
+------------------------------------------------------------ */
+
+.nitrous-silver a,
+.nitrous-silver a:visited,
+.nitrous-silver #title a,
+.nitrous-silver #title a:hover,
+.nitrous-silver #nav li a:hover,
+.nitrous-silver #nav li a:active,
+.nitrous-silver #nav .current_page_item a,
+.nitrous-silver #nav .current-cat a,
+.nitrous-silver #nav .current-menu-item a,
+.nitrous-silver #nav li li a:hover,
+.nitrous-silver #nav li li a:active,
+.nitrous-silver #nav li.right a:hover,
+.nitrous-silver #subnav li a:hover,
+.nitrous-silver #subnav li a:active,
+.nitrous-silver #subnav .current_page_item a,
+.nitrous-silver #subnav .current-cat a,
+.nitrous-silver #subnav .current-menu-item a,
+.nitrous-silver #subnav li li a:hover,
+.nitrous-silver #subnav li li a:active,
+.nitrous-silver #cat,
+.nitrous-silver .widget_archive select,
+.nitrous-silver .s,
+.nitrous-silver .enews #subbox,
+.nitrous-silver #footer a:hover {
+	color: #999;
+}
+
+.nitrous-silver h2 a,
+.nitrous-silver h2 a:visited {
+	color: #444;
+}
+
+.nitrous-silver h2 a:hover {
+	color: #999 !important;
+}
+
+.nitrous-silver #header ul.nav li a:hover,
+.nitrous-silver #header ul.nav li a:active,
+.nitrous-silver #header ul.nav .current_page_item a,
+.nitrous-silver #header ul.nav .current-cat a,
+.nitrous-silver #header ul.nav .current-menu-item a,
+.nitrous-silver #header ul.menu li a:hover,
+.nitrous-silver #header ul.menu li a:active,
+.nitrous-silver #header ul.menu .current_page_item a,
+.nitrous-silver #header ul.menu .current-cat a,
+.nitrous-silver #header ul.menu .current-menu-item a,
+.nitrous-silver #header ul.nav li li a,
+.nitrous-silver #header ul.nav li li a:link,
+.nitrous-silver #header ul.nav li li a:visited,
+.nitrous-silver #header ul.menu li li a,
+.nitrous-silver #header ul.menu li li a:link,
+.nitrous-silver #header ul.menu li li a:visited
+.nitrous-silver div.gform_footer input.button,
+.nitrous-silver input[type="button"],
+.nitrous-silver input[type="submit"],
+.nitrous-silver .more-link {
+	background-color: #999;
+}
+
+.nitrous-silver #header ul.nav li li a,
+.nitrous-silver #header ul.nav li li a:link,
+.nitrous-silver #header ul.nav li li a:visited,
+.nitrous-silver #header ul.menu li li a,
+.nitrous-silver #header ul.menu li li a:link,
+.nitrous-silver #header ul.menu li li a:visited {
+	border-bottom: 1px solid #fff;
+}
+
+.nitrous-silver div.gform_footer input.button,
+.nitrous-silver input[type="button"],
+.nitrous-silver input[type="submit"],
+.nitrous-silver .more-link {
+	background-color: #999 !important;
+	border: 1px solid #999 !important;
+}
+
+.nitrous-silver div.gform_footer input.button:hover,
+.nitrous-silver input:hover[type="button"],
+.nitrous-silver input:hover[type="submit"],
+.nitrous-silver .more-link:hover {
+	background-color: #838383 !important;
+	border: 1px solid #838383 !important;
+}
+
+
+/* Nitrous Teal
+------------------------------------------------------------ */
+
+.nitrous-teal a,
+.nitrous-teal a:visited,
+.nitrous-teal #title a,
+.nitrous-teal #title a:hover,
+.nitrous-teal #nav li a:hover,
+.nitrous-teal #nav li a:active,
+.nitrous-teal #nav .current_page_item a,
+.nitrous-teal #nav .current-cat a,
+.nitrous-teal #nav .current-menu-item a,
+.nitrous-teal #nav li li a:hover,
+.nitrous-teal #nav li li a:active,
+.nitrous-teal #nav li.right a:hover,
+.nitrous-teal #subnav li a:hover,
+.nitrous-teal #subnav li a:active,
+.nitrous-teal #subnav .current_page_item a,
+.nitrous-teal #subnav .current-cat a,
+.nitrous-teal #subnav .current-menu-item a,
+.nitrous-teal #subnav li li a:hover,
+.nitrous-teal #subnav li li a:active,
+.nitrous-teal #cat,
+.nitrous-teal .widget_archive select,
+.nitrous-teal .s,
+.nitrous-teal .enews #subbox,
+.nitrous-teal #footer a:hover {
+	color: #0fb0ae;
+}
+
+.nitrous-teal h2 a,
+.nitrous-teal h2 a:visited {
+	color: #444;
+}
+
+.nitrous-teal h2 a:hover {
+	color: #0fb0ae !important;
+}
+
+.nitrous-teal #header ul.nav li a:hover,
+.nitrous-teal #header ul.nav li a:active,
+.nitrous-teal #header ul.nav .current_page_item a,
+.nitrous-teal #header ul.nav .current-cat a,
+.nitrous-teal #header ul.nav .current-menu-item a,
+.nitrous-teal #header ul.menu li a:hover,
+.nitrous-teal #header ul.menu li a:active,
+.nitrous-teal #header ul.menu .current_page_item a,
+.nitrous-teal #header ul.menu .current-cat a,
+.nitrous-teal #header ul.menu .current-menu-item a,
+.nitrous-teal #header ul.nav li li a,
+.nitrous-teal #header ul.nav li li a:link,
+.nitrous-teal #header ul.nav li li a:visited,
+.nitrous-teal #header ul.menu li li a,
+.nitrous-teal #header ul.menu li li a:link,
+.nitrous-teal #header ul.menu li li a:visited
+.nitrous-teal div.gform_footer input.button,
+.nitrous-teal input[type="button"],
+.nitrous-teal input[type="submit"],
+.nitrous-teal .more-link {
+	background-color: #0fb0ae;
+}
+
+.nitrous-teal #header ul.nav li li a,
+.nitrous-teal #header ul.nav li li a:link,
+.nitrous-teal #header ul.nav li li a:visited,
+.nitrous-teal #header ul.menu li li a,
+.nitrous-teal #header ul.menu li li a:link,
+.nitrous-teal #header ul.menu li li a:visited {
+	border-bottom: 1px solid #fff;
+}
+
+.nitrous-teal div.gform_footer input.button,
+.nitrous-teal input[type="button"],
+.nitrous-teal input[type="submit"],
+.nitrous-teal .more-link {
+	background-color: #0fb0ae !important;
+	border: 1px solid #0fb0ae !important;
+}
+
+.nitrous-teal div.gform_footer input.button:hover,
+.nitrous-teal input:hover[type="button"],
+.nitrous-teal input:hover[type="submit"],
+.nitrous-teal .more-link:hover {
+	background-color: #0d9896 !important;
+	border: 1px solid #0d9896 !important;
+}

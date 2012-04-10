@@ -1,0 +1,1 @@
+jQuery(document).ready(function(a){a("#myController").jFlow({controller:".jFlowControl",slideWrapper:"#jFlowSlider",slides:"#mySlides",selectedWrapper:"jFlowSelected",width:"875px",height:"580px",duration:400,prev:".jFlowPrev",next:".jFlowNext",auto:!0})});
