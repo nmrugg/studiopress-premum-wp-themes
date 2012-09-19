@@ -110,7 +110,7 @@ function genesis_user_archive_fields( $user ) {
 				<td>
 					<input id="meta[genesis_author_box_single]" name="meta[genesis_author_box_single]" type="checkbox" value="1" <?php checked( get_the_author_meta( 'genesis_author_box_single', $user->ID ) ); ?> />
 					<label for="meta[genesis_author_box_single]"><?php _e( 'Enable Author Box on this User\'s Posts?', 'genesis' ); ?></label><br />
-					<input id=""meta[genesis_author_box_archive]" name="meta[genesis_author_box_archive]" type="checkbox" value="1" <?php checked( get_the_author_meta( 'genesis_author_box_archive', $user->ID ) ); ?> />
+					<input id="meta[genesis_author_box_archive]" name="meta[genesis_author_box_archive]" type="checkbox" value="1" <?php checked( get_the_author_meta( 'genesis_author_box_archive', $user->ID ) ); ?> />
 					<label for="meta[genesis_author_box_archive]"><?php _e( 'Enable Author Box on this User\'s Archives?', 'genesis' ); ?></label>
 				</td>
 			</tr>
